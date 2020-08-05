@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击</button>
+    <script>
+        var div = document.querySelector('button')
+        var flag = true
+        div.addEventListener('click',function() {
+           if(flag) {
+            document.body.style.backgroundColor = 'black'
+            flag = false
+           }else {
+            document.body.style.backgroundColor = ''
+            flag = true
+           }
+        })
+    </script>
+</body>
+</html>
