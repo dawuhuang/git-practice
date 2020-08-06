@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="box">
+            <ul class="bul">
+                <li>我是li</li>
+                <li>我是li</li>
+                <li>我是li</li>
+                <li>我是li</li>
+                <li>我是li</li>
+                <li>我是li</li>
+                <li>我是li</li>
+            </ul>
+        </div>
+        <script>
+            var bul = document.querySelector("ul");
+            // 父节点
+            // bul.parentNode.style.backgroundColor = 'red'
+
+            // 子节点
+            // console.log(bul.children);
+            for (var i = 0; i < bul.children.length; i++) {
+                bul.children[i].addEventListener("click", function () {
+                    for (var i = 0; i < bul.children.length; i++) {
+                        bul.children[i].style.backgroundColor = "";
+                    }
+                    this.style.backgroundColor = "red";
+                });
+            }
+        </script>
+    </body>
+</html>
