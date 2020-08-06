@@ -124,7 +124,17 @@
             </ul>
         </li>
     </ul>
-
+    <script>
+        var title = document.querySelector('.nav').children
+        for(var i = 0; i < title.length; i++) {
+            title[i].firstElementChild.addEventListener('mouseover',function() {
+                for(var i = 0; i < title.length; i++) {
+                    title[i].children[1].style.display = 'none'
+                }
+                this.nextElementSibling.style.display = 'block'
+            })
+        }
+    </script>
 </body>
 
 </html>

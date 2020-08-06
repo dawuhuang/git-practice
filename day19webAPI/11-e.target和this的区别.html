@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+    </ul>
+    <script>
+        // e.tatget 是事件触发的对象  this的事件绑定的元素
+        var ul = document.querySelector('ul')
+        ul.addEventListener('click', function(e) {
+            console.log(this);
+            console.log(e.target);
+        })
+    </script>
+</body>
+</html>

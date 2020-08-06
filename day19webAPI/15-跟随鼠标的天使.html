@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            div {
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 50px;
+                height: 50px;
+                background-color: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <script>
+            var div = document.querySelector('div')
+            document.addEventListener('mousemove', function(e) {
+                // console.log(e.pageX,e.pageY);
+                div.style.top = e.pageY - 25 + 'px'
+                div.style.left = e.pageX - 25 +'px'
+            })
+        </script>
+    </body>
+</html>

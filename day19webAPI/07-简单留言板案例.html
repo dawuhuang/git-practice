@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding: 100px;
+        }
+        
+        textarea {
+            width: 200px;
+            height: 100px;
+            border: 1px solid pink;
+            outline: none;
+            resize: none;
+        }
+        
+        ul {
+            margin-top: 50px;
+        }
+        
+        li {
+            width: 300px;
+            padding: 5px;
+            background-color: rgb(245, 209, 243);
+            color: red;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id=""></textarea>
+    <button>发布</button>
+    <ul>
+
+    </ul>
+    <script>
+        var text = document.querySelector('textarea')
+        var btn = document.querySelector('button')
+        var ul = document.querySelector('ul')
+        // 获取text里面的内容
+        // console.log(text.value);
+        // 点击事件
+        btn.addEventListener('click', function() {
+            if (text.value.trim() == '') {
+                alert('请先输入内容，再点击发布')
+                return;
+            }
+            var li = document.createElement('li')
+            // console.log(li);
+            li.innerHTML = text.value
+            ul.insertBefore(li,ul.children[0])
+            text.value = ''
+        })
+    </script>
+</body>
+
+</html>
