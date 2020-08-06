@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="javascript:;" id="f1">
+            <input type="text" name="uname">
+            <input type="submit" value="登录" class="button">
+        </form>
+        <div></div>
+        <script>
+            var btn = document.querySelector(".button");
+            var div = document.querySelector("div");
+            var form1 = document.querySelector('#f1')
+            console.log(form1);
+            btn.addEventListener("click", function () {
+                console.log(form1.action);
+                var time = 5;
+                setInterval(function () {
+                    console.log(1);
+                    if (time == 0) {
+                        form1.action = "./25-获取url参数.html";
+                        btn.click()
+                    } else {
+                        div.innerHTML = `您将在${time}秒钟后跳转`;
+                        time--;
+                    }
+                }, 1000);
+            });
+        </script>
+    </body>
+</html>

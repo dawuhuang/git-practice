@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script> 
+        // 当前时间
+        var timer = new Date()
+        console.log(timer);
+        // 获取事件戳
+        console.log(timer.getTime());
+        console.log(timer.valueOf());
+        console.log(+timer);
+        console.log(Date.now());
+        // 只能精确到秒
+        console.log(Date.parse(timer));
+
+    </script>
+</body>
+</html>

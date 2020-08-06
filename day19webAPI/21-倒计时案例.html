@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div></div>
+        <script>
+            // 使用新的方法 es6的补全 str.padStart(2,0)
+            var div = document.querySelector('div')
+            var i = 0
+            var tim = setInterval(() => {
+                div.innerHTML = fn("2020-08-10 00:00:00")
+                i++
+                if (i > 3) {
+                    // 清除定时器
+                    clearInterval(tim)
+                }
+            }, 1000);
+            function fn(timer) {
+                // 当前时间戳
+                var newtime = +new Date();
+                // 指定时间
+                var count = +new Date(timer);
+                // 时间差
+                var time = (count - newtime) / 1000;
+                var day = Math.floor(time / 60 / 60 / 24);
+                var h = parseInt((time / 60 / 60) % 24);
+                var m = parseInt((time / 60) % 60);
+                var s = parseInt(time % 60);
+                return `剩余时间${fn1(day)}天${fn1(h)}时${fn1(m)}分${fn1(s)}秒`;
+            }
+            function fn1(e) {
+                nowt = e.toString().padStart(2, '0');
+                return nowt;
+            }
+        </script>
+    </body>
+</html>

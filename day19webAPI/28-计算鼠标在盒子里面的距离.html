@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .box {
+                width: 300px;
+                height: 300px;
+                background-color: pink;
+                margin: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <script>
+            var div = document.querySelector('div')
+            div.addEventListener('mousemove', function(e) {
+                var x = e.pageX
+                var y = e.pageY
+                var mouseX = x - this.offsetLeft + 'px'
+                var mouseY = y - this.offsetTop + 'px'
+                div.innerHTML = `x坐标是${mouseX},y坐标是${mouseY}`
+            })
+        </script>
+    </body>
+</html>
