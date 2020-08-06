@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义属性</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div')
+        // 设置自定义属性
+        div.setAttribute('data-index','1') 
+        console.log(div);
+        // 获取自定义属性
+        var str = div.getAttribute('data-index')
+        console.log(str);
+        // 移除自定义属性
+        div.removeAttribute('data-index')
+        console.log(div);
+    </script>
+</body>
+</html>
