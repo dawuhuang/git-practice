@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>元素属性操作</title>
+    </head>
+    <body>
+        <a href="http://www.itcast.cn" title="都挺好">都挺好</a>
+        <input type="checkbox" name="" id="" checked />
+        <div index="1" data-index="2">我是div</div>
+        <span>123</span>
+        <script src="./jquery.min.js"></script>
+        <script>
+            $(function () {
+                // prop 操作元素的固有属性
+                // 获取
+                // console.log($('a').prop('href'));
+                // 设置
+                // $('a').prop('title','我们都挺好吗')
+                // $('input').change(function() {
+                //     console.log($(this).prop('checked'));
+                // })
+                // 不能获取元素的自定义属性
+                // console.log($('div').prop('index'));
+
+                // attr 操作元素的自定义属性
+                // 获取
+                // console.log($('div').attr('index'));
+                // 设置
+                // $('div').attr('index', 66)
+                // 获取h5的自定义属性
+                console.log($("div").attr("data-index"));
+
+                // data 数据缓存  将数据存放到元素的内存里面
+                $('span').data('uname','andy')
+                console.log($('span').data('uname'));
+                console.log($("div").data("index"));
+            });
+        </script>
+    </body>
+</html>
