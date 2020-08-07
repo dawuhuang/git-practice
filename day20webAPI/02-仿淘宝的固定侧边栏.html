@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+            .slider-bar {
+                position: absolute;
+                left: 50%;
+                top: 300px;
+                margin-left: 600px;
+                width: 45px;
+                height: 130px;
+                background-color: pink;
+            }
+
+            .w {
+                width: 1200px;
+                margin: 10px auto;
+            }
+
+            .header {
+                height: 150px;
+                background-color: purple;
+            }
+
+            .banner {
+                height: 250px;
+                background-color: skyblue;
+            }
+
+            .main {
+                height: 1000px;
+                background-color: yellowgreen;
+            }
+
+            span {
+                display: none;
+                position: absolute;
+                bottom: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="slider-bar">
+            <span class="goBack">返回顶部</span>
+        </div>
+        <div class="header w">头部区域</div>
+        <div class="banner w">banner区域</div>
+        <div class="main w">主体部分</div>
+        <!-- 1. 原先侧边栏是绝对定位
+    2. 当页面滚动到一定位置，侧边栏改为固定定位
+    3. 页面继续滚动，会让 返回顶部显示出来 -->
+        <script>
+            // banner
+            var banner = document.querySelector(".banner");
+            // 侧边栏
+            var bar = document.querySelector(".slider-bar");
+            var goBack = document.querySelector(".goBack");
+            // 主体部分
+            var main = document.querySelector(".main");
+            // 侧边栏固定时处于的位置     解决了跳动问题
+            var barTop = bar.offsetTop - banner.offsetTop;
+            // console.log(barTop);
+            document.addEventListener("scroll", function () {
+                // 转为固定
+                if (window.pageYOffset >= banner.offsetTop) {
+                    bar.style.position = "fixed";
+                    bar.style.top = barTop + "px";
+                } else {
+                    bar.style.position = "absolute";
+                    bar.style.top = 300 + "px";
+                }
+                if (window.pageYOffset >= main.offsetTop) {
+                    goBack.style.display = "block";
+                } else {
+                    goBack.style.display = "none";
+                }
+            });
+            goBack.addEventListener("click", function () {
+                // console.log(1);
+                window.scroll(0,0)
+            });
+        </script>
+    </body>
+</html>

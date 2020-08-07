@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+                border: 10px solid red;
+                padding: 10px;
+                overflow: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容 我是内容
+        </div>
+        <script>
+            var div = document.querySelector('div')
+            // 实际的距离
+            console.log(div.scrollHeight);
+            // 盒子的距离
+            console.log(div.clientHeight);
+            // 内容被卷去的距离
+            div.addEventListener('scroll', function() {
+                console.log(div.scrollTop);
+            })
+        </script>
+    </body>
+</html>
