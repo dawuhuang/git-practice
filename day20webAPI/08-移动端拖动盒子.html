@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        window.addEventListener('load', function() {
+            var div = document.querySelector('div')
+            // 按住
+            div.addEventListener('touchstart', function(e) {
+                // console.log(1);
+                // 获取在盒子里面的坐标
+                var x = e.targetTouches[0].pageX - this.offsetLeft
+                var y = e.targetTouches[0].pageY - this.offsetTop
+                console.log(x,y);
+                console.log(new Date());
+                // 移动时
+                div.addEventListener('touchmove', function(e) {
+                    // console.log(2);
+                    div.style.left = e.targetTouches[0].pageX - y +'px'
+                    div.style.top = e.targetTouches[0].pageY - x + 'px'
+                    // 清除默认的滚动行为
+                    e.preventDefault()
+                })
+            })
+        })
+    </script>
+</body>
+</html>

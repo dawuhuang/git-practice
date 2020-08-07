@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button>清除</button>
+        <label for="uname">用户名 </label>
+        <input type="text" id="uname" />
+        <input type="checkbox" class="check" />
+        <script>
+            var uname = document.querySelector("#uname");
+            var check = document.querySelector(".check");
+            var btn = document.querySelector("button");
+            check.addEventListener("click", function () {
+                if (check.checked && uname.value.trim() != "") {
+                    // 记住用户名
+                    sessionStorage.setItem("uname", uname.value);
+                }
+                if (!check.checked) {
+                    // 清除本地存储
+                    sessionStorage.removeItem("uname");
+                    uname.value = ''
+                }
+            });
+            if (sessionStorage.getItem("uname")) {
+                uname.value = sessionStorage.getItem("uname");
+                check.checked = true;
+            }
+            btn.addEventListener("click", function () {
+                sessionStorage.clear();
+            });
+
+            // 如果先点击复选框，可以用失去焦点事件来触发
+        </script>
+    </body>
+</html>

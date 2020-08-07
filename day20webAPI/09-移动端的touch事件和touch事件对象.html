@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        // touch事件
+        window.addEventListener('load', function(ev) {
+            var div = document.querySelector('div')
+            // 接触
+            div.addEventListener('touchstart', function(e) {
+                console.log('被触摸了');
+                // console.log(e.touches);
+                // console.log(e.targetTouches);
+                console.log(e.changedTouches);
+            })
+            
+            // 移动
+            div.addEventListener('touchmove', function() {
+                console.log('移动了');
+            })
+            div.addEventListener('touchend', function() {
+                console.log('离开了');
+            })
+            // 事件对象
+            // touches   targetTouches    changedTouches
+        })
+    </script>
+</body>
+</html>

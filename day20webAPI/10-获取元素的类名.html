@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 200px;
+                height: 200px;
+                border: 1px solid red;
+            }
+            .pcolor {
+                background-color: pink;
+            }
+            .bcolor {
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <button>增加</button>
+        <button>移除</button>
+        <button>切换</button>
+        <script>
+            // classList h5新增获取元素的类名
+            // add增加  remove移除   toggle切换
+            var div = document.querySelector('div')
+            // 增加类
+            var btns = document.querySelectorAll('button')
+            btns[0].addEventListener('click', function() {
+                div.classList.add('pcolor')
+            })
+            btns[1].addEventListener('click', function() {
+                div.classList.remove('pcolor')
+            })
+            // 切换类相当于增加和删除的结合
+            btns[2].addEventListener('click', function() {
+                div.classList.toggle('bcolor')
+            })
+            // 
+        </script>
+    </body>
+</html>

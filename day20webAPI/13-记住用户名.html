@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记住用户名</title>
+</head>
+<body>
+    <form action="">
+        用户名<input type="checkbox" class="cbk"><input type="text" class="uname">
+    </form>
+    <script>
+        var cbk = document.querySelector('.cbk')
+        var uname = document.querySelector(".uname")
+        cbk.addEventListener('click', function() {
+            console.log(uname.value);
+            console.log(cbk.checked);
+            if (cbk.checked && uname.value.trim() != '') {
+                localStorage.setItem('uname', uname.value)
+
+            }
+            if (!cbk.checked) {
+                localStorage.removeItem('uname')
+            }
+        })
+        if (localStorage.getItem('uname')) {
+            uname.value = localStorage.getItem('uname')
+            cbk.checked = true
+        }
+    </script>
+</body>
+</html>
