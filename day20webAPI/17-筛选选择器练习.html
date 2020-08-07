@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <ul>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+        </ul>
+        <ol>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+            <li>多个里面筛选几个</li>
+        </ol>
+        <script src="./jquery.min.js"></script>
+        <script>
+            $(function() {
+                // 偶数
+                $('ul li:even').css('color', 'red')
+                // 奇数
+                $('ol li:odd').css('color','blue')
+                // 根据索引选择
+                $('ol li:eq(1)').css('color', 'pink')
+                // 首
+                $("ul li:first").css('color', 'green')
+                // 尾
+                $("ul li:last").css('color', 'blue')
+
+            })
+
+            // 节点 parent()父级  children亲儿子  find后代  
+        </script>
+    </body>
+</html>

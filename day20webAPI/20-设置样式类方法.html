@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+        .current {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script src="./jquery.min.js"></script>
+    <button>点击切换</button>
+    <script>
+        $(function() {
+            // 添加类
+            // $('div').addClass('current')
+            // 移除类
+            // $('div').removeClass('current')
+
+            // 切换类
+            $("button").click(function() {
+                // console.log(1);
+                $('div').toggleClass('current')
+            })
+        })
+    </script>
+</body>
+</html>

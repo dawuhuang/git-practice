@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>jQuerty的入口函数</title>
+    </head>
+    <body>
+        <div>123</div>
+        <script src="./jquery.min.js"></script>
+
+        <script>
+        // 简单易用;
+        /*$(function() {
+        ...// 此处是页面DOM加载完成的入口
+        }) */
+        // jQuery 的入口函数相当于 DOMContentLoaded。
+        // 与js中的load事件是不同。
+        // $ 是 jQuery 的顶级对象。相当于 window 。
+        $(document).ready(function() {
+            // 此处是页面DOM加载完成的入口
+            var div = document.querySelector('div')
+            // DOM 对象准换为JQuery
+            // var objjQuery = $(div)
+            // console.log(objjQuery);
+
+            // jQuery对象转换为 DOM 对象
+            // var objdom = $('div')[0]
+            var objdom = $('div').get(0)
+            console.log(objdom);
+        })
+        </script>
+    </body>
+</html>
