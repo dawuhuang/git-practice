@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .father {
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+            margin: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .son {
+            width: 150px;
+            height: 150px;
+            background-color: purple;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        // offset   positon   scroll
+        // offset 相对于文档的偏移量
+        // console.log($('.son').offset().top);
+        // 设置
+        // $('.son').offset({
+        //     top: 200
+        // })
+        // console.log($('.son').offset());
+
+        // positon 向对于带定位的父元素的偏移量
+            // 只能获取不能设置
+        // $('.son').position({
+        //     left: 30
+        // })
+        // console.log($('.son').position());
+        // console.log($('.son').position().top);
+        // console.log($('.son').position().left);
+    </script>
+</body>
+
+</html>

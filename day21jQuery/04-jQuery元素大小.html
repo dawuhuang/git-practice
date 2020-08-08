@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+                padding: 10px;
+                border: 15px solid red;
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <script src="./jquery.min.js"></script>
+        <script>
+            // 包含width
+            // $('div').width(300)
+            console.log($('div').width());
+
+            // innerWidth  包含width 和padding
+            console.log($('div').innerWidth());
+
+            // outerWidth  包含width  padding  border
+            console.log($('div').outerWidth());
+
+            //  outerWidth 里面加true 包含width padding border
+            console.log($('div').outerWidth(true));
+        </script>
+    </body>
+</html>
