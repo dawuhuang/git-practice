@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                background-color: pink;
+            }
+
+            .current {
+                background-color: purple;
+            }
+        </style>
+        <script src="jquery.min.js"></script>
+    </head>
+    <body>
+        <div></div>
+        <ul>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+        </ul>
+        <ol>
+            <li>213</li>
+        </ol>
+        <script>
+            $(function() {
+                // off 解绑事件
+                $('ul').on('click','li',function() {
+                    $(this).css('color','red')
+                    $('ul').off('click','li')
+                })
+                $('ol').on('click', function() {
+                    $(this).css('color', 'blue')
+                })
+                $('ol').off('click')
+            })
+        </script>
+    </body>
+</html>

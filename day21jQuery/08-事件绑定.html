@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                background-color: pink;
+            }
+
+            .current {
+                background-color: purple;
+            }
+        </style>
+        <script src="jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div></div>
+        <ul>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+            <li>我们都是好孩子</li>
+        </ul>
+        <ol></ol>
+        <script>
+            // on 时间绑定
+            $(function() {
+                // $('div').on({
+                //     mouseenter: function() {
+                //         console.log(1);
+                //         $(this).toggleClass('current')
+                //     },
+                //     mouseleave: function() {
+                //         console.log(2);
+                //         $(this).toggleClass('current')
+                //     }
+                // })
+
+                // $('div').on('mouseenter mouseleave', function() {
+                //     $(this).toggleClass('current')
+                // })
+
+                // on可以实现时间委托
+                // $('ul').on('click', 'li', function() {
+                //     alert(11)
+                // })
+
+                // on也可以给动态生成的元素添加绑定时间
+                $('div').on('click','p', function() {
+                    console.log(1);
+                })
+                $('div').append($('<p>231</p>'))
+            })
+        </script>
+    </body>
+</html>

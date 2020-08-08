@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>事件拷贝</title>
+    </head>
+    <body>
+        <script src="./jquery.min.js"></script>
+        <script>
+            // 拷贝
+            $(function () {
+                var obj = {
+                    name: "zs",
+                    age: 123,
+                };
+                var atr = {};
+                var atr1 = {};
+                $.extend(atr,obj)
+                // $.extend(true,atr1,obj)
+                // console.log(atr1);
+            });
+        </script>
+    </body>
+</html>

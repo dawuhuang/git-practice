@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button>点击</button>
+        <div></div>
+        <script src="./jquery.min.js"></script>
+        <script>
+            $(function () {
+                var num = 0
+                $("button").on("click", function (e) {
+                    num++
+                    $('div').html(num)
+                    // 阻止默认行为
+                    e.preventDefault()
+                    // 阻止冒泡
+                    e.stopPropagation()
+                });
+                setInterval(function () {
+                    $("button").triggerHandler('click')
+                }, 1000);
+            });
+        </script>
+    </body>
+</html>
