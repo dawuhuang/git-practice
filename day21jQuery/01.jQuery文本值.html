@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span>我是内容</span>
+    </div>
+    <input type="text" value="请输入内容">
+    <script src="./jquery.min.js"></script>
+    <script>
+        $(function() {
+            // html()  识别标签
+            // 获取
+            // console.log($('div').html());
+            // 设置
+            // $('div').html('123')
+
+            // text() 不识别标签
+            // 获取
+            // console.log($('div').text());
+            // 设置
+            // $('div').text('sss')
+
+            // val()  获取表单里面的内容
+            // 获取
+            // console.log($('input').val());
+            // 设置
+            $('input').val('我是表单元素').siblings
+        })
+    </script>
+</body>
+</html>
