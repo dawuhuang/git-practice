@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            var todolist = [
+                {
+                    title: "我今天吃八个馒头",
+                    done: false,
+                },
+                {
+                    title: "我今天学习jq",
+                    done: false,
+                },
+            ];
+            localStorage.setItem('todo',JSON.stringify(todolist))
+            var data = localStorage.getItem('todo')
+            console.log(JSON.parse(data));
+        </script>
+    </body>
+</html>

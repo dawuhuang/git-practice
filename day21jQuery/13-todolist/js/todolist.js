@@ -1,96 +1,76 @@
-$(function() {
-    // alert(11);
-    // 1. 按下回车 把完整数据 存储到本地存储里面
-    // 存储的数据格式  var todolist = [{title: "xxx", done: false}]
-    load();
-    $("#title").on("keydown", function(event) {
-        if (event.keyCode === 13) {
-            if ($(this).val() === "") {
-                alert("请输入您要的操作");
-            } else {
-                // 先读取本地存储原来的数据
-                var local = getDate();
-                // console.log(local);
-                // 把local数组进行更新数据 把最新的数据追加给local数组
-                local.push({ title: $(this).val(), done: false });
-                // 把这个数组local 存储给本地存储
-                saveDate(local);
-                // 2. toDoList 本地存储数据渲染加载到页面
-                load();
-                $(this).val("");
-            }
+// 思路 1，按下回车把新数据添加到本地存储里面，页面中是所有数据都是从本地存储里面获取的
+// 先判断用户按下的回车健13，先要读取本地存储原来的数据，如果有，就读取，如果没有，就设置个空数组
+// 读取本地存储里面是数据可以封装为一个函数
+// 保存本地存储也可以封装为一个函数
+
+// 2，将本地存储里面是数据渲染到页面当这中，先读取本地存储里面的数据，在遍历渲染
+
+$(function () {
+    // 刷新前先渲染
+    load()
+    //1 按下回车记录数据
+    $("#title").on("keyup", function (e) {
+        if (e.keyCode == 13) {
+            // 先读取本地数据
+            var local = getData();
+            console.log(local);
+            local.push({ title: $(this).val(), done: false });
+            saveData(local);
+            $(this).val("");
+            load()
         }
     });
-    // 3. toDoList 删除操作
-    $("ol, ul").on("click", "a", function() {
-        // alert(11);
-        // 先获取本地存储
-        var data = getDate();
-        console.log(data);
-        // 修改数据
-        var index = $(this).attr("id");
-        console.log(index);
-        data.splice(index, 1);
-        // 保存到本地存储
-        saveDate(data);
-        // 重新渲染页面
-        load();
-    });
-    // 4. toDoList 正在进行和已完成选项操作
-    $("ol, ul").on("click", "input", function() {
-        // alert(11);
-        // 先获取本地存储的数据
-        var data = getDate();
-        // 修改数据
-        var index = $(this).siblings("a").attr("id");
-        console.log(index);
-        // data[?].done = ?
-        data[index].done = $(this).prop("checked");
-        console.log(data);
 
-        // 保存到本地存储
-        saveDate(data);
-        // 重新渲染页面
-        load();
-    });
-    // 读取本地存储的数据 
-    function getDate() {
+    //2 删除操作
+    $('#todolist').on('click','a',function() {
+        var index = $(this).parent().attr('data-index')
+        // 根据索引删除数据
+        var arr = getData()
+        arr.splice(index,1)
+        // 保存
+        saveData(arr)
+        load()
+    })
+
+    //3 点击复选框修改本地存储数据
+    $('section').on('change','input', function() {
+        index = $(this).parent().attr('data-index')
+        var delDate = getData();
+        delDate[index].done = $(this).prop('checked')
+        
+        // console.log(delDate[index].done);
+    })
+
+    // 读取本地存储里面的数据
+    function getData() {
         var data = localStorage.getItem("todolist");
         if (data !== null) {
-            // 本地存储里面的数据是字符串格式的 但是我们需要的是对象格式的
             return JSON.parse(data);
         } else {
             return [];
         }
     }
-    // 保存本地存储数据
-    function saveDate(data) {
+    // 保存到本地
+    function saveData(data) {
         localStorage.setItem("todolist", JSON.stringify(data));
     }
-    // 渲染加载数据
+
+    // 渲染到本地
     function load() {
-        // 读取本地存储的数据
-        var data = getDate();
-        console.log(data);
-        // 遍历之前先要清空ol里面的元素内容
-        $("ol, ul").empty();
-        var todoCount = 0; // 正在进行的个数
-        var doneCount = 0; // 已经完成的个数
-        // 遍历这个数据
-        $.each(data, function(i, n) {
-            // console.log(n);
-            if (n.done) {
-                $("ul").prepend("<li><input type='checkbox' checked='checked' > <p>" + n.title + "</p> <a href='javascript:;' id=" + i + " ></a></li>");
-                doneCount++;
-            } else {
-                $("ol").prepend("<li><input type='checkbox' > <p>" + n.title + "</p> <a href='javascript:;' id=" + i + " ></a></li>");
-                todoCount++;
+        // 先清空
+        $("#todolist").empty()
+        // 先读取本地
+        var loadDate = getData();
+        $.each(loadDate, function (i, docEle) {
+            // console.log($(docEle)[0].title);  
+            // 首先 i是在each里面的，不会影响
+            // console.log(docEle.done);
+            if (docEle.done) {
+                $("#donelist").prepend(`<li data-index=${i}><input type="checkbox" ><p>${$(docEle)[0].title}</p><a href="javascript:;"></a></li>`);  
+            }else {
+                $("#todolist").prepend(`<li data-index=${i}><input type="checkbox"><p>${$(docEle)[0].title}</p><a href="javascript:;"></a></li>`);  
             }
-
+           
         });
-        $("#todocount").text(todoCount);
-        $("#donecount").text(doneCount);
-
     }
-
-})
+});
