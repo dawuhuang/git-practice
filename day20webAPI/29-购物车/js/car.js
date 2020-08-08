@@ -10,12 +10,12 @@ $(function () {
     });
     // 单选
     // 遍历 ，给每个单选框添加个change事件
-    $('.j-checkbox').each(function(i,docEle) {
+    $('.j-checkbox').each(function(_i,docEle) {
         $(docEle).change(function() {
             // 循环判断 每个单选框 
             priceSum()
             bgc()
-            $.each($('.j-checkbox'), function(i,docEle) {
+            $.each($('.j-checkbox'), function(_i,docEle) {
                 // 如果 存在 ！false  将全新赋值为false ，结束
                 if (!$(docEle).prop('checked')) {
                     console.log($(docEle).prop('checked'));
@@ -78,7 +78,7 @@ $(function () {
         var num = 0
         var priceSum = $('.price-sum em').text().slice(1)
         // 如果单选框是选中状态的话，就加，否则就不加
-        $('.j-checkbox').each(function(i,docEle) {
+        $('.j-checkbox').each(function(_i,docEle) {
             if ($(docEle).prop('checked')) {
                 // console.log($(docEle).parent().siblings('.p-sum').text().slice(1));
                 sum += +$(docEle).parent().siblings('.p-sum').text().slice(1)
@@ -93,7 +93,7 @@ $(function () {
     //5, 类名切换
     bgc()
     function bgc() {
-        $('.j-checkbox').each(function(i,docEle){
+        $('.j-checkbox').each(function(_i,docEle){
             if($(docEle).prop('checked')) {
                 // console.log(1);
                 $(docEle).parent().parent().addClass('check-cart-item')
@@ -102,4 +102,31 @@ $(function () {
             }
         })
     }
+
+    // 删除操作
+    //  点击物品后面的删除
+    $('.p-action').each(function(i,docEle) {
+        $(docEle).click(function() {
+            // 删除点击项
+            $(this).parent().remove()
+            // 重新计算价格
+            priceSum()
+        })
+    })
+    // 删除选中商品
+    $('.remove-batch').click(function() {
+        $('.j-checkbox').each(function(i,docEle) {
+            if ($(docEle).prop('checked')) {
+                $(this).parent().parent().remove()
+            }
+        })
+        // 重新计算价格
+        priceSum()
+    })
+    // 清理购物车
+    $('.clear-all').click(function() {
+        $('.cart-item-list').empty()
+        // 重新计算价格
+        priceSum()
+    })
 });

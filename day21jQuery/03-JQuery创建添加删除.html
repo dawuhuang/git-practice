@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>原先的li</li>
+    </ul>
+    <div class="test">我是原先的div</div>
+    <script src="./jquery.min.js"></script>
+    <script>
+        $(function() {
+            // 创建$("<li></li>")
+            var li = $('<li>我是新创建的li</li>')
+            // 增加 append   prepend    after  before  
+            // 父子
+            // $('ul').append(li)
+            // $('ul').prepend(li)
+            // 兄弟
+            // $('ul li').before(li)
+            // $('ul li').after(li)
+            // 删除 remove   empty     html('')
+            // 删除自己remove
+            // $('ul').remove()
+            // 删除所有子节点 empty
+            // $('ul').empty()
+            // 删除html('')
+            $('ul').html('')
+        })
+    </script>
+</body>
+</html>
