@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Father {
+            sayHi() {
+                return '我是爸爸';
+            }
+        }
+        class Son extends Father {
+            sayHi() {
+                console.log( super.sayHi() +'我是儿子');
+            }
+        }
+        var son = new Son()
+        son.sayHi()
+    </script>
+</body>
+</html>

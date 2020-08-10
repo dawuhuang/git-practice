@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击</button>
+    <script>
+        var that
+        class Star {
+            constructor(uname) {
+                that = this
+                this.uname = uname
+                this.btn = document.querySelector('button')
+                this.btn.onclick = this.sing
+            }
+            sing() {
+                console.log(that.uname);
+            }
+        }
+        var ldh = new Star('zs')
+    </script>
+</body>
+</html>

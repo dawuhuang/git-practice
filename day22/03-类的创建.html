@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            class Father {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                }
+                sum() {
+                    console.log(this.x + this.y);
+                }
+            }
+            var father = new Father(1,2)
+            console.log(father);
+        </script>
+    </body>
+</html>
