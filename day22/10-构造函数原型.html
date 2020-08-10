@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 构造函数原型prototype -->
+    <script>
+        // 构造函数都会有一个prototype属性，把方法直接定义在prototype对象上，
+        // 所有对象的实例就可以共享这些方法
+        function Star (uname, age) {
+            this.uname = uname
+            this.age = age
+        }
+        // 因为定义在prototypy上,所有实例就可以共享这些方法
+        Star.prototype.sing = function() {
+            console.log('我会唱歌');
+        }
+        var ldh = new Star('zs',12)
+        var zyb = new Star('zs',17)
+        ldh.sing()
+        ldh.sing()
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对象都有个__proto__属性，与构造函数的prototype向对应，之所以对象可以使用构造函数prototype上的属性和方法
+        // 就是因为对象的__proto__执行了prototype。  原型对象和对象原型是等价的
+        function Star (uname, age) {
+            this.uname = uname
+            this.age = age
+        }
+        Star.prototype.sing = function() {
+            console.log('过秦论');
+        }
+        var ldh = new Star('zs',21)
+        console.log(ldh);
+        ldh.sing()
+        console.log(ldh.__proto__ == Star.prototype);
+    </script>
+</body>
+</html>

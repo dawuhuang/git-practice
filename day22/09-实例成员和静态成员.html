@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 实例成员是通过内部this 添加的，静态成员是通过构造函数添加的
+        function Star (uname, age) {
+            this.uname = uname,
+            this.age =age
+            this.sing = function () {
+                console.log('我会唱歌');
+            }
+        }
+        Star.gender = '男'
+        var son = new Star('zs',22)
+        console.log(son);
+        console.log(Star.gender);
+    </script>
+</body>
+</html>
