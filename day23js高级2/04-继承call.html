@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // call 可以调用函数，可以修改this指向
+            function fn(x, y) {
+                console.log(this);
+                console.log(x + y);
+            }
+
+            var o = {
+                name: "zs",
+            };
+            // fn 中的this原本指向window，call修改后指向的参数1的o
+            fn.call(o, 1, 2);
+        </script>
+    </body>
+</html>

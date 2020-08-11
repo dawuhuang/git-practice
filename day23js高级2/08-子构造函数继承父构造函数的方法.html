@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Father(uname,age) {
+            this.uname = uname
+            this.age = age
+        }
+        Father.prototype.sing = function() {
+            console.log('我会唱歌');
+        }
+        function Son(uname,age,score) {
+            Father.call(this,uname,age)
+            this.score = score
+        }
+        Son.prototype = new Father()
+        Son.prototype.constructor = Son
+        var son = new Son('zs',11,22)
+        console.log(son);
+        son.sing()
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>constructor</title>
+</head>
+<body>
+    <script>
+        // 构造函数constructor  ,对象原型__proto__和原型对象prototype中都存在constructor属性
+        // 指回构造函数本身，constructor记录类对象引用于那个构造函数。他可以让原型对象重新指向原来的构造函数
+        // 对象的方法都记录在原型对象身上，如果要记录多个对象，要个原型对象采用对象赋值的形式，会覆盖原来的原型对象，
+        // 此时原型对象constructor无法在指向构造函数，我们手动添加constructor指回构造函数
+        function Star(uname,age) {
+            this.uname = uname
+            this.age = age
+        }
+
+        Star.prototype = {
+            // 手动设置constructor属性指回原来的构造函数
+            constructor: Star,
+            sing: function() {
+                console.log('会唱歌');
+            },
+            movie: function() {
+                console.log('会移动');
+            }
+        }
+        var ldh = new Star('zs',55)
+        console.log(ldh);
+    </script>
+</body>
+</html>

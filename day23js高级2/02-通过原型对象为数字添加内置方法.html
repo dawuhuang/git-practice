@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 在构造函数的原型对象上添加的方法，所有的对象的实例都可以使用
+        Array.prototype.sum = function() {
+            var sum = 0
+            for (var i = 0; i< this.length; i++) {
+                sum += this[i]
+            }
+            return sum
+        } 
+        var str = [1,2,3,4,5]
+        console.log(str.sum());
+    </script>
+</body>
+</html>
