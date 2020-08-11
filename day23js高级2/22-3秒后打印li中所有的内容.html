@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>221</li>
+        <li>222</li>
+        <li>223</li>
+        <li>224</li>
+    </ul>
+    <script>
+        var lis = document.querySelectorAll('li')
+        for (var i = 0; i < lis.length; i++) {
+            (function(i){
+                setTimeout(() => {
+                    console.log(lis[i].innerHTML);
+                }, 3000);
+            })(i)
+        }
+    </script>
+</body>
+</html>
