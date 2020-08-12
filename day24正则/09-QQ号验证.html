@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        QQ号：<input type="number" /><span></span>
+        <script>
+            var input = document.querySelector("input");
+            var span = document.querySelector("span");
+            // 匹配6-11位纯数字
+            var reg = /^\d{6,11}$/
+            input.addEventListener('blur', function() {
+                if (reg.test(this.value)) {
+                span.innerHTML = '输入正确'
+                span.style.color = 'green'
+            }else {
+                span.innerHTML = '输入错误'
+                span.style.color = 'red'
+            }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    手机号：<input type="tel"><span></span>
+    <script>
+        // 验证aaaa-bbbbbbb ||  aaa-bbbbbbbb格式的手机号
+        var input = document.querySelector('input')
+        var span = document.querySelector('span')
+        var reg = /^\d{3}-\d{8}|\d{4}-\d{7}$/
+        input.addEventListener('blur', function() {
+            if (reg.test(this.value)) {
+                span.innerHTML = '输入正确'
+                span.style.color = 'green'
+            }else {
+                span.innerHTML = '输入错误'
+                span.style.color = 'red'
+            }
+        })
+    </script>
+</body>
+</html>

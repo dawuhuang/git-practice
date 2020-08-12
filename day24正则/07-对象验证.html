@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var o = {
+            age: 0
+        }
+        // 不能验证 对象属性值为0的情况
+        // if (o['age']) {
+        //     console.log(1);
+        // }else {
+        //     console.log(2);
+        // }
+
+        if ('name' in o) {
+            console.log(1);
+        }else {
+            console.log(3);
+        }
+
+    </script>
+</body>
+</html>

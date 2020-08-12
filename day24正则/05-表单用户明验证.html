@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .success {
+            color: green;
+            /* display: none; */
+        }
+        .error {
+            color: red;
+            /* display: none; */
+        }
+    </style>
+</head>
+<body>
+    <label for="name">
+        用户名
+        <input type="text" id="name">
+        <span class="success"></span>
+        <span class="error"></span>
+    </label>
+    <script>
+        // 要求  用户名只能为英文字母,数字,下划线或者短横线组成, 并且用户名长度为6~16位
+        var uname = document.querySelector('#name')
+        var success = document.querySelector('.success')
+        // var error = document.querySelector('.error')
+        // 正则
+        var rg = /^[a-zA-Z0-9_-]{6,16}$/
+        uname.addEventListener('blur', function() {
+            if (rg.test(this.value)) {
+                // success.style.display = 'block'
+                success.innerHTML = '输入正确'
+            }else {
+                success.innerHTML = '输入错误'
+            }
+        })
+    </script>
+</body>
+</html>

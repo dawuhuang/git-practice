@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // var rg = /^[abc]$/
+            // console.log(rg.test('abc'));
+
+            // 只要包含a或者b或者c都返回true
+            // var rg = /[abc]/
+            // console.log(rg.test('andy'));
+            // console.log(rg.test('body'));
+            // console.log(rg.test('color'));
+            // console.log(rg.test('red'));
+
+            // 三选一
+            // var rg = /^[abc]$/
+            // console.log(rg.test('aa'));
+            // console.log(rg.test('a'));
+            // console.log(rg.test('b'));
+            // console.log(rg.test('c'));
+            // console.log(rg.test('abc'));
+
+            // - 表示a到z的范围
+            // var rg = /^[a-z]$/
+            // console.log(rg.test('a'));
+            // console.log(rg.test('z'));
+            // console.log(rg.test('A'));
+
+            // 字符组合
+            // var rg = /^[a-zA-Z0-9]$/
+            // console.log(rg.test('a'));
+            // console.log(rg.test('B'));
+            // console.log(rg.test('5'));
+
+            // 取反
+            var rg = /^[^a-zA-Z0-9]$/;
+            console.log(rg.test('a'));
+            console.log(rg.test('B'));
+            console.log(rg.test('5'));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 利用递归
+        var str = 'aasodosgosdosdoasdgfooasd'
+        // var  index
+        var n = 0
+        function fn(str,o,index) {
+            var index = str.indexOf(o,index+1)
+            if (index != -1) {
+                n++
+                console.log(index);
+                fn(str,'o',index + 1 )
+            }else {
+                return 
+            }
+        }
+        fn(str,'o',0)
+        console.log(n);
+    </script>
+</body>
+</html>

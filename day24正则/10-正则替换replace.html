@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var str = 'andy和red'
+        // var newStr = str.replace('andy', 'body')
+        // console.log(newStr);
+        // 等同于 此处的andy可以写在正则表达式中
+        // var newStr1 = str.replace(/andy/,'body')
+        // console.log(newStr1);
+
+        // var str = 'avadrac'
+        // // 全部替换
+        // var nStr = str.replace(/a/,'哈哈')
+        // var nStr1 = str.replace(/a/g,'哈哈')
+        // console.log(nStr);
+        // console.log(nStr1);
+
+        var str = 'afgdfaAffsdA'
+        // i忽略大小写
+        var nstr = str.replace(/a/gi,'哈哈')
+        console.log(nstr);
+    </script>
+</body>
+</html>

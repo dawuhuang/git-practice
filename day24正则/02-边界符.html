@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 正则表达式步需要加引号，不管是数字型还是字符串型
+            //    /abc/  只要包含abc这个字符串返回的都是true
+            // var rg = /abc/
+            // console.log(rg.test('abc'));
+            // console.log(rg.test('abcd'));
+            // console.log(rg.test('aabcd'));
+
+            //   ^匹配以abc开头的
+            // var rg = /^abc/
+            // console.log(rg.test('abc'));
+            // console.log(rg.test('abcd'));
+            // console.log(rg.test('aabcd'));
+
+            //  $匹配以abc结尾的
+            // var rg = /abc$/
+            // console.log(rg.test('abc'));
+            // console.log(rg.test('abcd'));
+            // console.log(rg.test('aabcd'));
+
+            //  /^abc$/  开头和结尾，精确匹配
+            var rg = /abc$/
+            console.log(rg.test('abc'));
+            console.log(rg.test('abcd'));
+            console.log(rg.test('aabcd'));
+        </script>
+    </body>
+</html>
