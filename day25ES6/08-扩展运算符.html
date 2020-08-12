@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <div>123</div>
+    <div>123</div>
+    <div>123</div>
+    <div>123</div>
+    <div>123</div>
+    <script>
+        // 展开语法
+        // let ary = [1,2,3]
+        // // ...ary // 1, 2, 3
+        // console.log(...ary);
+        // console.log(1, 2, 3);
+
+        // 用于合并数组
+        // let ary1 = [1,2,3]
+        // let ary2 = [4,5,6]
+        // console.log(...ary1,...ary2);
+        // console.log(...ary1,...ary2);
+        // ary1.push(...ary2)
+        // console.log(ary1);
+
+        // 将类数组或可遍历对象转换为真正的数组
+        let div = document.querySelectorAll('div')
+        console.log(div);
+        oDiv = [...div]
+        console.log(oDiv);
+    </script>
+</body>
+</html>

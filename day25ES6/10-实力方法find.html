@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            let ary = [
+                { id: 1, name: "zs" },
+                { id: 2, name: "lisi" },
+            ];
+            // find用于找出第一个符合条件的数组成员，如果没有返回undefined
+            let target = ary.find(function(item) {
+                if (item.id == 2) {
+                    return item.id
+                }
+            })
+            console.log(target);
+        </script>
+    </body>
+</html>

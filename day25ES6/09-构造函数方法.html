@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 定义一个伪数组
+        // let arrayLike = {
+        //     '0': 'a',
+        //     '1': 'b',
+        //     '2': 'c',
+        //     length: 3
+        // }
+        // let arr = Array.from(arrayLike)
+        // console.log(arr);
+
+        // 方法还可以接收第二个参数，用来对元素进行处理，将处理后的值放回返回的数组
+        let arrayLike = {
+            '0': 1,
+            '1': 2,
+            length: 2
+        }
+        let newAry = Array.from(arrayLike, (item) =>{
+            return item *2
+        })
+        console.log(newAry);
+    </script>
+</body>
+</html>
