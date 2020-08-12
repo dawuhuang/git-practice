@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // () => {}  
+        // () 代表函数  => 指向的是那个代码块   {} 函数体
+
+        // 函数体中只有一句代码，且代码执行的结果就是返回值，可以省略大括号
+        function sum(num1,num2) {
+            return num1 + num2
+        }
+        // es6写法
+        const sum = (num1, num2) => num1 + num2
+
+        // () 只有一个形参，可以省略小括号
+        function fn(v) {
+            
+            return v
+            
+        }
+        // es
+        const fn = v => v
+    </script>
+</body>
+</html>

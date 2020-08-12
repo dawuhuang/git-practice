@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 剩余参数语法是写在形参里面的，会接收所有剩余实参，是一个数组
+        // function sum(first,...args) {
+        //     console.log(first);
+        //     console.log(args);
+        // }
+        // sum(10,20,30,40)
+
+        // 剩余参数和解构赋值配合使用
+        let students = ['wangwu','zhangsan','lisi']
+        let [s1,...s2] = students
+        console.log(s1);
+        console.log(s2);
+    </script>
+</body>
+</html>

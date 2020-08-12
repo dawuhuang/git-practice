@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 箭头函数的this指向的是函数定义位置的this，也就是说箭头函数被定义在哪，this就指向哪
+        var obj = {
+            name: 'zs'
+        }
+        function fn() {
+            console.log(this);
+            return () => {
+                console.log(this);
+            }
+        }
+        const reset = fn.call(obj)
+        reset()
+    </script>
+</body>
+</html>

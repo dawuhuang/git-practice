@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 常量具有块级作用域    声明时必须赋值  赋值后不能修改(不能修改栈里面的数据)
+        // if (true) {
+        //     const a = 10
+        // }
+        // console.log(a);
+
+        // 声明时必须赋值
+        // const a
+
+        // 赋值后不能修改(不能修改栈里面的数据，就是说堆里面的数据是可以修改的) 
+
+        const PI = 3.14
+        // PI = 100  不行
+        const arr = [1,2]
+        arr[0] = 'a'    // 可以
+        arr[1] = 'b'    // 可以
+        console.log(arr);
+        // arr = ['a','b']  不行
+    </script>
+</body>
+</html>

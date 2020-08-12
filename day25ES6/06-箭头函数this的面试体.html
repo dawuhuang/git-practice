@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var age = 100
+        var obj = {
+            age: 20,
+            say: () =>{
+                // 箭头函数的this指向的是被声明的作用域里面，而对象没有作用域，
+                // 所以箭头函数虽然在对象中被定义，但是this指向的是全局作用域
+                alert(this.age)
+            }
+        }
+        obj.say()
+    </script>
+</body>
+</html>
