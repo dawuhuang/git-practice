@@ -1,0 +1,115 @@
+// 首页的样式less文件
+@import 'common';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-width: 320px;
+    width: 15rem;
+    margin: 0 auto;
+    font-family: Arial, Helvetica;
+    background-color: #f2f2f2;
+}
+
+@baseFont: 50;
+
+.search-content {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15rem;
+    height: 88rem / @baseFont;
+    background-color: #ffc001;
+    .classify {
+        width: 44rem / @baseFont;
+        height: 70rem / @baseFont;
+        margin: 11rem / @baseFont 25rem / @baseFont 7rem / @baseFont 24rem / @baseFont;
+        background: url(../images/classify.png) no-repeat;
+        background-size: 44rem / @baseFont 70rem / @baseFont;
+    }
+    .search {
+        flex: 1;
+        // background-color: pink;
+        input {
+            border: 0;
+            width: 100%;
+            height: 64rem / @baseFont;
+            border-radius:32rem / @baseFont;
+            margin-top: 10rem / @baseFont;
+            outline: none;
+            background-color: #FFF2CC;
+            padding-left: 50rem/ @baseFont;
+            font-size: 26rem / @baseFont;
+        }
+    }
+    .login {
+        width: 75rem / @baseFont;
+        height: 70rem / @baseFont;
+        margin: 10rem / @baseFont;
+        font-size: 24rem / @baseFont;
+        text-align: center;
+        line-height: 70rem / @baseFont;
+        color: white;
+    }
+}
+// banner start
+.banner {
+    width: 100%;
+    height: 366rem / @baseFont;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+// 广告部分
+.ad {
+    display: flex;
+    width: 100%;
+    a {
+        flex: 1;
+        img {
+            width: 100%;
+        }
+    }
+}
+// nav部分
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    a {
+        flex: 20%;
+        height: 140rem / @baseFont;
+        text-align: center;
+        font-size: 20rem / @baseFont;
+        img {
+            width: 82rem / @baseFont;
+            height: 82rem / @baseFont;
+            margin-top: 10rem / @baseFont;
+        }
+        p {
+            margin-top:20rem / @baseFont;
+            color: #000;
+        }
+    }
+}
+// popu 部分
+.popu {
+    display: flex;
+    a:first-child {
+        flex: 2;
+        
+    }
+    a:nth-child(n+2) {
+        flex: 1;
+        margin-left: 2rem / @baseFont;
+    }
+    a img {
+        width: 100%;
+        height: 100%;
+    }
+}
