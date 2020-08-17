@@ -1,0 +1,3 @@
+{{if age > 20}}123{{else if age<=20}}456{{/if}}
+
+<% if (age >20) {%>aaa<%} else if (age<=20){%>bbb<%}%>

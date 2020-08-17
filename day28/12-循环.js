@@ -1,20 +1,19 @@
 const template = require('art-template')
 const path = require('path')
-
-const url = path.join(__dirname,'views','03.art')
-let data = template(url, {
+template.defaults.root = path.join(__dirname,'views')
+const data = template('11.art', {
     users: [{
         name: 'zs',
         age: 20,
         gender: '男'
     },{
         name: 'li',
-        age: 14,
-        gender: '女' 
-    },{
-        name: '王五',
-        age: 88,
+        age: 30,
         gender: '男'
+    },{
+        name: 'ww',
+        age: 55,
+        gender: '女'
     }]
 })
 console.log(data);

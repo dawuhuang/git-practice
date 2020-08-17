@@ -1,0 +1,5 @@
+<!-- {{include './header.art'}} -->
+<% include('./header.art')%>
+{{msg}}
+<% include('./footer.art')%>
+<!-- {{include './footer.art'}} -->

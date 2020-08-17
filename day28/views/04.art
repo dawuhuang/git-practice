@@ -1,0 +1,6 @@
+<div>{{msg}}</div>
+<!-- {{include './header.art'}} -->
+<% include('./header.art')%>
+我是内容
+<% include('./footer.art')%>
+<!-- {{include './footer.art'}} -->
