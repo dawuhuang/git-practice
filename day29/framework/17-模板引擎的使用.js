@@ -19,13 +19,16 @@ app.get("/list", (req, res) => {
         msg: "list",
     });
 });
-app.locals.user= [{
-    name:'zs',
-    age:20
-},{
-    name: 'li',
-    age:13
-}]
+app.locals.user = [
+    {
+        name: "zs",
+        age: 20,
+    },
+    {
+        name: "li",
+        age: 13,
+    },
+];
 // 监听端口
 app.listen(3000);
 console.log("服务器启动成功");

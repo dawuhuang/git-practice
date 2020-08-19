@@ -1,0 +1,3 @@
+{{msg}}
+{{user.name}}
+{{user.age}}
