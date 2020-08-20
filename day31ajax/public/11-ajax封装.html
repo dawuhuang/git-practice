@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            ajax({
+                data: {
+                    name: "zs",
+                    age: 20,
+                },
+                header: {
+                    'Content-Type':'application/json'
+                },
+                type: "get",
+                url: "http://localhost:3000/get",
+                success: function (data) {
+                    console.log('succss' + data);
+                },
+                error: function(data) {
+                    console.log('error' + data);
+                }
+            });
+            // 第一次封装
+            // function ajax(options) {
+            //     var xhr = new XMLHttpRequest()
+            //     xhr.open(options.type,options.url)
+            //     xhr.send()
+            //     xhr.onload = function() {
+            //         console.log(xhr.responseText);
+            //     }
+            // }
+
+            // 第二次封装
+            // function ajax(options) {
+            //     var xhr = new XMLHttpRequest()
+            //     // 参数拼接
+            //     var params = ''
+            //     for (var attr in params.data) {
+            //         params += `${attr}=${params.data[attr]}&`
+            //     }
+            //     // 拼接完成后将最后一个&截取掉   取值包含0 不包含params.lenght - 1
+            //     params = params.substr(0,params.length-1)
+            //     // 判断请求方式
+            //     if (options.type == 'get') {
+            //         // 社区请求参数格式的类型
+            //        options.url = options.url + '?' + params
+            //     }
+            //     xhr.open(options.type,options.url)
+            //     if (options.type == 'post') {
+            //         xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            //         xhr.send(params)
+            //     }else {
+            //         xhr.send()
+            //     }
+            //     xhr.onload = function() {
+            //         console.log(xhr.responseText);
+            //     }
+            // }
+
+            // 第三次封装
+            // function ajax(options) {
+            //     var xhr = new XMLHttpRequest()
+            //     var params = ''
+            //     // 参数拼接
+            //     for (var attr in options.data) {
+            //         params += `${attr}=${aptions.data[attr]}&`
+            //     }
+            //     // 件参数最后的&符号截取
+            //     params = params.substr(0,params.length -1)
+            //     // 判断请求方式
+            //     if (options.type == 'get') {
+            //         options.url = options + '?' + params
+            //     }
+            //     xhr.open(options.type,options.url)
+            //     if (options.type == 'post') {
+            //         // 用户希望的向服务器端传递的请求参数类型
+            //         var contentType = options.header['Content-Type']
+            //         // 设置请求参数格式的类型
+            //         xhr.setRequestHeader('Content-Type',contentType)
+            //         if (contentType == 'application/json') {
+            //             res.send(JSON.stringify(options.data))
+            //         }else {
+            //             res.send(params)
+            //         }
+            //     }else {
+            //         res.send()
+            //     }
+            //     xhr.onload = function() {
+            //         if (xhr.status == 200) {
+            //             options.success(xhr.responseText,xhr)
+            //         }else {
+            //             options.error(xhr.responseText,xhr)
+            //         }
+            //     }
+            // }
+            
+            // 第四次封装
+            // function ajax(options) {
+            //     var xhr = new XMLHttpRequest()
+            //     var params = ''
+            //     // 参数拼接
+            //     for(var attr in options.data) {
+            //         params += `${attr}=${options.data[attr]}&`
+            //     }
+            //     // 参加截取
+            //     params = params.substr(0,params.length-1)
+            //     // 判断请求方式
+            //     if (options.type == 'get') {
+            //         options.url = options.url + '?' + params
+            //     }
+            //     // 发送请求
+            //     xhr.open(options.type,options.url)
+            //     if (options.type == 'post') {
+            //         // 用户希望向服务器传递的请求参数类型
+            //         var contentType = options.header['Content-Type']
+            //         xhr.setRequestHeader('Content-Type',contentType)
+            //         if (contentType == 'application/json') {
+            //            xhr.send(JSON.stringify(options.data))
+            //         }else {
+            //             xhr.send(params)
+            //         }
+            //     }else {
+            //         xhr.send()
+            //     }
+            //     xhr.onload = function() {
+            //         // 获取响应头中的数据
+            //         var contentType = xhr.getResponseHeader('Content-Type')
+            //         // 服务器端返回的数据
+            //         var responseText = xhr.responseText
+            //         // 如果响应类型中包含application/json
+            //         if (contentType.includes('application/json')) {
+            //             // 将json字符串转换为json对象
+            //             responseText = xhr.responseText
+            //         }
+            //         // 当http状态码等于200的时候
+            //         if (xhr.status == 200) {
+            //             options.success(responseText,xhr)
+            //         }else {
+            //             options.error(responseText,xhr)
+            //         }
+            //     }
+            // }
+
+            // 封装最终板
+            function ajax(options) {
+                // 设置默认值
+                var defaults = {
+                    type: 'get',
+                    url: '',
+                    data:{},
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function() {},
+                    error: function() {}
+                }
+                // 使用options对象覆盖defaults对象中的属性
+                Object.assign(defaults,options)
+
+                // 创建ajax对象
+                var xhr = new XMLHttpRequest()
+                var params = ''
+                // 拼接请求参数的变量
+                for (var attr in defaults.data) {
+                    params += `${attr}=${defaults.data[attr]}&`
+                }
+                if (defaults.type == 'get') {
+                    defaults.url = defaults.url +"?" + params
+                }
+                // 告诉ajax发送请求的方式及地址
+                xhr.open(defaults.type,defaults.url)
+                if (defaults.type == 'post') {
+                    var contentType = defaults.header['Content-Type']
+                    var responseText = xhr.responseText
+                    // 发送请求头类型
+                    xhr.setRequestHeader('Content-Type',contentType)
+                    if (contentType == 'application/json') {
+                        xhr.send(JSON.stringify(defaults.data))
+                    }else {
+                        xhr.sedn(params)
+                    }
+                }else {
+                    xhr.send()
+                }
+                // 监听 xhr 对象下面的onload事件 当xhr对象接收完响应数据后触发
+                xhr.onload = function() {
+                    // 获取响应头中的数据
+                    var contentType = xhr.getResponseHeader('Content-Type')
+                    // 服务器端返回的数据
+                    var responseText = xhr.responseText
+                    if (contentType == 'application/json') {
+                        responseText = JSON.params(responseText)
+                    }
+                    // 当响应成功的时候
+                    if (xhr.status == 200) {
+                        defaults.success(responseText,xhr)
+                    }else {
+                        defaults.error(responseText,xhr)
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

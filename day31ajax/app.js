@@ -4,9 +4,12 @@ const express =require('express')
 const path = require('path')
 // 引入body-parser模块
 const bodyParser = require('body-parser')
+// 引入文件读取模块
+const fs = require('fs')
 // 开启服务器
 const app = express()
 
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 // 开启静态资源访问功能
@@ -23,6 +26,22 @@ app.get('/get',(req,res) => {
 
 app.post('/post',(req,res) => {
     res.send(req.body)
+})
+// 8
+app.post('/json',(req,res) => {
+    res.send(req.body)
+})
+
+// 9
+app.get('/error',(req,res) => {
+    res.send(req.query)
+})
+
+// 10
+app.get('/cache',(req,res) => {
+    fs.readFile('./public/index.html',(err,result) => {
+        res.send(result)
+    })
 })
 // 监听端口
 app.listen(3000)

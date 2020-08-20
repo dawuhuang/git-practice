@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button>发送请求</button>
+        <script>
+            var btn = document.querySelector('button')
+            btn.addEventListener('click', function() {
+                var xhr = new XMLHttpRequest()
+                xhr.open('get','http://localhost:3000/cache')
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        alert(xhr.responseText)
+                    }
+                }
+                // 地址栏 自动跳百度 没成功
+                xhr.send()
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            ajax({
+                data: {
+                    name: "zs",
+                    age: 20,
+                },
+                header: {
+                    "Content-Type": "application/json",
+                },
+                type: "get",
+                url: "http://localhost:3000/get",
+                success: function (data) {
+                    console.log("succss" + data);
+                },
+                error: function (data) {
+                    console.log("error" + data);
+                },
+            });
+
+            // ajax封装
+            function ajax(options) {
+                var defaults = {
+                    data: {},
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    type:'get',
+                    url:'',
+                    success: function(){},
+                    error: function() {}
+                }
+                // 对象覆盖
+                Object.assign(defaults,options)
+                var xhr = new XMLHttpRequest()
+                // 参数拼接
+                var params = ''
+                for(var attr in defaults.data) {
+                    params += `${attr}=${defaults.data[attr]}&`
+                }
+                params = params.substr(0,params.length-1)
+                if (defaults.type == 'get') {
+                    defaults.url = defaults.url +'?' + params
+                }
+                xhr.open(defaults.type,defaults.url)
+
+                if (defaults.type == 'post') {
+                    var contentType = defaults.header['Content-Type']
+                    xhr.setRequestHeader('Content-Type',contentType)
+                    if (contentType == 'application/json') {
+                        xhr.send(JSON.stringify(defaults.data))
+                    }else {
+                        xhr.send(params)
+                    }
+                }else {
+                    xhr.send()
+                }
+
+                xhr.onload = function() {
+                    var responseText = xhr.responseText
+                    var contentType = xhr.getResponseHeader('Content-Type')
+                    if (contentType == 'application/json') {
+                        responseText = JSON.params(responseText)
+                    }
+                    // 当服务器传递回来状态码
+                    if (xhr.status == 200) {
+                        defaults.success(responseText)
+                    }else {
+                        defaults.error(responseText)
+                    }
+                }
+            }
+            
+        </script>
+    </body>
+</html>
