@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./js/template-web.js"></script>
+    </head>
+    <body>
+<div class="content"></div>
+<script src="text/html" id="tpl">
+    <h1>{{name}} {{age}}</h1>
+</script>
+<script>
+    var html = template("tpl", { name: "zs", age: 20 });
+    document.querySelector('.content').innerHTML = html
+</script>
+    </body>
+</html>

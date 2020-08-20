@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg-danger {
+            color: red;
+        }
+        .bg-success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <input type="text"> <span id="info"></span>
+    <script src="./js/ajax.js"></script>
+    <script>
+        var ipt = document.querySelector('input')
+        var info = document.querySelector('#info')
+        ipt.addEventListener('blur', function() {
+            var email = this.value
+            // 正则
+            var reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[a-zA-Z\d]{2,4}$/
+            if (!reg.test(email)) {
+                info.innerHTML = '请输入符合规则的邮箱地址'
+                info.className = 'bg-danger'
+                // 阻止程序向下执行
+                return
+            }
+            // 向服务器发送请求
+            ajax({
+                type:'get',
+                url:'http://localhost:3000/verifyEmailAdress',
+                data: {
+                    email: email
+                },
+                success: function(result) {
+                    console.log(result);
+                    info.innerHTML = result.msg
+                    info.className = 'bg-success'
+                },
+                error:function(result) {
+                    console.log(result)
+                    info.innerHTML = result.msg
+                    info.className = 'bg-danger'
+                }
+            })
+        })
+    </script>
+</body>
+</html>
