@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        <input type="text" id="username">
+    </p>
+    <p>
+        <input type="password" id="password">
+    </p>
+    <p>
+        <input type="button" value="提交" id="button">
+    </p>
+    <script>
+        var btn = document.querySelector("#button")
+        var uname = document.querySelector('#username')
+        var pwd = document.querySelector('#password')
+        btn.addEventListener('click', function() {
+            var xhr = new XMLHttpRequest()
+            var params = `username=${uname.value}&password=${pwd.value}`
+            xhr.open('get','http://localhost:3000/get?' + params)
+            xhr.send()
+            xhr.onload = function() {
+                console.log(JSON.parse(xhr.responseText));
+            }
+        })
+    </script>
+</body>
+</html>

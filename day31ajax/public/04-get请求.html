@@ -6,13 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="javascript:alert('清除完成');">清除</a>
     <script>
         var xhr = new XMLHttpRequest()
-        xhr.open('get','http://localhost:3000/first')
+        xhr.open('get','http://localhost:3000/get?name=zs&age=20')
         xhr.send()
         xhr.onload = function() {
-            console.log(xhr.responseText);
+            console.log(JSON.parse(xhr.responseText));
         }
     </script>
 </body>

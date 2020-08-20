@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <p>
+            <input type="text" id="username" />
+        </p>
+        <p>
+            <input type="password" id="password" />
+        </p>
+        <p>
+            <input type="button" value="提交" id="button" />
+        </p>
+
+        <script>
+            var btn = document.querySelector("#button");
+            var uname = document.querySelector("#username");
+            var pwd = document.querySelector("#password");
+            btn.addEventListener('click', function() {
+                var xhr  = new XMLHttpRequest()
+                xhr.open('post','http://localhost:3000/post')
+                var parms = `username=${uname.value}&pwd=${pwd.value}`
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded') 
+                xhr.send(parms)
+                xhr.onload = function() {
+                console.log(JSON.parse(xhr.responseText));
+                // console.log(xhr.responseText);
+            }
+            })
+            
+
+            
+        </script>
+    </body>
+</html>

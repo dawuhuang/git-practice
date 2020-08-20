@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest()
+        // 0 请求还未初始化
+        console.log(xhr.readyState);
+        xhr.open('get','http://localhost:3000/first')
+        // 请求已经建立，但是还没有发生
+        console.log(xhr.readyState);
+        xhr.onreadystatechange = function() {
+            // 2 请求已经发生
+            // 3 请求已经在处理，通常已经有部分数据可用
+            // 4 请求已经完成 可以获取并使用服务器端响应了
+            console.log(xhr.readyState);
+            if (xhr.readyState == 4) {
+                console.log(xhr.responseText);
+            }
+        }
+        xhr.send()
+        // xhr.onload = function() {
+        //     console.log(xhr.responseText);
+        // }
+    </script>
+</body>
+</html>
