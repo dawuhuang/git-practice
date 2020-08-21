@@ -14,5 +14,25 @@ app.get('/verifyEmailAdress',(req,res) => {
         res.send({msg: '邮箱地址可用'})
     }
 })
+
+// 搜索框自动提升
+app.get('/searchAutoPrompt',(req,res)=> {
+    var key = req.query.key
+    const list = [
+        '黑马程序员',
+		'黑马程序员官网',
+		'黑马程序员顺义校区',
+		'黑马程序员学院报名系统',
+		'传智播客',
+		'传智博客前端与移动端开发',
+		'传智播客大数据',
+		'传智播客python',
+		'传智播客java',
+		'传智播客c++',
+		'传智播客怎么样'
+    ]
+    let result = list.filter(item => item.includes(key))
+    res.send(result)
+})
 app.listen(3000)
 console.log('服务器器启动成功');

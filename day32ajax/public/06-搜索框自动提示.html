@@ -21,45 +21,40 @@
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="请输入搜索关键字" id="search">
 			<ul class="list-group" id="list-box">
-
+               
 			</ul>
 		</div>
 	</div>
     <script src="./js/ajax.js"></script>
     <script src="./js/template-web.js"></script>
     <script type="text/html" id="tpl">
-        {{each result}}
-        <li class="list-group-item">{{$value}}</li>
+        {{each key}}
+         <li class="list-group-item">{{$value}}</li>
         {{/each}}
     </script>
     <script>
         var search = document.querySelector('#search')
         var listBox = document.querySelector('#list-box')
         var timer = null
-        
-        // 当用户在文本框中输入的时候触发
-        search.addEventListener('input', function() {
-           clearTimeout(timer)
+        search.addEventListener('input',function() {
+            clearTimeout(timer)
             var key = this.value
             if (key.trim().length == 0) {
-                // 隐藏提示框
-                listBox.style.display ='none'
-                // 阻止程序向下执行
-                return
+                search.style.display = 'none'
             }
             timer = setTimeout(() => {
                 ajax({
-                type:'get',
-                url:'http://localhost:3000/searchAutoPrompt',
-                data: {
-                    key: key
-                },
-                success: function(result) {
-                    var html = template('tpl',{result: result})
-                    listBox.innerHTML = html
-                    listBox.style.display = 'block'
-                }
-            })
+                    type:'get',
+                    url:'http://localhost:3000/searchAutoPrompt',
+                    data: {
+                        key: key
+                    },
+                    success: function(result) {
+                        var html = template('tpl',{key:result})
+                        listBox.innerHTML = html
+                        listBox.style.display = 'block'
+                    }
+                })
             }, 800);
         })
     </script>
