@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入模板的库文件 -->
+    <script src="./js/template-web.js"></script>
+</head>
+<body>
+    <div class="contetn"></div>
+    <!-- 创建模板 -->
+    <script type="text/html" id="tpl">
+    {{name}}
+    </script>
+    <script>
+        // 告诉模板引擎将哪个模板与什么数据拼接起来
+        var html = template('tpl',{name:'zs'})
+        // 将拼接好的模板插入到页面
+        document.querySelector('.contetn').innerHTML = html
+    </script>
+</body>
+</html>

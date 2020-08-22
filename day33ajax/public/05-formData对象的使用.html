@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="form">
+        <input type="text" name="uname">
+        <input type="password" name="password">
+        <input type="button" value="提交" id="btn">
+    </form>
+    <script src="./js/ajax.js"></script>
+    <script>
+        var btn = document.querySelector('#btn')
+        btn.addEventListener('click', function() {
+            var form = document.querySelector('#form')
+            var formdata = new FormData(form)
+            // console.log(formdata.get('password'));
+            // formdata.set('age',23)
+            // formdata.delete('uname')
+            formdata.append('uname','zs')
+            // 发送请求
+            var xhr = new XMLHttpRequest()
+            xhr.open('post','http://localhost:3000/formdata'),
+            xhr.send(formdata),
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

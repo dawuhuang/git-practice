@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="./assets/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <style type="text/css">
+            .container {
+                padding-top: 60px;
+            }
+            .padding {
+                padding: 5px 0 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-group">
+                <label>请选择文件</label>
+                <input type="file" id="file" />
+                <div class="padding" id="box">
+                    <!--<img src="" class="img-rounded img-responsive">-->
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%;" id="bar">
+                        0%
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./js/ajax.js"></script>
+        <script>
+            var file = document.querySelector("#file");
+            var bar = document.querySelector('#bar')
+            file.addEventListener('change', function() {
+               var formdata = new FormData()
+               formdata.append('attrName',this.files[0])
+               var xhr = new XMLHttpRequest()
+               xhr.open('post','http://localhost:3000/upload')
+                // 在上传过程中 持续触发onprogress
+               xhr.upload.onprogress = function(ev) {
+                var result = (ev.loaded / ev.total) * 100
+                bar.style.width = result +'%'
+                bar.innerHTML = Math.ceil(result) + '%'
+               }
+               xhr.send(formdata)
+               xhr.onload = function() {
+                   if (xhr.status == 200) {
+                   var resukt = JSON.parse(xhr.responseText)
+                //    console.log(resukt);
+                    // 图片的实时预览
+                    var img = document.createElement('img')
+                    img.src = resukt.path
+                    // console.log(xhr.responseText);
+                    // img.src = xhr.responseText
+                    img.className = "img-rounded img-responsive"
+                    document.querySelector('#box').appendChild(img)
+                   }
+               }
+            })
+        </script>
+    </body>
+</html>
