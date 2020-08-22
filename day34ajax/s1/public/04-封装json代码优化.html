@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="btn1">发送jsonp请求</button>
+        <button id="btn2">发送jsonp请求</button>
+        <script>
+            // function fn1(data) {
+            //     console.log("fn函数被发送了");
+            //     console.log(data);
+            // }
+            var btn1 = document.querySelector("#btn1");
+            var btn2 = document.querySelector("#btn2");
+
+            function jsonp(options) {
+                var script = document.createElement("script");
+                var myjson = 'myjson' + Math.random().toString().replace('.','')
+                window[myjson] = options.success
+                script.src = options.url + '?callback=' + myjson;
+                document.body.appendChild(script);
+                script.onload = function () {
+                    document.body.removeChild(script);
+                };
+            }
+            btn1.addEventListener("click", function () {
+                jsonp({
+                    url: "http://localhost:3001/better",
+                    success: function(data) {
+                        console.log(111);
+                        console.log(data);
+                    }
+                });
+            });
+            btn2.addEventListener("click", function () {
+                jsonp({
+                    url: "http://localhost:3001/better",
+                    success: function(data) {
+                        console.log(222);
+                        console.log(data);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

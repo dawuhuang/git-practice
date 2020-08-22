@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="btn">发送jsonp请求</button>
+        <script>
+            function fn1(data) {
+                console.log("fn函数被发送了");
+                console.log(data);
+            }
+            var btn = document.querySelector("#btn");
+
+            function jsonp(options) {
+                var script = document.createElement("script");
+                script.src = options.url;
+                document.body.appendChild(script);
+                script.onload = function () {
+                    document.body.removeChild(script);
+                };
+            }
+            btn.addEventListener("click", function () {
+                jsonp({
+                    url: "http://localhost:3001/better?callback=fn1",
+                });
+            });
+        </script>
+    </body>
+</html>
