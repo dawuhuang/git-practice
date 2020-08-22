@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="/assets/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <style type="text/css">
+            .container {
+                padding-top: 60px;
+            }
+            .padding {
+                padding: 5px 0 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-group">
+                <label>请选择文件</label>
+                <input type="file" id="file" />
+                <div class="padding" id="box">
+                    <!--<img src="" class="img-rounded img-responsive">-->
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%;" id="bar">
+                        0%
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var file = document.querySelector("#file");
+            var bar = document.querySelector("#bar");
+            file.addEventListener("change", function () {
+                // 创建空的表单对象
+                var formData = new FormData();
+                // 将用户选择的二进制文件追加到表单对象中
+                formData.append("attrName", this.files[0]);
+                var xhr = new XMLHttpRequest();
+                xhr.open("post", "http://localhost:3000/upload");
+                // 在文件上传过程中会持续触发onprogress 事件
+xhr.upload.onprogress = function (ev) {
+    // 当前 ev.loaded上传文件大小 / ev.total文件总大小 再将结果转换为百分比
+    // 将结果赋值给进度跳的宽度属性
+    var result = (ev.loaded / ev.total) * 100 + "%"
+    bar.style.width = result;
+    bar.innerHTML = Math.ceil( (ev.loaded / ev.total) * 100) + '%'
+};
+
+
+                xhr.send(formData);
+
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        var result = JSON.parse(xhr.responseText)
+                        var img = document.createElement('img')
+                        img.src = result.path
+                        img.onload = function() {
+                            document.querySelector('#box').appendChild(this)
+                        }
+                    }
+                };
+            });
+            
+        </script>
+    </body>
+</html>

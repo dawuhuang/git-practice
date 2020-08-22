@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="" id="form">
+            <input type="text" name="uname" />
+            <input type="password" name="password" />
+            <input type="button" value="提交" id="btn" />
+        </form>
+        <script>
+            var btn = document.querySelector("#btn");
+            btn.addEventListener("click", function () {
+                // 将普通的html表单转化为表单对象
+                var form = document.querySelector("form");
+                formdata = new FormData(form);
+                // 获取表单对象中数学的值
+                console.log(formdata.get("uname"));
+                
+                
+                
+                
+                // 设置表单对象中属性的值 ,
+                // formdata.set('uname','qqw')
+                // formdata.set('age',20)
+                // 删除表单对象中属性的值
+                // formdata.delete('password')
+                // 向表单对象中追加属性的值
+                formdata.append('password','111')
+                // 发送请求
+                var xhr = new XMLHttpRequest();
+                xhr.open("post", "http://localhost:3000/formData");
+                xhr.send(formdata);
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        console.log(xhr.responseText);
+                    }
+                };
+            });
+        </script>
+    </body>
+</html>
