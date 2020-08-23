@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>使用jsonp获取腾讯天气信息</title>
+        <link
+            rel="stylesheet"
+            href="/assets/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <style type="text/css">
+            .container {
+                padding-top: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <table
+                class="table table-striped table-hover"
+                align="center"
+                id="box"
+            ></table>
+        </div>
+        <script src="./js/jsonp.js"></script>
+        <script src="./js/template-web.js"></script>
+        <script type="text/html" id="tpl">
+            <tr>
+                <th>时间</th>
+                <th>温度</th>
+                <th>天气</th>
+                <th>风向</th>
+                <th>风力</th>
+            </tr>
+            {{each weath}}
+            <tr>
+                <td>{{dateFormat($value.update_time)}}</td>
+                <td>{{$value.degree}}</td>
+                <td>{{$value.weather}}</td>
+                <td>{{$value.wind_direction}}</td>
+                <td>{{$value.wind_power}}</td>
+            </tr>
+            {{/each}}
+        </script>
+        <script>
+            var box = document.querySelector("#box");
+            // 20200822160000
+            function dateFormat(date) {
+                var year = date.substr(0, 4);
+                var month = date.substr(4, 2);
+                var day = date.substr(6, 2);
+                var h = date.substr(8, 2);
+                var m = date.substr(10, 2);
+                var s = date.substr(12, 2);
+                return `${year}年${month}月${day}日${h}时${m}分${s}秒`;
+            }
+            jsonp({
+                url: "https://wis.qq.com/weather/common",
+                data: {
+                    source: "pc",
+                    weather_type: "forecast_1h",
+                    province: "湖北省",
+                    city: "天门市",
+                },
+                success: function (data) {
+                    var html = template("tpl", {
+                        weath: data.data.forecast_1h,
+                    });
+                    box.innerHTML = html;
+                },
+            });
+            // 向模板中开放外部变量
+            template.defaults.imports.dateFormat = dateFormat
+        </script>
+    </body>
+</html>
