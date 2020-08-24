@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>实现跨域功能</title>
+        <link
+            rel="stylesheet"
+            href="/assets/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <style type="text/css">
+            .container {
+                padding-top: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input
+                        type="text"
+                        name="username"
+                        class="form-control"
+                        placeholder="请输入用户名"
+                    />
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="请输入用密码"
+                    />
+                </div>
+                <input
+                    type="button"
+                    class="btn btn-default"
+                    value="登录"
+                    id="loginBtn"
+                />
+                <input
+                    type="button"
+                    class="btn btn-default"
+                    value="检测用户登录状态"
+                    id="checkLogin"
+                />
+            </form>
+        </div>
+        <script>
+            var loginBtn = document.querySelector("#loginBtn");
+            var checkLogin = document.querySelector("#checkLogin");
+            var loginForm = document.querySelector("#loginForm");
+            loginBtn.addEventListener("click", function () {
+                var form = new FormData(loginForm);
+                var xhr = new XMLHttpRequest();
+                xhr.open("post", "http://localhost:3001/login");
+                // 携带cookie
+                xhr.withCredentials = true;
+                xhr.send(form);
+                xhr.onload = function () {
+                    console.log(xhr.responseText);
+                };
+            });
+            checkLogin.addEventListener("click", function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open("get", "http://localhost:3001/checkLogin");
+                // 携带cookie
+                xhr.withCredentials = true;
+                xhr.send();
+                xhr.onload = function () {
+                    console.log(xhr.responseText);
+                };
+            });
+        </script>
+    </body>
+</html>
