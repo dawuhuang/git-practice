@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        $('#btn').on('click',function() {
+// 参数1 路径 参数2传递的参数可选 参数3回调函数
+$.get('/base',{name:'zs',age:10},function(response) {console.log(response)})
+$.get('/post',{name:'zs',age:10},function(response) {console.log(response)})
+        })
+    </script>
+</body>
+</html>

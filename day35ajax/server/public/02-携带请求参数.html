@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="btn">发送$ajax请求</button>
+        <script src="./js/jquery.min.js"></script>
+        <script>
+            $("#btn").on("click", function () {
+                $.ajax({
+                    // 请求方式 post / get
+                    type: "post",
+                    // 请求地址  可以省略http://localhost:3000
+                    url: "/user",
+                    // 参数 如果的普通的对象格式，会拼接成name=lsiis&age=222
+                    data: {
+                        name: "lsiis",
+                        age: 222,
+                    },
+                    // 设置请求数据的格式 模式是application/x-www-form-urlencoled
+                    // contentType: 'application/json',
+                    // 在请求发送之前调用 如果不符合格式可以 return false
+                    // beforeSend: function() {
+                    //     alert('请求禁止发送')
+                    //     // return false
+                    // },
+                    // 请求成功的回调 response 为服务的返回的参数，方法内部会自动将json字符串转换为json对象。
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    // 请求失败的回调 xhr格式
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>

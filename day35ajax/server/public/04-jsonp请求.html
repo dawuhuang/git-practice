@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        function fnName(response) {
+            console.log(response);
+        }
+$.ajax({
+    url:'/jsonp',
+    dataType: 'jsonp',
+    //  修改 callback 参数的名称
+    jsonp:'cb',
+    // 指定函数名称
+    jsonpCallback: 'fnName'
+    // success: function(response) {
+    //     console.log(response);
+    // }
+})
+    </script>
+</body>
+</html>

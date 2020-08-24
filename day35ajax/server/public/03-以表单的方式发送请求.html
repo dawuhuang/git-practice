@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="" id="form">
+            <input type="text" id="username" name="username" />
+            <input type="text" id="password" name="password" />
+            <input type="submit" id="btn" value="提交" />
+        </form>
+        <script src="./js/jquery.min.js"></script>
+        <script>
+            // $('#btn').on('click', function() {
+            //     // console.log($('#username').val().trim());
+            //     if ($('#username').val().trim() == '' || $('#password').val().trim() == '') {
+            //         alert('还有未填写')
+            //         return false
+            //     }
+// 将表单数据自动拼接成字符串类型的参数
+var params = $('#form').serialize()
+            //     $.ajax({
+            //         type:'post',
+            //         url:'/form',
+            //         data: params,
+            //         success: function(response) {
+            //             console.log(response);
+            //         },
+            //         error: function(xhr){
+            //             console.log(xhr);
+            //         }
+            //     })
+            // })
+            console.log(1);
+            $('#form').on('submit', function () {
+                console.log(1);
+                $.ajax({
+                    type:'post',
+                    url:'/form',
+                    data: serializeObject($(this)),
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                    }
+                })
+                return false;
+            });
+// 将表单中用户输入的内容转换为对象类型
+function serializeObject(obj) {
+    // 处理结果对象
+    var result = {}
+    var params = obj.serializeArray()
+    // 循环数值，将数组转换为对象类型
+    $.each(params,function(index,value) {
+        result[value.name] = value.value
+    })
+    // 将处理的结果返回到函数外部
+    return result
+}
+        </script>
+    </body>
+</html>
