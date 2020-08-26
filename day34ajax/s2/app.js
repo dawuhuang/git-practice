@@ -17,6 +17,7 @@ app.use((req,res,next) => {
 res.header('Access-Control-Allow-Origin','http://localhost:3000')
 // 允许客户端使用哪些请求方法访问我
 res.header('Access-Control-Allow-Methods','get,post')
+// 是否携带cookie
 res.header('Access-Control-Allow-Credentials',true)
         // res.send('ok1')
     next()

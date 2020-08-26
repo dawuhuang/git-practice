@@ -7,10 +7,12 @@
 </head>
 <body>
     <script>
-        function fn(data) {
-            console.log(data);
+        var xhr = new XMLHttpRequest()
+        xhr.open('get','http://localhost:3000/cors')
+        xhr.send()
+        xhr.onload=function() {
+            console.log(xhr.responseText);
         }
     </script>
-    <script src="http://localhost:3000/jsonp?callback=fn"></script>
 </body>
 </html>
