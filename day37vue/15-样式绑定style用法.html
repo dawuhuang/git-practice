@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style></style>
+    </head>
+    <body>
+        <div id="app">
+            <div :style="{width: widthSetle,height: heightStyle,border: borderStyle}"></div>
+            <div :style='styles'></div>
+            <div :style='[styles,orrstyle]'></div>
+        </div>
+        <script src="./js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: "#app",
+                data: {
+                    widthSetle: "200px",
+                    heightStyle: "100px",
+                    borderStyle: "1px solid blue",
+                    styles: {
+                        width: "200px",
+                        height: "100px",
+                        border: "1px solid blue",
+                    },
+                    orrstyle: {
+                        width: '100px'
+                    }
+                },
+            });
+        </script>
+    </body>
+</html>

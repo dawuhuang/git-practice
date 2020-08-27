@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @keyup.fp4 = 'prompt'>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.config.keyCodes.fp4 = 115
+        let vm = new Vue({
+            el:'#app',
+            methods:{
+                prompt: function() {
+                    alert('我是f4')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

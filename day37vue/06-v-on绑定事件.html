@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <div>
+            <button v-on:click='handle1'>点击1</button>
+            <button v-on:click='handle2(123,345,$event)'>点击2</button>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            methods: {
+                handle1: function(event) {
+                console.log(event.target.innerHTML);
+            },
+            handle2: function(p,p1,event) {
+                console.log(p,p1);
+                console.log(event.target.innerHTML);
+                this.num++
+            }
+            }
+        })
+    </script>
+</body>
+</html>

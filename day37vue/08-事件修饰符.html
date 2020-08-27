@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+<!-- 阻止单击事件继续传播 -->
+<a href="" v-on:click.stop='doThis'></a>
+<!-- 提交事件不再重载页面 -->
+<form action="" v-on:submit.prevent='onSbumit'></form>
+<!-- 修饰符可以串联，即阻止冒泡也阻止默认事件 -->
+<a href="" v-on:click.stop.prevent='doThat'></a>
+<!-- 只当在event.target 是当前原始自身时触发处理函数，即事件不是从内部元素触发的 -->
+<a href="" v-on:click.self='doThat'></a>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // vue常见的事件修饰符 .stop 阻止冒泡  .prevent 取消默认行为
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 当做html标签解析后输出 -->
+        <p v-html='html'></p>
+        <!-- 纯文本输出 -->
+        <p v-text='text'></p>
+        <!-- 显示原始内容 -->
+        <p v-pre>{{pre}}</p>
+        <p v-once>{{once}}</p>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                html: '<span>我是html标签</span>',
+                text: '<span>我是text标签</span>',
+                pre: '<span>我是pre标签</span>',
+                once: '我是once'
+            }
+        })
+    </script>
+</body>
+</html>

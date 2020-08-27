@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+<!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
+<input type="text" v-on:keyup.13='submit'>
+<!-- 当点击 enter 时调用 vm.submit() -->
+<input type="text" v-on:keyup.enter='submit'>
+<!-- 当点击 enter 或者 space  时调用 vm.alertMe() -->
+<input type="text" v-on:keyup.enter.space='alertMe'>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+    var vm = new Vue({
+        el: '#app',
+        methods: {
+            submit: function() {
+                console.log(1);
+            },
+            alertMe: function() {
+                console.log(2);
+            }
+        }
+    }) 
+    </script>
+</body>
+</html>

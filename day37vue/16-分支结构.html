@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click='handel'>点击</button>
+        <div v-if='score>= 90'>优秀</div>
+        <div v-else-if='score>= 80'>良好</div>
+        <div v-else-if='score>= 60'>及格</div>
+        <div v-else>不及格</div>
+        <div v-show='flag'>show</div>
+        
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                score: 77,
+                flag: true
+            },
+            methods: {
+                handel: function() {
+                    this.flag = !this.flag
+                } 
+            }
+        })
+    </script>
+</body>
+</html>

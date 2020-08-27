@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+       
+        <style>
+        [v-cloak] {
+            display: none;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="a" /> +
+            <input type="text" v-model="b" />
+            <button @click="handle">计算</button>
+            <div  v-cloak>结果{{msg}}</div>
+        </div>
+        <script src="./js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: "#app",
+                data: {
+                    a: '',
+                    b: '',
+                    msg: '',
+                },
+                methods: {
+                    handle: function () {
+                        this.msg = Number(this.a) + Number(this.b);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

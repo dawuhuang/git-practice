@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./js/vue.js"></script>
+        <style>
+            .active {
+                width: 100px;
+                height: 100px;
+                border: 1px solid red;
+            }
+            .toggle {
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <div :class="{active: isActive,toggle: isToggle}">测试</div> -->
+            <div :class="[activeClass,toggleClass]">测试</div>
+            <button @click="handle">点击</button>
+        </div>
+
+        <script>
+            var vm = new Vue({
+                el: "#app",
+                data: {
+                    isActive: true,
+                    isToggle: true,
+                    activeClass: 'active',
+                    toggleClass: 'toggle'
+
+                },
+                methods: {
+                    handle: function () {
+                        // this.isActive = !this.isActive;
+                        // this.isToggle = !this.isToggle
+                        this.activeClass = ''
+                        this.toggleClass = ''
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
