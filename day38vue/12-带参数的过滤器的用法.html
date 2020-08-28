@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>{{msg | datess('yyyy-MM-dd')}}</div>
+		</div>
+
+		<script>
+			Vue.filter("datess", function (val, age) {
+				if (age == "yyyy-MM-dd") {
+					var str = "";
+					str +=
+						val.getFullYear() +
+						"-" +
+						(val.getMonth() + 1) +
+						"-" +
+						val.getDate();
+				}
+				return str;
+			});
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					msg: new Date(),
+				},
+			});
+		</script>
+	</body>
+</html>

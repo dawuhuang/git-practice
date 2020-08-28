@@ -1,76 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <style type="text/css">
-  
-  form div {
-    height: 40px;
-    line-height: 40px;
-  }
-  form div:nth-child(4) {
-    height: auto;
-  }
-  form div span:first-child {
-    display: inline-block;
-    width: 100px;
-  }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <form action="http://itcast.cn">
-      <div>
-        <span>姓名：</span>
-        <span>
-          <input type="text" v-model='uname'>
-        </span>
-      </div>
-      <div>
-        <span>性别：</span>
-        <span>
-          <input type="radio" id="male" value="1" >
-          <label for="male">男</label>
-          <input type="radio" id="female" value="2" >
-          <label for="female">女</label>
-        </span>
-      </div>
-      <div>
-        <span>爱好：</span>
-        <input type="checkbox" id="ball" value="1" >
-        <label for="ball">篮球</label>
-        <input type="checkbox" id="sing" value="2" >
-        <label for="sing">唱歌</label>
-        <input type="checkbox" id="code" value="3" >
-        <label for="code">写代码</label>
-      </div>
-      <div>
-        <span>职业：</span>
-        <select  multiple>
-          <option value="0">请选择职业...</option>
-          <option value="1">教师</option>
-          <option value="2">软件工程师</option>
-          <option value="3">律师</option>
-        </select>
-      </div>
-      <div>
-        <span>个人简介：</span>
-        <textarea ></textarea>
-      </div>
-      <div>
-        <input type="submit" value="提交">
-      </div>
-    </form>
-  </div>
-  <script src="./js/vue.js"></script>
-  <script>
-      var vm = new Vue({
-          el: '#app',
-          data: {
-              uname: 'lisi'
-          }
-      })
-  </script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<style type="text/css">
+			form div {
+				height: 40px;
+				line-height: 40px;
+			}
+			form div:nth-child(4) {
+				height: auto;
+			}
+			form div span:first-child {
+				display: inline-block;
+				width: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<form action="http://itcast.cn">
+				<div>
+					<span>姓名：</span>
+					<span>
+						<input type="text" v-model="uname" />
+					</span>
+				</div>
+				<div>
+					<span>性别：</span>
+					<span>
+						<input type="radio" id="male" value="1" v-model='gender' />
+						<label for="male">男</label>
+						<input type="radio" id="female" value="2" v-model='gender' />
+						<label for="female">女</label>
+					</span>
+				</div>
+				<div>
+					<span>爱好：</span>
+					<input type="checkbox" id="ball" value="1" v-model='hobby'/>
+					<label for="ball">篮球</label>
+					<input type="checkbox" id="sing" value="2" v-model='hobby' />
+					<label for="sing">唱歌</label>
+					<input type="checkbox" id="code" value="3" v-model='hobby' />
+					<label for="code">写代码</label>
+				</div>
+				<div>
+					<span>职业：</span>
+					<select multiple v-model='occupation'>
+						<option value="0">请选择职业...</option>
+						<option value="1">教师</option>
+						<option value="2">软件工程师</option>
+						<option value="3">律师</option>
+					</select>
+					<span>{{occupation}}</span>
+				</div>
+				<div>
+					<span>个人简介：</span>
+					<textarea v-model='msg'></textarea>
+					{{msg}}
+				</div>
+				<div>
+					<input type="submit" value="提交" />
+				</div>
+			</form>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					uname: "lisi",
+					gender: 1,
+					hobby: [1,2],
+					occupation: [1,2],
+					msg: ''
+				},
+			});
+		</script>
+	</body>
 </html>

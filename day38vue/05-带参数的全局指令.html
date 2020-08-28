@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-color='msg'>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+// 自定义指令-带参数  bind - 只调用一次，在指令第一次绑定到元素上时候调用
+Vue.directive('color',{
+    // bind声明周期，只调用一次，指令第一次绑定到元素时调用，在这里可以进行一次性的初始化设置
+    // el 为当前自定义指令的DOM元素 
+    // binding 为自定义的函数形参   通过自定义属性传递过来的值 存在 binding.value 里面
+    bind: function(el,binding) {
+        // // 根据指令的参数设置背景色
+        // console.log(binding.value.color);
+        el.style.backgroundColor = binding.value.color
+    }
+})
+var vm = new Vue({
+    el: '#app',
+    data:{msg: {color: 'blue'}}})
+    </script>
+</body>
+</html>
