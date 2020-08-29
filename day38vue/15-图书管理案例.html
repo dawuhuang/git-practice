@@ -124,6 +124,7 @@
             this.books.some((item) => {
               if (item.id == this.id) {
                 item.name = this.name;
+                item.date = new Date()
                 return false;
               }
             });
@@ -134,7 +135,7 @@
             var arr = {};
             arr.id = this.id;
             arr.name = this.name;
-            arr.data = "";
+            arr.date = new Date()
             this.books.push(arr);
             // 清空输入框
             this.id = "";
@@ -184,6 +185,7 @@
       // 计算属性
       computed: {
         totalel: function () {
+          
           return this.books.length;
         },
       },

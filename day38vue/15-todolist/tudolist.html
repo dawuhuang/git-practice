@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<title>ToDoList—最简单的待办事项列表</title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<header>
+				<section>
+					<label for="title">ToDoList</label>
+					<input
+						type="text"
+						id="title"
+						name="title"
+						placeholder="添加ToDo"
+						required="required"
+						autocomplete="off"
+						v-model="msg"
+						@keyup.enter="handle"
+					/>
+				</section>
+			</header>
+			<section>
+				<h2>正在进行 <span id="todocount">{{start}}</span></h2>
+				<ol id="todolist" class="demo-box">
+					<li v-if="item.done==false" v-for="(item,index) in list">
+						<input type="checkbox" @click="state(index)" />
+						<p>{{item.title}}</p>
+						<a href="javascript:;" @click="deltodo(index)"></a>
+					</li>
+				</ol>
+				<h2>已经完成 <span id="donecount">{{accomp}}</span></h2>
+				<ul id="donelist">
+					<li v-if="item.done==true" v-for="(item,index) in list">
+						<input type="checkbox" @click="state(index)" checked />
+						<p><del>{{item.title}}</del></p>
+						<a href="javascript:;" @click="deltodo(index)"></a>
+					</li>
+				</ul>
+			</section>
+			<footer>Copyright &copy; 2014 todolist.cn</footer>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					list: getData(),
+					msg: "",
+				},
+				// 方法
+				methods: {
+					// 存储数据
+					handle: function () {
+						// 将数据添加到数组
+						var data = getData();
+						data.push({ title: this.msg, done: false });
+						// 将数据保存到页面
+						localStorage.setItem("todolist", JSON.stringify(data));
+						this.list = getData();
+						// 将输入框置空
+						this.msg = "";
+					},
+
+					// 删除数据
+					deltodo: function (index) {
+						// 获取数据
+						var data = getData();
+						// console.log(data);
+						data.splice(index, 1);
+						localStorage.setItem("todolist", JSON.stringify(data));
+						this.list = getData();
+					},
+
+					// 修改状态
+					state: function (index) {
+						// 获取数据
+						var data = getData();
+						data[index].done = !data[index].done;
+						localStorage.setItem("todolist", JSON.stringify(data));
+						this.list = getData();
+					},
+				},
+				// 计算属性
+				computed: {
+					start: function () {
+						// 获取数据
+						var data = getData();
+						var arr = data.filter(function (value, index) {
+							return value.done == false;
+						});
+						this.list = this.list;
+						return arr.length;
+					},
+					accomp: function () {
+						// 获取数据
+						var data = getData();
+						var arr = data.filter(function (value, index) {
+							return value.done == true;
+						});
+						this.list = this.list;
+						return arr.length;
+					},
+				},
+			});
+			function getData() {
+				let data = localStorage.getItem("todolist");
+				if (data == null) {
+					return [];
+				} else {
+					return JSON.parse(data);
+				}
+			}
+		</script>
+	</body>
+</html>
