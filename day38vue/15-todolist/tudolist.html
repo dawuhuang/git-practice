@@ -46,7 +46,7 @@
 					</li>
 				</ul>
 			</section>
-			<footer>Copyright &copy; 2014 todolist.cn</footer>
+			<footer>2020 todolist</footer>
 		</div>
 		<script>
 			var vm = new Vue({
@@ -61,7 +61,7 @@
 					handle: function () {
 						// 将数据添加到数组
 						var data = getData();
-						data.push({ title: this.msg, done: false });
+						data.unshift({ title: this.msg, done: false });
 						// 将数据保存到页面
 						localStorage.setItem("todolist", JSON.stringify(data));
 						this.list = getData();

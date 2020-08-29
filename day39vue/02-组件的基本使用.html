@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <buttpn-counter></buttpn-counter>
+        <buttpn-counter></buttpn-counter>
+        <buttpn-counter></buttpn-counter>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component('buttpn-counter',{
+            data: function() {
+                return {
+                    counter: 0
+                }
+            },
+            template: `<button @click='handle'>我们点击了{{counter}}次</button>`,
+            methods: {
+                handle: function() {
+                    this.counter += 2
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 静态绑定的 -->
+			<menu-item title="来自父组件的数据静态"></menu-item>
+			<!-- 动态绑定的 -->
+			<menu-item :title="title" ppt='我是123'></menu-item>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			Vue.component("menu-item", {
+                props: ["title",'ppt'],
+                data: function() {
+                    return {
+                        count: '我是子组件'
+                    }
+                },
+				template: `<div>{{ count + '------' + title + '-----' + ppt}}</div>`,
+			});
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					title: "我是父组件的内容动态",
+				},
+			});
+		</script>
+	</body>
+</html>

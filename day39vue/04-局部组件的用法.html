@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <hello-world></hello-world>
+        <hello-tom></hello-tom>
+        <hello-jerry></hello-jerry>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var HelloWorld = {
+            data: function() {
+                return {
+                    msg: 'hello world1'
+                }
+            },
+            template: '<div>{{msg}}</div>'
+        };
+        var HelloTom = {
+            data: function() {
+                return {
+                    msg: 'hello tom2'
+                }
+            },
+            template: '<div>{{msg}}</div>'
+        };
+        var HelloJerry = {
+            data: function() {
+                return {
+                    msg: 'hello jerry3'
+                }
+            },
+            template: '<div>{{msg}}</div>'
+        };
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            components: {
+                'hello-world': HelloWorld,
+                'hello-tom': HelloTom,
+                'hello-jerry': HelloJerry
+            }
+        })
+    </script>
+</body>
+</html>
