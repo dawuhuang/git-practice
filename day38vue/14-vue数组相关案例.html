@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='msg'>
+        <button @click='handle'>添加</button>
+        <button @click='handle1'>删除</button>
+        <button @click='handle2'>替换</button>
+        <ul>
+            <li :key='index' v-for='(item,index) in list'>{{item}}</li>
+        </ul>
+        <div>{{info.name}}</div>
+        <div>{{info.age}}</div>
+        <div>{{info.gender}}</div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+                list: ['apple','orange','leone'],
+                info: {
+                    name: 'lise',
+                    age: 30
+                }
+            },
+            methods: {
+                handle: function() {
+                    this.list.push(this.msg)
+                },
+                handle1: function() {
+                    this.list.pop()
+                },
+                handle2: function() {
+                    this.list = this.list.slice(0,2)
+                }
+            }
+        })
+        // Vue.set(vm.list,2,'ogg')
+        // vm.$set(vm.list,0,'ogg')
+        vm.$set(vm.info,'gender','女')
+    </script>
+</body>
+</html> 

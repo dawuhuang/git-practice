@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <style type="text/css">
+    .grid {
+      margin: auto;
+      width: 530px;
+      text-align: center;
+    }
+
+    .grid table {
+      border-top: 1px solid #c2d89a;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .grid th,
+    td {
+      padding: 10;
+      border: 1px dashed #f3dcab;
+      height: 35px;
+      line-height: 35px;
+    }
+
+    .grid th {
+      background-color: #f3dcab;
+    }
+
+    .grid .book {
+      padding-bottom: 10px;
+      padding-top: 5px;
+      background-color: #f3dcab;
+    }
+
+    .total {
+      background-color: #f3dcab;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="grid">
+      <div>
+        <h1>图书管理</h1>
+        <div class="book">
+          <div>
+            <label for="id"> 编号： </label>
+            <input type="text" v-model="id" :disabled="flag" v-focus />
+            <label for="name"> 名称： </label>
+            <input type="text" id="name" v-model="name" />
+            <button @click="handle">提交</button>
+          </div>
+        </div>
+        <div class="total">
+          <span>图书总数</span><span>{{totalel}}</span>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="itme in books">
+            <td>{{itme.id}}</td>
+            <td>{{itme.name}}</td>
+            <td>{{itme.date | format('yyyy-MM-dd')}}</td>
+            <td>
+              <a href="javascript:;" @click.prevent="toEdit(itme.id)">修改</a>
+              <a href="javascript:;" @click.prevent="del(itme.id)">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/vue.js"></script>
+  <script type="text/javascript">
+    /*
+    图书管理-添加图书
+  */
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        flag: false,
+        id: "",
+        name: "",
+        books: [
+          {
+            id: 1,
+            name: "三国演义",
+            date: new Date(),
+          },
+          {
+            id: 2,
+            name: "水浒传",
+            date: new Date(),
+          },
+          {
+            id: 3,
+            name: "红楼梦",
+            date: new Date(),
+          },
+          {
+            id: 4,
+            name: "西游记",
+            date: new Date(),
+          },
+        ],
+      },
+      methods: {
+        handle: function () {
+          if (this.flag) {
+            // this.books[this.id].name = this.name
+            // some
+            this.books.some((item) => {
+              if (item.id == this.id) {
+                item.name = this.name;
+                return false;
+              }
+            });
+            this.name = "";
+            this.id = "";
+            this.flag = false;
+          } else {
+            var arr = {};
+            arr.id = this.id;
+            arr.name = this.name;
+            arr.data = "";
+            this.books.push(arr);
+            // 清空输入框
+            this.id = "";
+            this.name = "";
+          }
+        },
+        toEdit: function (id) {
+          console.log(id);
+          // this.id = id;
+          this.flag = true;
+          // this.name = this.books[id].name;
+          var book = this.books.filter(function (item) {
+            return item.id == id;
+          });
+          this.id = book[0].id;
+          this.name = book[0].name;
+        },
+        del: function (id) {
+          console.log(id);
+          let index = this.books.findIndex(
+            (value, index) => value.id == id
+          );
+          console.log(index);
+          this.books.splice(index, 1);
+        },
+      },
+      // 过滤器
+      filters: {
+        format: function (date, val) {
+          if (val == "yyyy-MM-dd") {
+            // let date =new Date()
+            let y = date.getFullYear();
+            let M = date.getMonth() + 1;
+            let s = date.getDate();
+            return `${y}-${M}-${s}`;
+          }
+        },
+      },
+      // 自定义指令
+      directives: {
+        focus: {
+          inserted: function (el) {
+            el.focus();
+          },
+        },
+      },
+      // 计算属性
+      computed: {
+        totalel: function () {
+          return this.books.length;
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
