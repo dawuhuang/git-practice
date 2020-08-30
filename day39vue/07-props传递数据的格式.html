@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{pmsg}}
+        
+        <menu-item :pstr1='pstr' :pnum='12'  pboo='true' :parr='parr' :pobj='pobj'></menu-item>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component('menu-item', {
+            props: ['pstr1','pnum','pboo','parr','pobj'],
+            template: `<div>
+                <div>{{pstr1}}</div>
+                <div>{{pnum + 13}}</div>
+                <div>{{typeof pboo}}</div>
+                <ul>
+                    <li :key='index' v-for='(item,index) in parr'>{{item}}</li>
+                    </ul>
+                <div>
+                    <span>{{pobj.name}}</span>
+                    <span>{{pobj.age}}</span>
+                    </div>
+                </div>`
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件中的内容',
+                pstr: 'hello',
+                parr: ['apple','orange','boole'],
+                pobj: {
+                    name: 'zs',
+                    age: 30
+                }
+            }
+        })
+    </script>
+</body>
+</html>

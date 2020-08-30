@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 在html中是短横方式的 -->
+			<menu-item menu-title="nihao"></menu-item>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			Vue.component("third-com", {
+				// 在javascript中是驼峰式的
+				props: ["testTitle"],
+				template: "<div>{{ testTitle }}</div>",
+			});
+			Vue.component("menu-item", {
+				// 在javascript中是驼峰式的
+				props: ["menuTitle"],
+				template:
+					'<div>{{ menuTitle }}<third-com testTitle="hello"></third-com></div>',
+			});
+
+			var vm = new Vue({
+				el: "#app",
+				data: {},
+			});
+		</script>
+	</body>
+</html>
