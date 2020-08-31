@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <secer>我是bug</secer>
+        <secer>有个错误</secer>
+        <secer></secer>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component('secer', {
+            template: `<div>
+            <strong>错误内容</strong>
+            <slot>默认内容</slot>
+            </div>`
+        })
+        var vm = new Vue({
+            el: '#app',
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>

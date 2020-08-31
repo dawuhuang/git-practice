@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div :style='{fontSize: fontSize + "px"}'>{{msg}}</div>
+        <menu-item @enlarge-text='handle($event)'></menu-item>
+    </div>
+    <script>
+        Vue.component('menu-item',{
+            template: `<div><button @click='$emit("enlarge-text",5)'>点击扩大</button></div>`
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '父组件的内容',
+                fontSize: 10
+            },
+            methods: {
+                handle: function(val) {
+                    this.fontSize += val
+                }
+            }
+        })
+    </script>
+</body>
+</html>

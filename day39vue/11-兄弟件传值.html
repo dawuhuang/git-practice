@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 销毁 -->
+        <button @click='handle'>销毁事件</button>
+        <text-tom ></text-tom>
+        <hr>
+        <text-jerry></text-jerry>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 创建事件中心
+        var hub = new Vue({})
+        // tom
+        Vue.component('text-tom',{
+            data: function() {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+            <div>{{num}}</div>
+            <button @click='handle'>提交</button>
+            </div>`,
+            methods: {
+                handle: function() {
+                    hub.$emit('jerry',2)
+                }
+            },
+            mounted: function() {
+                hub.$on('tom',(val) => {
+                    this.num += val
+                })
+            }
+        })
+        // jerry
+        Vue.component('text-jerry',{
+            data: function() {
+                return {
+                    num: 1
+                }
+            },
+            template: `<div>
+            <div>{{num}}</div>
+            <button @click='handle'>提交</button>
+            </div>`,
+            methods: {
+                handle: function() {
+                    hub.$emit('tom',2)
+                }
+            },
+            mounted: function() {
+                hub.$on('jerry',(val) => {
+                    this.num += val
+                })
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            methods: {
+                handle: function() {
+                    hub.$off('tom')
+                    hub.$off('jerry')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
