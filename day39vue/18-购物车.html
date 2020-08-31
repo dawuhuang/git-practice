@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style type="text/css">
+            .container .cart {
+                width: 300px;
+                margin: auto;
+            }
+            .container .title {
+                background-color: lightblue;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                /*color: #fff;*/
+            }
+            .container .total {
+                background-color: #ffce46;
+                height: 50px;
+                line-height: 50px;
+                text-align: right;
+            }
+            .container .total button {
+                margin: 0 10px;
+                background-color: #dc4c40;
+                height: 35px;
+                width: 80px;
+                border: 0;
+            }
+            .container .total span {
+                color: red;
+                font-weight: bold;
+            }
+            .container .item {
+                height: 55px;
+                line-height: 55px;
+                position: relative;
+                border-top: 1px solid #add8e6;
+            }
+            .container .item img {
+                width: 45px;
+                height: 45px;
+                margin: 5px;
+            }
+            .container .item .name {
+                position: absolute;
+                width: 90px;
+                top: 0;
+                left: 55px;
+                font-size: 16px;
+            }
+
+            .container .item .change {
+                width: 100px;
+                position: absolute;
+                top: 0;
+                right: 50px;
+            }
+            .container .item .change a {
+                font-size: 20px;
+                width: 30px;
+                text-decoration: none;
+                background-color: lightgray;
+                vertical-align: middle;
+            }
+            .container .item .change .num {
+                width: 40px;
+                height: 25px;
+            }
+            .container .item .del {
+                position: absolute;
+                top: 0;
+                right: 0px;
+                width: 40px;
+                text-align: center;
+                font-size: 40px;
+                cursor: pointer;
+                color: red;
+            }
+            .container .item .del:hover {
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="container">
+                <div class="cart">
+                    <a href=""></a>
+                    <header-car :tit="tit"></header-car>
+                    <article-car :list="list" @del-item='delItem($event)' @change-item='changeItem($event)' @add='add($event)' @sub='sub($event)'></article-car>
+                    <footer-car :list='list'></footer-car>
+                </div>
+            </div>
+        </div>
+        <script src="./js/vue.js"></script>
+        <script>
+            // 头部
+            Vue.component('header-car',{
+                props:['tit'],
+                template:`<div class='title'>{{tit}}的购物车</div>`
+            })
+            // 身体
+            Vue.component('article-car',{
+                props:['list'],
+                template:`
+                <div>
+                <div class='item' :key='item.id' v-for='(item,index) in list'>
+                        <img :src=item.img />
+                        <div class='name'>{{item.name}}</div>
+                        <div class='change'>
+                            <a href="" @click.prevent="$emit('sub',item.id)">－</a>
+                            <input type='text' class='num' :value='item.num' @blur='$emit("change-item",[item.id,$event.target.value])'/>
+                            <a href=""  @click.prevent="$emit('add',item.id)">＋</a>
+                        </div>
+                        <div class='del' @click='$emit("del-item",item.id)'>x</div>
+                    </div>
+                </div>`
+            })
+            // 尾部
+            Vue.component('footer-car', {
+                props:['list'],
+                template: `
+                <div class='total'>
+                    <span>总价:{{total}}</span>
+                    <button>结算</button>
+                </div>
+                `,
+                computed: {
+                    total: function() {
+                        var t = 0
+                        this.list.forEach(function(item){
+                            t += item.num * item.price
+                        })
+                        return t
+                    }
+                }
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    tit: '张三',
+                    list: [
+                        {
+                            id: 1,
+                            name: "TCL电视",
+                            price: 1000,
+                            num: 1,
+                            img: "./img/a.jpg",
+                        },
+                        {
+                            id: 2,
+                            name: "机顶盒",
+                            price: 1000,
+                            num: 1,
+                            img: "./img/b.jpg",
+                        },
+                        {
+                            id: 3,
+                            name: "海尔冰箱",
+                            price: 1000,
+                            num: 1,
+                            img: "./img/c.jpg",
+                        },
+                        {
+                            id: 4,
+                            name: "小米手机",
+                            price: 1000,
+                            num: 2,
+                            img: "./img/c.jpg",
+                        },
+                        {
+                            id: 5,
+                            name: "PPTv电视",
+                            price: 2000,
+                            num: 1,
+                            img: "./img/d.jpg",
+                        },
+                    ],
+                },
+                methods: {
+                    add: function(id) {
+                        this.list.some(item => {
+                            if (item.id == id) {
+                                item.num ++
+                                return false
+                            }
+                        })
+                    },
+                    sub: function(id) {
+                        this.list.some(item => {
+                            if (item.id == id) {
+                                if (item.num <=1) {
+                                    item.num = 1
+                                }else {
+                                    item.num --
+                                }
+                                return false
+                            }
+                        })
+                    },
+                    changeItem: function(id) {
+                        this.list.some(item => {
+                            if (item.id == id[0]) {
+                                item.num = id[1]
+                                return false
+                            }
+                        })
+                        
+                    },
+                    delItem: function(id) {
+                        let index = this.list.findIndex(value => value.id == id)
+                        this.list.splice(index,1)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
