@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function foo(url) {
+            return new Promise(function(resolve,reject) {
+                var xhr = new XMLHttpRequest()
+                xhr.open('get',url)
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4) return;
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        resolve(xhr.responseText)
+                    }else {
+                        reject(xhr.responseText)
+                    }
+                }
+                xhr.send()
+            })
+        }
+
+        var p1 = foo('http://localhost:3000/a1')
+        var p2 = foo('http://localhost:3000/a2')
+        var p3 = foo('http://localhost:3000/a3')
+        Promise.all([p1,p2,p3]).then(function(data) {
+            console.log(data);
+        })
+        // Promise.race([p1,p2,p3]).then(function(data) {
+        //     console.log(data);
+        // })
+    </script>
+</body>
+</html>
