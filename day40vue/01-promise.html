@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script src="./js/vue.js"></script>
+		<script>
+			var p = new Promise(function (resolve, reject) {
+				// 实现异步任务
+				setTimeout(() => {
+					var flag = true;
+					if (flag) {
+						// 正常情况 成功时的回调
+						resolve("hello");
+					} else {
+						// 失败时的回调
+						reject("出错了");
+					}
+				}, 100);
+			});
+			p.then(
+                function(data) {
+                    console.log(data);
+                },
+				function (info) {
+					console.log(info);
+				}
+            );
+var p = new Promise(function(resolve,reject) {
+    // 成功时调用 resolve()
+    // 失败时调用 reject()
+})
+p.then(function(ret) {
+    // 从resolve得到正常结果
+},function(ret) {
+    // 从reject得到错误信息
+})
+		</script>
+	</body>
+</html>
