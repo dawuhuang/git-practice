@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./lib/vue_2.5.22.js"></script>
+		<script src="./lib/vue-router_3.0.2.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/user/1">user1</router-link>
+			<router-link to="/user/2">user2</router-link>
+			<router-link to="/user/3">user3</router-link>
+			<router-view></router-view>
+		</div>
+		<script>
+			const User = {
+				props: ['id'],
+				template: `<h1>我是user用户id为{{id}}</h1>`,
+			};
+			const myRouter = new VueRouter({
+				routes: [{ path: "/user/:id", component: User,props: true }],
+			});
+			new Vue({
+				el: "#app",
+				router: myRouter,
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./lib/vue_2.5.22.js"></script>
+	</head>
+	<body>
+		<!-- 被 vue 实例控制的 div 区域 -->
+		<div id="app">
+			<!-- 切换组件的超链接 -->
+			<a href="#/zhuye">主页</a>
+			<a href="#/keji">科技</a>
+			<a href="#/caijing">财经</a>
+			<a href="#/yule">娱乐</a>
+
+			<!-- 根据 :is 属性指定的组件名称，把对应的组件渲染到 component 标签所在的位置 -->
+			<!-- 可以把 component 标签当做是【组件的占位符】 -->
+			<component :is="className"></component>
+		</div>
+
+		<script>
+            const zhuye = {
+                template: `<h1>主页信息</h1>`
+            }
+            const keji = {
+                template: `<h1>科技信息</h1>`
+            }
+            const caijing = {
+                template: `<h1>财经信息</h1>`
+            }
+            const yule = {
+                template: `<h1>娱乐信息</h1>`
+            }
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					className: "zhuye",
+				},
+				components: {
+					zhuye,
+					keji,
+					caijing,
+					yule,
+				},
+            });
+            window.onhashchange = function() {
+                // console.log(location.hash);
+                switch (location.hash.slice(2)) {
+                    case 'zhuye': 
+                        vm.className = 'zhuye';
+                        break;
+                    case 'keji': 
+                        vm.className = 'keji';
+                        break;
+                    case 'caijing': 
+                        vm.className = 'caijing';
+                        break;
+                    case 'yule': 
+                        vm.className = 'yule';
+                        break;
+                }
+            }
+		</script>
+	</body>
+</html>

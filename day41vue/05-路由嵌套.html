@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./lib/vue_2.5.22.js"></script>
+		<script src="./lib/vue-router_3.0.2.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/user">user</router-link>
+			<router-link to="/login">login</router-link>
+			<router-view></router-view>
+		</div>
+		<script>
+			const User = {
+				template: `<h1>我是user</h1>`,
+			};
+			const Login = {
+				template: `<div>
+                <h1>我是user</h1>
+                <hr/>
+                <router-link to='/login/tab1'>我是tab1</router-link>
+                <router-link to='/login/tab2'>tab2</router-link>
+                <router-view></router-view>
+                </div>`,
+			};
+			const Tab1 = {
+				template: `<h2>11111</h2>`,
+			};
+			const Tab2 = {
+				template: `<h2>333333</h2>`,
+			};
+			const myRouter = new VueRouter({
+				routes: [
+					// 设置路由重定向
+					{ path: "/", redirect: "/user" },
+					{ path: "/user", component: User },
+					{
+						path: "/login",
+						component: Login,
+						children: [
+							{ path: "/login/tab1", component: Tab1 },
+							{ path: "/login/tab2", component: Tab2 },
+						],
+					},
+				],
+			});
+			new Vue({
+				el: "#app",
+				router: myRouter,
+			});
+		</script>
+	</body>
+</html>
