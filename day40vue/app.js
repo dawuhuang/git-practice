@@ -14,9 +14,10 @@ app.use(bodyPatser.urlencoded({extended: false}))
 app.use((req,res,next) => {
     // 允许所以网站访问
     res.header('Access-Control-Allow-Origin','*')
-    res.header('Access-Control-Allow-Methods','get,post,PUT')
+    res.header('Access-Control-Allow-Methods','get,post,PUT,DELETE')
     res.header('Access-Control-Allow-Headers','X-Requested-With')
     res.header('Access-Control-Allow-Headers','Content-Type')
+    res.header('Access-Control-Allow-Headers','mytoken')
     next()
 })
 app.get('/data',(req,res) => {
@@ -59,6 +60,49 @@ app.post('/books',(req,res) => {
 })
 app.put('/books/:id',(req,res) => {
     res.send('put请求'+ req.body.uname + '----' +req.body.age)
+})
+app.get('/json',(req,res) => {
+    res.json({
+        uname: 'zs',
+        age: 22
+    })
+})
+app.get("/adata",(req,res) => {
+    res.send('zs2222')
+})
+
+// axios传参
+app.get('/axios',(req,res) => {
+    res.send(req.query.id)
+})
+app.get('/axios/:id',(req,res) => {
+    res.send(req.params.id)
+})
+app.delete('/axios',(req,res) => {
+    res.send(req.query.id)
+})
+app.post('/axios',(req,res) => {
+    res.send(req.body.uname+ '---' + req.body.age)
+})
+app.put('/axios/:id',(req,res) => {
+    res.send(req.body.uname + '------' + req.body.age)
+})
+
+// 全局配置
+app.get('/baseu',(req,res) =>{
+    res.send('123')
+})
+// async和await 处理多个异步请求
+app.get('/async',(req,res) => {
+    res.send('hello')
+})
+app.get('/async1',(req,res) => {
+    if (req.query.info == 'hello') {
+        res.send('nihao')
+    }else {
+        res.send('333')
+    }
+    
 })
 // 监听3000端口
 app.listen(3000,()=> {

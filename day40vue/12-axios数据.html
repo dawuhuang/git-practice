@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/axios.js"></script>
+    <script>
+axios.get('http://localhost:3000/adata').then(function(ret){
+    // data属性名称的固定的，用于获取后台响应的数据
+    console.log(ret.data);
+})
+    </script>
+</body>
+</html>

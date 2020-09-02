@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script src="./js/axios.js"></script>
+		<script>
+			// get请求的传参
+			// axios.get('http://localhost:3000/axios?id=123').then(function(ret) {
+			//     console.log(ret.data);
+			// })
+			// restful 形式传递参数
+			// axios.get('http://localhost:3000/axios/12333').then(function(ret) {
+			//     console.log(ret.data);
+			// })
+			// 通过params 形式传递参数
+			// axios.get('http://localhost:3000/axios', {
+			//     params: {
+			//         id: 444
+			//     }
+			// }).then(function(ret) {
+			//     console.log(ret.data);
+			// })
+
+			// delete
+			// axios.delete('http://localhost:3000/axios',{
+			//     params: {
+			//         id: 333
+			//     }
+			// }).then(function(ret) {
+			//     console.log(ret.data);
+			// })
+			// axios
+			// 	.post("http://localhost:3000/axios",{
+			// 		uname: "lisi",
+			// 		age: 30,
+			// 	})
+			// 	.then(function (ret) {
+			// 		console.log(ret.data);
+			// 	});
+			// 通过URLSearchParams() 传递参数
+			// var params = new URLSearchParams()
+			// params.append('uname','zhangsan')
+			// params.append('age','lisi')
+			// axios.post('http://localhost:3000/axios',params).then(function(ret) {
+			//     console.log(ret.data);
+			// })
+
+			// axios put请求传参 和post请求一样
+			axios
+				.put("http://localhost:3000/axios/123", {
+					uname: "333",
+					age: 44,
+				})
+				.then(function (ret) {
+					console.log(ret.data);
+                });
+
+		</script>
+	</body>
+</html>

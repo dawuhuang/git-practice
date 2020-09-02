@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script src="./js/axios.js"></script>
+		<script>
+			async function queryData(id) {
+			    var info = await axios.get('http://localhost:3000/async')
+                var ret = await axios.get('http://localhost:3000/async1?info='+info.data)
+                return ret
+            }
+            queryData().then(ret => {
+                console.log(ret.data);
+            })
+		</script>
+	</body>
+</html>
