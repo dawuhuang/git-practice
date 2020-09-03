@@ -1,6 +1,8 @@
 const path = require("path");
 // 导入包
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// 导入单文件vue
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 // 创建对象
 const htmlPlugin = new HtmlWebpackPlugin({
 	// 设置生成预览页面的模板文件
@@ -15,7 +17,7 @@ module.exports = {
 		path: path.join(__dirname, "./dist"),
 		filename: "bundle.js",
 	},
-	plugins: [htmlPlugin],
+	plugins: [htmlPlugin,new VueLoaderPlugin],
 	module: {
 		rules: [
 			{ test: /\.css$/, use: ["style-loader", "css-loader","postcss-loader"] },
@@ -34,6 +36,10 @@ module.exports = {
                 test: /\.js$/,
                 use:'babel-loader',
                 exclude:/node_modules/
+            },
+            {
+                test:/\.vue$/,
+                use: 'vue-loader'
             }
 		],
 	},

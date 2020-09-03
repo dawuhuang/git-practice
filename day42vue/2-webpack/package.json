@@ -5,20 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --open --host 127.0.0.1 --port 8888"
+    "dev": "webpack-dev-server --open --host 127.0.0.1 --port 8888",
+    "build": "webpack -p"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
     "@babel/core": "^7.11.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
-    "@babel/runtime": "^7.11.2",
+    "@babel/runtime": "^7.11.2", 
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.2",
@@ -30,6 +32,8 @@
     "sass-loader": "^10.0.1",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
