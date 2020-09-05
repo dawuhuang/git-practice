@@ -5,5 +5,6 @@
 // console.log(ss2);
 // console.log(say);
 
+
 // 直接导入并执行代码
 import './m2'
