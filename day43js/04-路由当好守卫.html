@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+// 路由导航守卫  
+// to 代表将要访问的页面路径  
+// from 代表从哪个页面跳转来的 
+// next 是一个函数 表示放行
+// next() 放行  next('/login') 强制跳转
+router.beforEach((to,from, next) => {
+    // 如果用户访问需要登录的页面，直接放行
+    if (to.path === '/login') return next();
+    // 从sessionStorage 中获取保存的 token 值
+    const tokenStr = window.sessionStorage.getItem('token')
+    // 如果没有token,强制跳转到首页
+    if (!tokenStr) return next('/login');
+    next()
+})
+    </script>
+</body>
+</html>

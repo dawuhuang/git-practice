@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			app.on("request", (req, res) => {
+                // 1,获取请求的url地址
+                const url = req.url;
+                // 2,设置默认的内容为404 Not found
+                let content = '<h1>404 Not found</h1>'
+                // 3,用户请求的是首页
+                if (url === '/' || url === '/index.html') {
+                    content = '<h1>首页</h1>'
+                }
+                // 4, 用户请求的是关于页面
+                else if (url === '/about.html') {
+                    content = '<h1>关于页面</h1>'
+                }
+			});
+		</script>
+	</body>
+</html>
