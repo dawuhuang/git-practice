@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="item in items">{{item.message}}</li>
+				<!-- 最好不要同时使用，v-if和v-for 同时使用 -->
+				<!-- v-for比v-if,具有更高的优先级，会先把数据全部渲染，在v-if隐藏 -->
+				<div v-if="item.age == 13" v-for="item in obj">
+					{{item.uname +'---------' + item.age + '-----' + item.gender}}
+				</div>
+			</ul>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			new Vue({
+				el: "#app",
+				data: {
+					items: [{ message: "foo" }, { message: "bar" }],
+					obj: [
+						{
+							uname: "zhangse",
+							age: 13,
+							gender: "female",
+						},
+						{
+							uname: "lisli",
+							age: 33,
+							gender: "female",
+						},
+					],
+				},
+			});
+		</script>
+	</body>
+</html>
