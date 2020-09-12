@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="msg" />
+			<!-- upper 被定义为接收单个参数的过滤器函数，表达式  msg  的值将作为参数传入到函数中 -->
+			<div>{{msg | lower}}</div>
+			<!--  
+          支持级联操作
+          upper  被定义为接收单个参数的过滤器函数，表达式msg 的值将作为参数传入到函数中。
+          然后继续调用同样被定义为接收单个参数的过滤器 lower ，将upper 的结果传递到lower中
+         -->
+			<div>{{msg  | lower | upper}}</div>
+			<div :abc='msg | upper'>测试数据</div>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+            // 全局过滤器
+			  Vue.filter('lower', function(val) {
+			      return val.charAt(0).toLowerCase() + val.slice(1)
+			  })
+			  new Vue({
+			      el: '#app',
+			      data: {
+			          msg: ''
+			      },
+                  filters: {
+                      upper: function(val) {
+                          return val.charAt(0).toUpperCase() + val.slice(1)
+                      }
+                  }
+			  })
+		</script>
+	</body>
+</html>

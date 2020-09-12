@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- stop 阻止事件冒泡 -->
+<button @click.stop='handle'>点击</button>
+<!-- prevent 阻止事件的默认行为 提交事件事件不再重载页面-->
+<form action="" @submit.prevent='handle1'></form> 
+<!-- selt 是当前元素自身时触发处理函数 -->
+<a href="" @click.self='handle2'></a>
+<!-- 修饰符可以串联的，但是顺序很重要 ，用@click:prevent.self 阻止所有的点击  用@click.self.prevrnt 阻止元素自身的点击-->
+    <script src="./js/vue.js"></script>
+    
+</body>
+</html>

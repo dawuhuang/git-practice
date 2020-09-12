@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+		<style type="text/css">
+			.grid {
+				margin: auto;
+				width: 530px;
+				text-align: center;
+			}
+			.grid table {
+				border-top: 1px solid #c2d89a;
+				width: 100%;
+				border-collapse: collapse;
+			}
+			.grid th,
+			td {
+				padding: 10;
+				border: 1px dashed #f3dcab;
+				height: 35px;
+				line-height: 35px;
+			}
+			.grid th {
+				background-color: #f3dcab;
+			}
+			.grid .book {
+				padding-bottom: 10px;
+				padding-top: 5px;
+				background-color: #f3dcab;
+			}
+			.grid .total {
+				height: 30px;
+				line-height: 30px;
+				background-color: #f3dcab;
+				border-top: 1px solid #c2d89a;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="grid">
+				<div>
+					<h1>图书管理</h1>
+					<div class="book">
+						<div>
+							<label for="id"> 编号： </label>
+							<input
+								type="text"
+								id="id"
+								:disabled="numFlag"
+								v-model.trim="number"
+								v-focus
+							/>
+							<label for="name"> 名称： </label>
+							<input type="text" id="name" v-model.trim="uname" />
+							<button @click="handle" :disabled="submitFlag">
+								提交
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="total">
+					<span>图书总数：</span>
+					<span>{{total}}</span>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>名称</th>
+							<th>时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr :key="index" v-for="(item,index) in books">
+							<td>{{item.id}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.date | dateformat}}</td>
+							<td>
+								<a href="#" @click="change(item.id,item.name)">修改</a>|
+								<a href="#" @click="delbook(item.id)">删除</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script>
+			// 自定义属性
+			Vue.directive("focus", {
+				inserted: function (el) {
+					el.focus();
+				},
+			});
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					books: [
+						{
+							id: 1,
+							name: "三国演义",
+							date: 2525609975000,
+						},
+						{
+							id: 2,
+							name: "水浒传",
+							date: 2525609975000,
+						},
+						{
+							id: 3,
+							name: "红楼梦",
+							date: 2525609975000,
+						},
+						{
+							id: 4,
+							name: "西游记",
+							date: 2525609975000,
+						},
+					],
+					// 书籍编号
+					number: "",
+					uname: "",
+					submitFlag: false,
+					numFlag: false,
+				},
+				methods: {
+					handle: function () {
+						if (this.numFlag) {
+							var index = this.books.find(
+								(item) => this.number == item.id
+                            );
+                            index.name = this.uname
+                            this.uname = ''
+                            this.number = ''
+                            this.numFlag = false
+						} else {
+							if (this.number == "" || this.uname == "") {
+								alert("有数据没有填入");
+								return false;
+							}
+							var arr = {};
+							arr.id = this.number;
+							arr.name = this.uname;
+							arr.date = new Date();
+							this.books.push(arr);
+							arr = {};
+							this.number = "";
+							this.uname = "";
+						}
+					},
+					delbook: function (id) {
+						var index = this.books.findIndex(
+							(item) => id == item.id
+						);
+						// console.log(index);
+                        this.books.splice(index, 1);
+                        this.uname = ''
+                            this.number = ''
+                            this.numFlag = false
+					},
+					change: function (id,name) {
+						// console.log(id);
+                        this.number = id;
+                        this.uname = name
+						this.numFlag = true;
+					},
+				},
+				filters: {
+					dateformat: function (val) {
+						var date = new Date(val);
+						var y = date.getFullYear();
+						var m = date.getMonth() + 1;
+						var d = date.getDate();
+						var h = date.getHours();
+						return `${y}年${m}月${d}日${h}时`;
+					},
+				},
+				// 监听属性
+				watch: {
+					uname: function (val) {
+						var flag = this.books.some((item) => val == item.name);
+						this.submitFlag = flag;
+					},
+				},
+				// 计算属性
+				computed: {
+					total: function () {
+						return this.books.length;
+					},
+				},
+			});
+			// new Date().getFullYear()
+		</script>
+	</body>
+</html>
