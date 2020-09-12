@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-color='color'>111111111</div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.directive('color',{
+            // binding.value 接收传递过来的值
+            bind: function(el,binding) {
+                el.style.color = binding.value
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                color: 'red'
+            }
+        })
+    </script>
+</body>
+</html>

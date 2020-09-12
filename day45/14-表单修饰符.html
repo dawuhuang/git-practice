@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- <input type="text" v-model='num'> -->
+			<!-- <input type="text" v-model.trim="num" />
+			<input type="text" v-model="num" />
+			<div>{{num.length}}</div>
+            <div>{{num}}</div> -->
+            <input type="text" v-model.lazy='num'>
+            {{num}}
+		</div>
+		<script>
+			// 三种表单修饰符
+			// numbet 转换为数值类型
+			// trim 去除首位两端空格
+			// lazy 将 input(实时触发) 事件转换为 change 事件 (失去焦点时触发)
+			new Vue({
+				el: "#app",
+				data: {
+					num: 0,
+				},
+			});
+		</script>
+	</body>
+</html>
