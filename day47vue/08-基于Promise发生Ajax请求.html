@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// 基于Promise 发生Ajax请求
+			function queryData(url) {
+				var p = new Promise(function (resolve, reject) {
+					var xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function () {
+						if (xhr.readyState != 4) return;
+						if (xhr.readyState == 4 && xhr.status == 200) {
+							// 处理正确的请求
+							resolve(xhr.responseText);
+						} else {
+							reject(xhr.responseText);
+						}
+					};
+					xhr.open("get", url);
+					xhr.send(null);
+				});
+				return p;
+			}
+			// 嵌套发生请求
+			queryData("http://localhost:3000/data").then(function (data) {
+				console.log(data);
+				return queryData("http://localhost:3000/data1");
+			});
+			queryData("http://localhost:3000/data1").then(function (data) {
+				console.log(data);
+				return queryData("http://localhost:3000/data2");
+			});
+			queryData("http://localhost:3000/data2").then(function (data) {
+				console.log(data);
+			});
+		</script>
+	</body>
+</html>

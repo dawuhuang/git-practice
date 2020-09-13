@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <script>
+        // promise 主要是解决异步深层嵌套的问题，
+        // 聊到异步就会聊到单线程，单线程值的是子啊js引擎中负责解释和执行的js代码的线程只有一个，也就是一次只能完成一项任务
+        // 这个任务执行完成后，才能执行下一个，他会阻塞其他任务，这个任务可称为主线程
+        // 常见的异步调用 是定时器 ajax 事件函数
+        // resolve 表示异步操作执行成功后的回调函数
+        // reject 表示异步操作执行失败后的回调函数
+        var p = new Promise(function(resolve,reject) {
+            setTimeout(() => {
+                var flag = false;
+                if (flag) {
+                    // 3. 正常请求
+                    resolve('hello 成功')
+                }else {
+                    reject('出错了')
+                }
+            }, 100);
+        })
+        p.then(function(data) {
+            console.log(data);
+        }, function(info) {
+            console.log(info);
+        })
+    </script>
+</body>
+</html>

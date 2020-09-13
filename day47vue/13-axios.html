@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+   <script>
+       axios.get('http://localhost:3000/adata').then(function(ret) {
+           console.log(ret.data);
+       })
+    //    配置公共的请求地址，
+    // axios.defaults.baseURL = 'http://localhost:3000'
+    // 配置超时事件
+    // axios.defaults.timeout = 2500
+    // 配置公共的请求头
+    // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
+    // 配置请求头，携带token, 需要后台做配置
+    // axios.defaults.headers['']
+    // 配置公共的post 的 Content-Type
+    // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
+    // 请求拦截器
+       axios.interceptors.request.use(function(config) {
+           config.headers.mytpken = 'nihao';
+           return config
+       }, function(err) {
+           console.log(err);
+       })
+       axios.interceptors.request.use(function(config) {
+           var data = res.data;
+           return data
+       }, function(err) {
+           console.log(err);
+       })
+    // 响应拦截器
+   </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 静态方法 all 并发处理多个异步任务，所以任务都能执行才能得到结果，
+        // race 方法同样接收一个数组做为参数，获得最先引用的结果
+        function queryData(url) {
+            return new Promise(function(resolve,reject){
+                var xhr = new XMLHttpRequest()
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4) return;
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        resolve(xhr.responseText)
+                    }else {
+                        reject('服务器错误')
+                    }
+                }
+                xhr.open('get',url)
+                xhr.send(null)
+            })
+        }
+        var p1 = queryData('http://localhost:3000/a1')
+        var p2 = queryData('http://localhost:3000/a2')
+        var p3 = queryData('http://localhost:3000/a3')
+        Promise.race([p1,p2,p3]).then(function(result) {
+            console.log(result);
+        })
+    </script>
+</body>
+</html>
