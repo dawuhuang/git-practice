@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 如果事件绑定函数调用，那么事件对象必须做为最后一个参数显示传递，并且事件对象的名称必须是$event -->
+        <button @click='handle(1,2,$event)'>点击</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            methods: {
+                handle: function(a,b,event) {
+                    console.log(a + b);
+                    console.log(event.target);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

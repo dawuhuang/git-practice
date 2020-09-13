@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <tom></tom>
+        <hr>
+        <Jerry></Jerry>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 兄弟件传递数据需要借助于事件中心， var hub = new Vue({}),
+        // 数据传递方，通过一个事件触发 hub.$emit(方法名，传递的数据)
+        // 数据接收方，通过mounted 钩子中，触发hub.$on方法
+        // 事件中心
+        var hub = new Vue({})
+        // tom 传递数据方
+        Vue.component('Tom',{
+            data: function() {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+                <div>TOM: {{num}}</div>
+                <button @click='handle'>点击</button>
+                </div>`,
+            methods: {
+                handle: function() {
+                    hub.$emit("jerry",3)
+                }
+            },
+            mounted: function() {
+                hub.$on('tom',val => {
+                    this.num += val
+                })
+            }
+        })
+        // jerry 接收数据方
+        Vue.component('Jerry', {
+            data: function() {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+                <div>Jerry:{{num}}</div>
+                <button @click='handle'>点击</button>
+                </div>`,
+            methods:{
+                handle: function() {
+                    hub.$emit('tom',1)
+                }
+            },
+            mounted: function() {
+                hub.$on('jerry',val => {
+                    this.num += val
+                }) 
+            }
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>

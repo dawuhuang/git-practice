@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+	</head>
+	<body>
+        <!-- 子组件通过$emit 触发事件 -->
+        <!-- 父组件通过 v-on 监听子子组件的事件 -->
+		<div id="app">
+            <menu-item @englarge-text='handle($event)'></menu-item>
+            <div :style='{fontSize: fontSize + "px"}'>{{msg}}</div>
+        </div>
+		<script>
+			Vue.component('menu-item',{
+			    props: [],
+			    template: `<div>
+			        <button @click='$emit("englarge-text",5)'>扩大字体</button>
+			        </div>`
+			})
+            new Vue({
+                el: '#app',
+                data: {
+                    msg:'父组件中的内容',
+                    fontSize: 10
+                },
+                methods: {
+                    handle: function(val) {
+                        this.fontSize += val
+                    }
+                }
+            })
+		</script>
+	</body>
+</html>

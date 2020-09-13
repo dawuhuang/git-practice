@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+</head>
+<body>
+    <div id="app">
+        <div :style='{fontSize: fontSize + "px" }'>{{msg}}</div>
+        <menu-item :parr='parr' @enlarge-text='handle($event)'></menu-item>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 子向父传值  子组件用$emit()触发事件，第一个参数为自定义的事件名称，第二个参数为需要传递的数据。
+        // 父组件使用v-on监听子组件的事件
+        Vue.component('menu-item',{
+            props: ['parr'],
+            template:`<div>
+                <ul>
+                    <li :key='index' v-for='(item,index) in parr'>{{item}}</li>    
+                </ul>
+               <button @click='$emit("enlarge-text",5)'>点击</button> 
+            </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                msg:'父组件中的内容',
+                fontSize: 10,
+                parr: ['apple','orange','banan']
+            },
+            methods: {
+                handle: function(val) {
+                    // console.log(val);
+                    this.fontSize += val
+                }
+            }
+        })
+    </script>
+</body>
+</html>

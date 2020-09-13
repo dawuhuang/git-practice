@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{pmsg}}</div>
+        <!-- menu-item在app中嵌套，故menu-item为子组件 -->
+        <menu-item :title='ptitle' concat='ptitle'></menu-item>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component('menu-item',{
+            // 在子组件中使用props接收父组件传递过来是参数
+            props: ['title','concat'],
+            data: function() {
+                return {
+                    msg: '子组件的内容'
+                }
+            },
+            template: `<div>
+                {{msg + '---' + title +'----' + concat}}
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件的内容',
+                ptitle: '动态绑定的属性'
+            }
+        })
+
+        // 父组件向子组件传值 ：menu-item在app中嵌套，故menu-item为子组件，
+        // 父向子就是#app，向menu-item传值。 子组件通过props接收
+    </script>
+</body>
+</html>
