@@ -102,13 +102,15 @@
 				getBookList()
 				$("tbody").on("click", ".del", function () {
 					var id = $(this).attr("data-id");
-					console.log(id);
+					// console.log(id);
 					$.get(
 						"http://www.liulongbin.top:3006/api/delbook",
 						{ id: id },
 						function (res) {
+							console.log(res);
 							if (res.status !== 200)
-								return alert("获取图书列表失败");
+							// console.log();
+								return alert(res.msg);
 							getBookList();
 						}
 					);

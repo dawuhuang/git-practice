@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<base-layout>
+				<p slot="header">我组成头部</p>
+				<p slot="header">我组成头部</p>
+				<p>我组成身体</p>
+				<p>我组成身体</p>
+				<p slot="footer">我组成尾部</p>
+            </base-layout>
+            <base-layout>
+            <!-- template 用来包裹内容，但是不会被渲染到页面上 -->
+                <template slot="header">
+                    <p>头部信息</p>
+                    <p>头部信息</p>
+                </template>
+                    <p>主要内容</p>
+                    <p>主要内容</p>
+                <template slot="footer">
+                    <p>尾部内容</p>
+                    <p>尾部内容</p>
+                </template>
+            </base-layout>
+		</div>
+		<!-- 通过slot属性来指定，这个slot的值必须和子组件中slot组件的name值对应上，如果没有匹配，则放到匿名插槽中 -->
+		<script src="./js/vue.js"></script>
+		<script>
+			Vue.component("base-layout", {
+				template: `
+            <div>
+            <header>
+                <slot name='header'></slot>
+            </header>
+            <main>
+            <slot></slot>    
+            </main>
+            <footer>
+            <slot name='footer'></slot>
+                </footer>   
+            </div>
+            `,
+			});
+			new Vue({
+				el: "#app",
+			});
+		</script>
+	</body>
+</html>

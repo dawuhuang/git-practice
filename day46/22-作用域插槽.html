@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<fruit-list :list="list">
+				<template slot-scope="slotProps">
+					<strong v-if="slotProps.info.id==3">{{slotProps.info.name}}</strong>
+					<span v-else>{{slotProps.info.name}}</span>
+				</template>
+			</fruit-list>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			Vue.component("fruit-list", {
+				props: ["list"],
+				template: `<div>
+                    <ul>
+                    <li :key='index' v-for='(item,index) in list'>
+                    <slot :info='item'>{{item.name}}</slot>
+                        </li>
+                    </ul>
+                </div>`,
+			});
+			new Vue({
+				el: "#app",
+				data: {
+					list: [
+						{ id: 1, name: "apple" },
+						{ id: 2, name: "banana" },
+						{ id: 3, name: "orange" },
+					],
+				},
+			});
+		</script>
+	</body>
+</html>

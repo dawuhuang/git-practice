@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<fruit-list :list="list">
+				<template slot-scope="slotPage">
+					<strong v-if='slotPage.info.id=="2"'
+						>{{slotPage.info.name}}</strong
+					>
+					<span v-else>{{slotPage.info.name}}</span>
+				</template>
+			</fruit-list>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			// 作用域插槽通过slot-scope来接收子组件中slot传递过来的动态属性
+			Vue.component("fruit-list", {
+				props: ["list"],
+				template: `<div>
+                <ul>
+                    <li v-for='(item,index) in list' :key='index'>
+                        <slot :info='item'>{{item.name}}</slot>
+                    </li>
+                </ul>
+                </div>`,
+			});
+			new Vue({
+				el: "#app",
+				data: {
+					list: [
+						{ id: 1, name: "apple" },
+						{ id: 2, name: "banana" },
+						{ id: 3, name: "orange" },
+					],
+				},
+			});
+		</script>
+	</body>
+</html>

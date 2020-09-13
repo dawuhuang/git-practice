@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <alert-box></alert-box>
+        <alert-box>警告</alert-box>
+        <alert-box>有一个错误</alert-box>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            components: {
+                'alert-box': {
+                    template: `<div>
+                    <strong>ERROR：</strong>
+                    <slot>默认的内容<slot>    
+                    </div>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>
