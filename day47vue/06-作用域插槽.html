@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<scope-item :list="list">
+				<template slot-scope="slotPage">
+					<strong v-if="slotPage.info.id == 2"
+						>{{slotPage.info.name}}</strong
+					>
+					<span v-else>{{slotPage.info.name}}</span>
+				</template>
+			</scope-item>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			Vue.component("scope-item", {
+				props: ["list"],
+				template: `<div>
+                <ul>
+                    <li v-for='item in list' :key='item.id'>
+                        <slot :info='item'></slot>
+                    </li>
+                </ul>
+                </div>`,
+			});
+			new Vue({
+				el: "#app",
+				data: {
+					list: [
+						{
+							id: 1,
+							name: "apple",
+						},
+						{
+							id: 2,
+							name: "banban",
+						},
+						{
+							id: 3,
+							name: "orange",
+						},
+					],
+				},
+			});
+		</script>
+	</body>
+</html>

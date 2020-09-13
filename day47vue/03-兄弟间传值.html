@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <tom-item></tom-item>
+        <hr>
+        <jerry-item></jerry-item>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var hub = new Vue({})
+        Vue.component('tom-item', {
+            data: function() {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+                <div>TOM: {{num}}</div>
+                <button @click='handle'>点击</button>
+            </div>`,
+            methods:  {
+                handle: function() {
+                    hub.$emit('jerry',3)
+                }
+            },
+            mounted: function() {
+               hub.$on('tom', val => {
+                   this.num += val
+               })
+            }
+        })
+        Vue.component('jerry-item', {
+            data: function() {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+                <div>TOM: {{num}}</div>
+                <button @click='handle'>点击</button>
+            </div>`,
+            methods: {
+                handle: function() {
+                    hub.$emit('tom',3)
+                }
+            },
+            mounted: function() {
+               hub.$on('jerry', val => {
+                   this.num += val
+               })
+            }
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<named>
+				<p slot="header">头部信息</p>
+				<p>内容</p>
+				<p>内容</p>
+				<p slot="footer">尾部信息</p>
+			</named>
+			<named>
+				<template slot="header">
+					<p>头部信息</p>
+				</template>
+				<template>
+					<p>内容</p>
+					<p>内容</p>
+				</template>
+				<template slot="footer">
+					<p>尾部信息</p>
+				</template>
+			</named>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			Vue.component("named", {
+				data: function () {
+					return {
+						msg: "具名插槽",
+					};
+				},
+				template: `<div>
+                <header>
+                    <slot name="header"></slot>
+                </header>
+                <main>
+                    <slot></slot>
+                </main>
+                <footer>
+                    <slot name='footer'></slot>
+                </footer>
+            </div>`,
+			});
+			new Vue({
+				el: "#app",
+			});
+		</script>
+	</body>
+</html>

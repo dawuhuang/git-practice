@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+        <div id="app">
+        <div>{{msg}}</div>
+        <my-component @change='handle($event)'></my-component>
+        </div>
+        <script src="./js/vue.js"></script>
+		<script>
+			Vue.component("my-component", {
+				// props: ["uname"],
+				template: `<div><button @click='$emit("change",3)'>点击</button></div>`,
+			});
+			new Vue({
+				el: "#app",
+				data: {
+					msg: 2,
+                },
+                methods: {
+                    handle: function(val) {
+                        this.msg += val
+                    }
+                }
+			});
+		</script>
+	</body>
+</html>
