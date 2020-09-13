@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <button @click='update'>更新</button>
+        <button @click='destroy'>销毁</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // beforeCreate 在实例创建之后，事件观察和数据配置之前调用。
+        // created 在实例创建完成后被立即调用
+        // beforeMount 在实例挂载之前被调用
+        // mounted el被新创建的vm.$el所替换，并在挂载到实例上去之后立即调用该钩子
+        // beforeUpdate 数据更新时调用，发生在虚拟DOM，打补丁之前。
+        // updated 由于数据跟新导致虚拟DOM，重新渲染和打补丁，在这之后会立即调用该钩子。
+        // beforeDestroy 在数据销毁之前调用
+        // destroyed 在数据销毁之后调用
+        new Vue({
+            el: '#app',
+            data: {
+                msg: '123'
+            },
+            methods: {
+                update: function() {
+                    this.msg = '234'
+                },
+                destroy: function() {
+                    this.$destroy()
+                }
+            },
+            beforeCreate: function() {
+                console.log('beforeCreate');
+            },
+            created: function() {
+                console.log('created');
+            },
+            beforeMount: function() {
+                console.log('beforeMount');
+            },
+            mounted: function(){
+                console.log('mounted');
+            },
+            // 更新
+            beforeUpdate: function() {
+                console.log('beforeUpdate');
+            },
+            updated: function() {
+                console.log('befored');
+            },
+            // 销毁
+            beforeDestroy: function() {
+                console.log('beforeDestroy');
+            },
+            destroyed: function() {
+                console.log('destroyed');
+            }
+        })
+    </script>
+</body>
+</html>

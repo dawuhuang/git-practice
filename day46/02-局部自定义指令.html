@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+        <div id="app">
+            <input type="text" v-focus>
+            <div v-color='color'>2222</div>
+        </div>
+		<script src="./js/vue.js"></script>
+		<script>
+			new Vue({
+				el: "#app",
+				data: {
+					color: "red",
+                },
+                directives: {
+                    focus: {
+                        inserted: function(el) {
+                            el.focus()
+                        }
+                    },
+                    color: {
+                        bind: function(el,binding) {
+                            el.style.color = binding.value
+                        } 
+                    }
+                }
+			});
+		</script>
+	</body>
+</html>

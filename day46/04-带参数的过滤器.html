@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{message | filterA(1,2)}}</div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 带参数的过滤器， 第一个参数时管道符前面的字符
+        // 第二个参数是第一个实际参数
+        // 第三个参数是第二个实际参数
+        Vue.filter('filterA',function(n,a,b) {
+            if (n>a) {
+                return n + a
+            }else {
+                return n + b
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '哈哈'
+            }
+        })
+    </script>
+</body>
+</html>

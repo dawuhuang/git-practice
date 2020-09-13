@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 组件可以扩展HTML元素，封装可重用的代码。
+        Vue.component('my-component', {
+            template: `<div> A custom component </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                
+            }
+        })
+    </script>
+</body>
+</html> 
