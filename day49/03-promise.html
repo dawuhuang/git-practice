@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// Promise 是一个构造函数,自己身上有all, resolve, reject, race
+			// 在原型上有 then catch 方法。
+
+			// 所以promise new 出来的对象就有then, catch 方法。
+			// var p = new Promise(function(resolve,reject) {
+			//     setTimeout(() => {
+			//         console.log('执行完成');
+			//         resolve('随便什么数据')
+			//     }, 2000);
+			// })
+			// 只是new 了一个方法，并没有调用，传进去的函数就已经执行了。
+			// 所以用Promise的时候一般是包在一个函数中，在需要的时候去允许这个函数。
+			// function runAsync() {
+			// 	var p = new Promise(function (resolve, reject) {
+			// 		setTimeout(() => {
+			// 			console.log("执行完成");
+			// 			resolve("随便什么数据");
+			// 		}, 2000);
+			// 	});
+			// 	return p; // p 是 Promise 对象
+			// }
+			// runAsync().then(function(data) {
+			//     console.log(data);
+			// })
+			// 包装函数是为了什么？为了让Promise 只在调用的时候执行。
+			// then 里面的函数就是跟我们平时的回调函数一个意思，能够在runAsync 这个异步任务执行完成之后被执行。
+			// 就是把原来的回调写法分离出来，在异步操作执行完成后，用链式调用的方式执行函数。
+
+			function runAsync1() {
+				var p = new Promise(function (resolve, reject) {
+					setTimeout(() => {
+						console.log("执行完成1");
+						resolve("随便什么数据1");
+					}, 2000);
+				});
+				return p; // p 是 Promise 对象
+			}
+			function runAsync2() {
+				var p = new Promise(function (resolve, reject) {
+					setTimeout(() => {
+						console.log("执行完成2");
+						resolve("随便什么数据2");
+					}, 2000);
+				});
+				return p; // p 是 Promise 对象
+			}
+			function runAsync3() {
+				var p = new Promise(function (resolve, reject) {
+					setTimeout(() => {
+						console.log("执行完成3");
+						resolve("随便什么数据4");
+					}, 2000);
+				});
+				return p; // p 是 Promise 对象
+			}
+			// runAsync1()
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 		return runAsync2();
+			// 	})
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 		return runAsync3();
+			// 	})
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 	});
+
+			//  也可以之间返回数据，而不是Promise ,后面的then会接收数据
+			// runAsync1()
+			// .then(function(data) {
+			//     console.log(data);
+			//     return runAsync2()
+			// })
+			// .then(function(data) {
+			//     console.log(data);
+			//     return '数据传输'
+			// }).then(function(data) {
+			//     console.log(data);
+			// })
+
+			// function getNumber() {
+			// 	var p = new Promise(function (resolve, reject) {
+			// 		// 做一些异步操作
+			// 		setTimeout(() => {
+			// 			var num = Math.ceil(Math.random() * 10);
+			// 			if (num <= 5) {
+			// 				resolve(num);
+			// 			} else {
+			// 				reject("数字太大了");
+			// 			}
+			// 		}, 2000);
+			// 	});
+			// 	return p;
+			// }
+			// getNumber().then(
+			// 	function (data) {
+			// 		console.log("resolved");
+			// 		console.log(data);
+			// 		// console.log(some);
+			// 		// console.log(data);
+			// 	},
+			// 	function (data) {
+			// 		console.log("rejected");
+			// 		console.log(data);
+			// 	}
+			// );
+			// then 方法可以接受两个参数，第一个对应成功的回调，第二个对应失败的回调。
+
+			// catch方法和then的第二个参数一样，接收reject失败的回调。
+			// catch方法和then第二个参数不一样的地方在于，在执行resolve的回调时，如果抛出异常了（代码出错了）
+			// 并不会卡死，而是会进到catch方法中。
+			// getNumber()
+			// 	.then(function (data) {
+			// 		console.log("resolved");
+			// 		console.log(data);
+			// 		console.log(some);
+			// 		console.log(data);
+			// 	})
+			// 	.catch(function (data) {
+			// 		console.log("rejected");
+			// 		console.log(data);
+			//     });
+			// 我们打印了一个未声明的变量，在then方法中，会报错，卡死代码。
+			// 在catch方法中，会把错误原因传到reason参数中。即使有错误的代码也不会报错。
+
+			// all 的用法
+			// Promise 的all 方法提供了并行执行异步操作的能力，并且在所以异步操作执行完成后才能回调。
+			// Promise.all([runAsync1(),runAsync2(),runAsync3()]).then(function(results) {
+			//     console.log(results);
+			// })
+
+			// 用Promise.all 来执行，因为all 是Promise 本身的方法，不是原生上的方法。
+			// all接收一个数组参数，里面的值最终都算返回Promise对象。三个异步操作是并行执行的，等他们都执行完成后才会进到then里面。
+			// all 把所有异步操作的结果都放进一个数组比传给then
+			// all 可以并行处理多个异步操作，并在一个回调中处理所有的返回数据。使用场景，可以预先加载各种资源，加载完成后在，在进行页面的初始化
+
+			// race 的用法
+			// all 方法是谁跑到慢，以谁未准执行回调。race方法是谁跑的块，以谁为准执行回调。
+			// Promise.race([runAsync1(),runAsync2(),runAsync3()]).then(function(results) {
+			//     console.log(results);
+			// })
+			// 这三个异步操作同样是并行执行的。但是第一线返回，接收的就是第一个返回的结果，后端的并没有停止。而是不再接受返回结果
+			// race的使用场景 ： 可以给某个异步请求设置超时事件，并在超时后执行响应的操作。
+			// 请求某个图片资源
+			function requestImg() {
+				var p = new Promise(function (resolve, reject) {
+					var img = new Image();
+					img.onload = function () {
+						resolve(img);
+					};
+					img.src = "1.jpg";
+				});
+				return p;
+			}
+			// 设置超时函数，用于给请求计时
+			function timeout() {
+				var p = new Promise(function (resolve, reject) {
+					setTimeout(() => {
+						reject("图片请求超时");
+					}, 5000);
+				});
+				return p;
+			}
+			Promise.race([requestImg(), timeout()])
+				.then(function (data) {
+					console.log(data);
+				})
+				.catch(function (data) {
+					console.log(data);
+                });
+            // requestImg 函数会异步请求一张资源，但是地址写成了xxx,肯定无法找到timeout是一个延时5秒的异步操作
+            // 将两者放入Promise.race 于是两者开始赛跑,如果5秒之内图片请求成功了，那么便进入then方法，执行正常流程。
+            // 如果5秒中图片还未成功返回，那么timeout 就跑赢了，则进入catch，报出'图片请求超时的信息'
+		</script>
+	</body>
+</html>
