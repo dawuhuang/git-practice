@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router_3.0.2.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to='/user'>user</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template: `<div>
+            <h3>this is uset</h3>
+            <br />
+            <router-link to='/user/info'>info</router-link>
+            <router-view></router-view>
+
+            </div>`
+        }
+        const Info = {
+            template: `<h3>Info</h3>`
+        }
+        const myRouter = new VueRouter({
+            routes: [
+                {path: '/user',component: User,children: [
+                    {path:'/user/info',component:Info}
+                ]}
+            ]
+        })
+        new Vue({
+            el: '#app',
+            router:myRouter
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+		<script src="./js/vue-router_3.0.2.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/user/44">user</router-link>
+			<router-view></router-view>
+		</div>
+		<script>
+			const User = {
+				props: ["username", "age", "id"],
+				template: `<div>用户名{{username}}---- {{age}}---{{id}}</div>`,
+			};
+			const myRouter = new VueRouter({
+				routes: [
+					//如果设置为 props: true ,route.params将会被数组为组件的属性
+					{
+						path: "/user/:id",
+						component: User,
+						props: (route) => {
+							return {
+								username: "zs",
+								age: 20,
+								id: route.params.id,
+							};
+						},
+					},
+				],
+			});
+			new Vue({
+				el: "#app",
+				router: myRouter,
+			});
+		</script>
+	</body>
+</html>
