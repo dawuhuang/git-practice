@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router_3.0.2.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to='/user'>User</router-link>
+        <router-link to='/login'>Login</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template: `<h1>This is User</h1>`
+        }
+        const Login = {
+            template: `<h1>This is Login</h1>`
+        }
+        const myRouter = new VueRouter({
+            routes: [
+                // 路由重定向
+                {path: '/',component: User},
+                {path: '/user',component: User},
+                {path: '/login',component: Login},
+            ]
+        })
+        new Vue({
+            el: '#app',
+            router: myRouter
+        })
+    </script>
+</body>
+</html>

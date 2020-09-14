@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+		<script src="./js/vue-router_3.0.2.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/user">User</router-link>
+			<router-link to="/login">Login</router-link>
+			<router-view></router-view>
+		</div>
+		<script>
+			const User = {
+				template: `<div>THIS is User</div>`,
+			};
+			const Login = {
+				template: `
+                    <div>
+                        <hr>
+                        <router-link to='/login/account'>账号密码登录</router-link>
+                        <router-link to='/login/phone'>扫码登录</router-link>
+                        <router-view></router-view>
+                    </div>
+            `,
+			};
+			const account = {
+                template: `<div>
+                    <hr>
+                    <input type='text' />
+                    <input type='password' />
+                    </div>`,
+			};
+			const phone = {
+				template: `<div> <hr>扫码登录</div>`,
+			};
+			const myRouter = new VueRouter({
+				routes: [
+                    {path: '/',component: User},
+					{ path: "/user", component: User },
+					{
+						path: "/login",
+						component: Login,
+						children: [
+							{ path: "/login/account", component: account },
+							{ path: "/login/phone", component: phone },
+						],
+					},
+				],
+			});
+			new Vue({
+				el: "#app",
+				router: myRouter,
+			});
+		</script>
+	</body>
+</html>

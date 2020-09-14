@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<!-- 1.导入js文件 -->
+		<script src="./js/vue.js"></script>
+		<script src="./js/vue-router_3.0.2.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 2 路由链接 -->
+			<router-link to="/user">user</router-link>
+			<router-link to="/login">login</router-link>
+			<!-- 3 路由占位符 -->
+			<router-view></router-view>
+		</div>
+		<script>
+			// 4 定义路由组件
+			var User = {
+				template: `<div>This is User</div>`,
+			};
+			var Login = {
+				template: `<div>This is Login</div>`,
+            };
+            
+			// 5 配置路由规则，并创建路由实例
+			var myRouter = new VueRouter({
+				// router 路由规则
+				routes: [
+					// 每个路由规则都是一个对象，对象至少包含path 和 component
+					// path表示 路由匹配的hash地址。component 表示路由规则对应要展示的组件对象
+					{ path: "/user", component: User },
+					{ path: "/login", component: Login },
+				],
+			});
+			// 6 将路由挂载到Vue实例上
+			new Vue({
+				el: "#app",
+				// 通过router 属性挂载路由对象
+                router: myRouter,
+			});
+		</script>
+	</body>
+</html>

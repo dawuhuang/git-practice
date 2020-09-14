@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+		<script src="./js/vue-router_3.0.2.js"></script>
+	</head>
+	<body>
+		<div id="app">
+            <!-- name 别名 params 传递的参数-->
+            <!-- <router-link :to='{name: "user",params:{id:233}}'>User</router-link> -->
+            <router-link :to='{name:"user",params:{id:3}}'>User3</router-link>
+			<router-view></router-view>
+		</div>
+		<script>
+			const User = {
+				props: ["id"],
+				template: `<div>用户：{{id}}</div>`,
+			};
+			const myRouter = new VueRouter({
+				routes: [
+					{
+						path: "/user/:id",
+						component: User,
+						name: "user",
+						props: true,
+                    },
+
+				],
+			});
+			new Vue({
+				el: "#app",
+				router: myRouter,
+			});
+		</script>
+	</body>
+</html>

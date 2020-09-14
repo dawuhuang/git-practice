@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<a href="#/zhuye">主页</a>
+			<a href="#/keji">科技</a>
+			<a href="#/caijing">财经</a>
+			<a href="#/yule">娱乐</a>
+			<!-- component 标签当作是 组件占位符 根据:is 属性指定的组件名称，把对应的组件渲染
+        到component 标签所在的位置 -->
+			<component :is="comName"></component>
+		</div>
+		<script>
+			// 监听hash值的变化
+			// window.onhashchange = function() {
+			//     location.hash
+			// }
+			// 前端路由是基于hash值的变化进行实现的，
+			// 核心实现依靠一个事件，即监听hash值变化的事件。
+			const zhuye = {
+				template: `<h1>主页信息</h1>`,
+			};
+			const keji = {
+				template: `<h1>科技信息</h1>`,
+			};
+			const caijing = {
+				template: `<h1>财经信息</h1>`,
+			};
+			const yule = {
+				template: `<h1>娱乐信息</h1>`,
+			};
+			const vm = new Vue({
+				el: "#app",
+				data: {
+					comName: "zhuye",
+				},
+				components: {
+					zhuye,
+					keji,
+					caijing,
+					yule,
+				},
+			});
+			window.onhashchange = function () {
+				// console.log(location.hash);
+				switch (location.hash.slice(2)) {
+					case "zhuye":
+						vm.comName = "zhuye";
+						break;
+					case "keji":
+						vm.comName = "keji";
+						break;
+					case "caijing":
+						vm.comName = "caijing";
+						break;
+					case "yule":
+						vm.comName = "yule";
+						break;
+				}
+			};
+		</script>
+	</body>
+</html>

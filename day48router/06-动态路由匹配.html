@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="./js/vue.js"></script>
+		<script src="./js/vue-router_3.0.2.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/user/33">user</router-link>
+			<router-view></router-view>
+		</div>
+		<script>
+			// 1 直接使用$route.params.id 来传递参数
+			// const User = {
+			//     template: `<div>用户： {{$route.params.id}}</div>`
+			// }
+			// const myRouter = new VueRouter({
+			//     routes: [
+			//         {path: '/user/:id',component: User}
+			//     ]
+			// })
+
+			// 2 通过props来接收参数
+			// const User = {
+			//     props: ['id'],
+			//     template: `<div>用户：{{id}}</div>`
+			// }
+			// const myRouter= new VueRouter({
+			//     routes: [
+			//         // 如果设置props为true， route.params 将会被设置为组件属性
+			//         {path: '/user/:id', component: User, props: true}
+			//     ]
+			// })
+
+			// 3 可以将props设置为对象，就直接将对象的数据传递给组件进行使用
+			// const User = {
+			//     props: ['username','pwd'],
+			//     template: `<div>用户：{{username}}---{{pwd}}</div>`
+			// }
+			// const myRouter = new VueRouter({
+			//     routes: [
+			//         {path: '/user/:id',component: User,props: {username:'tom',pwd:112}}
+			//     ]
+			// })
+
+			// 4 如果想要获取传递的参数还想要获取传递的对象数据，那么props应该设置为函数形式
+			const User = {
+				props: ["username", "pwd", "id"],
+				template: `<div>用户：{{id}}-->{{username}}-->{{pwd}}</div>`,
+			};
+			const myRouter = new VueRouter({
+				routes: [
+					{
+						path: "/user/:id",
+						component: User,
+						props: (route) => {
+							return {
+								username: "jack",
+								pwd: 134,
+								id: route.params.id,
+							};
+						},
+					},
+				],
+			});
+			new Vue({
+				el: "#app",
+				router: myRouter,
+			});
+		</script>
+	</body>
+</html>
