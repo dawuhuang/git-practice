@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// Promise 是什么 是一个构造函数，上面有resolve,reject,还有all,race方法，在原型上有，then,catch,finally。
+			// 所以Promise的实例化对象就能使用then, catch, finally 方法。
+			// Promise 的构造函数接受一个参数 是函数 ，函数内有两个参数，是resolve，reject。分别表示异步请求成功后的回调
+			// 和异步请求失败后的回调。
+			// var p = new Promise(function(resolve,reject) {
+			//     setTimeout(() => {
+			//         console.log('123');
+			//         resolve('异步请求成功')
+			//     }, 2000);
+			// })
+			// 我只是new 了一个Promise 对象，但是并没有执行他，但是却打印出了 '123', 所以我们一般把Promise包在一个函数里面，使用的时候在调用它。
+			// function runAsync() {
+			//     var p = new Promise(function(resolve,reject) {
+			//         setTimeout(() => {
+			//             console.log('异步请求执行成功');
+			//             resolve('数据')
+			//         }, 2000);
+			//     })
+			//     return p
+			// }
+			// 在我们包装好的函数里面会 return 出一个Promise 对象。也就是说我们执行函数得到了一个Promise对象
+			// runAsync().then(function(data) {
+			//     console.log(data);
+			// })
+			// runAsync 调用then方法，接受一个参数，是函数，并且拿到resolve传递的数据，运行这段代码，会先打印出
+			// 异步请求执行成功，在打印出数据。
+			// 原来the方法就和回调函数一样，在runAsync这个异步任务执行完成后被执行。
+			// 这就是Promise的作用了。简单来讲，就是把回调函数分离处理，在异步操作执行完成后，用链式调用的方式调用回调函数。
+			// promsie的链式操作
+			// function runAsync1() {
+			// 	var p = new Promise(function (resolve, reject) {
+			// 		setTimeout(() => {
+			// 			console.log("异步请求执行成功1");
+			// 			resolve("数据1");
+			// 		}, 2000);
+			// 	});
+			// 	return p;
+			// }
+			// function runAsync2() {
+			// 	var p = new Promise(function (resolve, reject) {
+			// 		setTimeout(() => {
+			// 			console.log("异步请求执行成功2");
+			// 			resolve("数据2");
+			// 		}, 2000);
+			// 	});
+			// 	return p;
+			// }
+			// function runAsync3() {
+			// 	var p = new Promise(function (resolve, reject) {
+			// 		setTimeout(() => {
+			// 			console.log("异步请求执行成功3");
+			// 			resolve("数据3");
+			// 		}, 2000);
+			// 	});
+			// 	return p;
+			// }
+			// runAsync1()
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 		return runAsync2();
+			// 	})
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 		return runAsync3();
+			// 	})
+			// 	.then(function (data) {
+			// 		console.log(data);
+			//     });
+			// 表面上来看，Promise只是能够简化层层回调的写法
+			// 实质上，Promise的精髓是状态，用维护状态，传递状态并使得回调函数能够及时被使用。
+			// 在then方法中，也可以直接return数据而不是Promise对象，如果return出来的是数据，那么后面的then方法接收的就是数据
+			// runAsync1()
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 		return runAsync2();
+			// 	})
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 		return '我是数据';
+			// 	})
+			// 	.then(function (data) {
+			// 		console.log(data);
+			// 	});
+			// reject 的作用就是把Promise 的状态置未reject,这样我们在then中就能被捕捉到，然后执行'失败'情况的回调函数。
+			// function runAsync() {
+			// 	var p = new Promise(function (resolve, reject) {
+			// 		var num = Math.ceil(Math.random() * 10);
+			// 		if (num <= 5) {
+			// 			resolve(num);
+			// 		} else {
+			// 			reject("数组太大了");
+			// 		}
+			// 	});
+			// 	return p;
+			// }
+			// runAsync()
+			// 	.then(function (data) {
+			// 		console.log("resolved状态");
+			// 		console.log(data);
+			// 	})
+			// 	.catch(function (data) {
+			// 		console.log("rejected状态");
+			// 		console.log(data);
+			// 	});
+			// 也可以写成
+			// runAsync().then(
+			// 	function (data) {
+			// 		console.log("resolved状态");
+			// 		console.log(data);
+			// 	},
+			// 	function (data) {
+			// 		console.log("rejected状态");
+			// 		console.log(data);
+			// 	}
+			// );
+			// catch方法和then方法的第二个参数作用一样，但区别是，then的第一个参数中报错，then的第二个参数
+			// 不会进行捕捉，会因为报错暂停代码的执行。
+			// catch作用：在执行resolve的回调时，如果抛出异常了，那么并不会卡死，而是会进到catch方法中。
+			// Promise的all方法，提供了并行执行异步操作的能力，并且在所以异步操作执行完成后才执行回调。
+			// Promise.all([runAsync1(), runAsync2(), runAsync3()]).then(function (
+			// 	data
+			// ) {
+			// 	console.log(data);
+			// });
+			// 返回值也是数组。all接收的是一个数组，里面所有的异步操作都是并行操作的，等到他们都执行完后才会到then里面
+			// 使用场景，比如说一个游戏网页打开网页时，预先加载各种资源，所有都加载完成后，我们在进行页面初始化。
+			// race 的用法
+			// all方法的效果可以说是谁跑的慢以谁为准，race方法就是谁跑的块，以谁为准。race返回最先执行完成的。其余的会就行执行，但是不会在返回
+			// Promise.race([runAsync1(), runAsync2(), runAsync3()]).then(function (
+			// 	data
+			// ) {
+			// 	console.log(data);
+			// });
+			// race 的返回值不是数组类型的
+			// race方法可以用来设置请求超时时间。
+			function requestImg() {
+				var p =new Promise(function (resolve, reject) {
+					var img = new Image();
+					img.onload = function () {
+						resolve(img);
+					};
+					img.src = "1.jpg";
+				});
+				return p;
+			}
+			function timeout() {
+				var p = new Promise(function (resolve, reject) {
+					setTimeout(() => {
+						reject("请求超时");
+					}, 5000);
+				});
+				return p;
+            }
+            // 两个进行赛跑，谁先跑赢就返回谁
+			Promise.race([requestImg(), timeout()])
+				.then(function (data) {
+					console.log(data);
+				})
+				.catch(function (data) {
+					console.log(data);
+				});
+		</script>
+	</body>
+</html>
