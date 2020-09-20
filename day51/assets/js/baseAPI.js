@@ -5,5 +5,10 @@ $.ajaxPrefilter(function (option) {
         option.headers = {
             'Authorization': window.localStorage.getItem("token") || '',
         }
+        option.complete = function(res) {
+            if (res.responseJSON.status === 1 && res.responseJSON.message == '身份认证失败!') {
+                location.href = '/login.html'
+            }
+        }
     }
 })
