@@ -34,21 +34,28 @@ $(function () {
             $('.text-avatar').hide()
             // 图片头像显示
             $('.layui-nav-img').show().prop('src', data.user_pic)
-            $('.text-avatar').siblings('span').text('欢迎：' + data.username)
-        } else if (data.nickname) {
-            // 图片头像隐藏
+            $('.text-avatar').siblings('span').text('欢迎：' + data.username)}
+        //  else if (data.nickname) {
+        //     // 图片头像隐藏
+        //     $('.layui-nav-img').hide()
+        //     // 字符头像显示
+        //     // 找出头像的字符串第一个
+        //     $('.text-avatar').show().html(data.nickname[0].toUpperCase())
+        //     $('.text-avatar').siblings('span').text('欢迎：' + data.username)
+        // } else {
+        //     // 图片头像隐藏
+        //     $('.layui-nav-img').hide()
+        //     // 字符头像显示
+        //     // 找出头像的字符串第一个
+        //     $('.text-avatar').show().html(data.username[0].toUpperCase())
+        //     $('.text-avatar').siblings('span').text('欢迎：' + data.username)
+        // }
+        // 代码优化
+        else {
             $('.layui-nav-img').hide()
-            // 字符头像显示
-            // 找出头像的字符串第一个
-            $('.text-avatar').show().html(data.nickname[0].toUpperCase())
             $('.text-avatar').siblings('span').text('欢迎：' + data.username)
-        } else {
-            // 图片头像隐藏
-            $('.layui-nav-img').hide()
-            // 字符头像显示
-            // 找出头像的字符串第一个
-            $('.text-avatar').show().html(data.username[0].toUpperCase())
-            $('.text-avatar').siblings('span').text('欢迎：' + data.username)
+            var name = data.nickname || data.username || '**'
+            $('.text-avatar').show().html(name[0].toUpperCase())
         }
     }
 })
