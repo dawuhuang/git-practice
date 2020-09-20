@@ -14,6 +14,26 @@ body {
 }
 .userinfo {
     height: 60px;
+    text-align: center;
+    line-height: 60px;
     background-color: #393D49;
     border-bottom: 1px solid #282B33;
+}
+.layui-nav-img {
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+.text-avatar {
+    position: relative;
+    top: 4px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-color: #009688;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
 }
