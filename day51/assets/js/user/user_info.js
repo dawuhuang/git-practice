@@ -12,6 +12,7 @@ $(function() {
                     return layer.msg('获取用户基本信息失败')
                 }
                 form.val('userInfoForm',res.data)
+                
             }
         })
     }
@@ -33,6 +34,7 @@ $(function() {
     // 对用户信息进行更正
     $('#modifyUserInfo').on('submit',function(e) {
         e.preventDefault()
+        // console.log($(this).serialize());
         $.ajax({
             method: 'post',
             url: '/my/userinfo',
