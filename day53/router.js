@@ -1,4 +1,4 @@
-const express = require('express')
+// const express = require('express')
 const router = express.Router()
 router.get('/user/list',function(req,res){
     res.send('Get User List')
