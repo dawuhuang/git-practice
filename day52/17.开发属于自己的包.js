@@ -1,4 +1,4 @@
-const utils = require('./utils')
+const utils = require('./15.exports')
 const dtStr = utils.dateFormat(new Date())
 console.log(dtStr);
 console.log('---------------------------------');
