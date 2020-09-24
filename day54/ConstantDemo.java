@@ -1,22 +1,22 @@
 public class ConstantDemo {
 	public static void main(String[] args) {
-		// ×Ö·û´®³£Á¿
+		// å­—ç¬¦ä¸²å¸¸é‡
 		System.out.println("HelloWorld");
-		System.out.println("ÎÒÊÇ³ÌĞòÔ±");
-		// ÕûÊı³£Á¿
+		System.out.println("æˆ‘æ˜¯ç¨‹åºå‘˜");
+		// æ•´æ•°å¸¸é‡
 		System.out.println(666);
 		System.out.println(-888);
-		// Ğ¡Êı³£Á¿
+		// å°æ•°å¸¸é‡
 		System.out.println(13.14);
 		System.out.println(-5.21);
-		// ×Ö·û´®³£Á¿
+		// å­—ç¬¦ä¸²å¸¸é‡
 		System.out.println('A');
 		System.out.println('0');
-		// ²¼¶ûÖµ³£Á¿
+		// å¸ƒå°”å€¼å¸¸é‡
 		System.out.println(true);
 		System.out.println(false);
-		// ¿ÕÖµ
-		// ¿Õ³£Á¿ÊÇ²»ÄÜÖ±½ÓÊä³öµÄ
+		// ç©ºå€¼
+		// ç©ºå¸¸é‡æ˜¯ä¸èƒ½ç›´æ¥è¾“å‡ºçš„
 		// System.out.println(null);
 	}
 }
