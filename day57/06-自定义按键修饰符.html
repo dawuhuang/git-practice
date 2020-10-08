@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head> 
+</head>
+
 <body>
     <div id="app">
-        <p v-text='msg'></p>
-        <p v-pre>{{msg}}</p>
-        <p v-once>{{msg}}</p>
+        <input type="text" @keydown.f5='prompt()'>
     </div>
     <script src="./js/vue.js"></script>
     <script>
-        var vm = new Vue({
+        Vue.config.keyCodes.f5 = 115
+        new Vue({
             el: '#app',
-            data: {
-                msg: 'Hello Vue.js'
+            methods: {
+                prompt: function () {
+                    alert('我是F5')
+                    console.log(1);
+                }
             }
         })
     </script>
 </body>
+
 </html>

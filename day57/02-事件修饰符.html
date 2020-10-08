@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div @click='doThat'>222
+
+            <a href="#" @click.stop='doThis'>111</a>
+
+            <a href="http://www-baidu.com" @click.stop.prevent='todo2'>333</a>
+        </div>
+        <form action="" @submit.prevent='toda1'>
+            <input type="text" name="" id="">
+            <input type="submit">
+        </form>
+
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'zs',
+                count: 0
+            },
+            methods: {
+                doThis: function () {
+                    console.log(1);
+                },
+                doThat: function () {
+                    console.log(2);
+                },
+                toda1: function() {
+                    console.log(3);
+                },
+                todo2: function() {
+                    console.log(4);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

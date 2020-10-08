@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 1px dashed #f0f;
+        }
+
+        .textColor {
+            color: #f00;
+            background-color: #eef;
+        }
+
+        .textSize {
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul class="box" :class='{textColor:isColor,textColor:isSize}'>
+            <li>学习Vue</li>
+            <li>学习Node</li>
+            <li>学习React</li>
+        </ul>
+        <div :style='{color:activeColor,fontSize:activeSize}'>对象语法</div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isColor: true,
+                isSize: true,
+                activeColor: 'red',
+                activeSize: '25px',
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <form action="">
+            <!-- 单选框 -->
+            <label for="male">男</label>
+            <input type="radio" id="male" value="1" v-model='gender'>
+            <label for="female">女</label>
+            <input type="radio" id="female" value="2" v-model='gender'>
+            <!-- 复选框 -->
+            <span>爱好</span>
+            <input type="checkbox" id="ball" value="1" v-model='hobby'>
+            <label for="ball"></label>
+            <input type="checkbox" id="sing" value="2" v-model='hobby'>
+            <label for="ball"></label>
+            <input type="checkbox" id="code" value="3" v-model='hobby'>
+            <label for="ball"></label>
+        </form>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                gender: 2
+            }
+        })
+    </script>
+</body>
+
+</html>
