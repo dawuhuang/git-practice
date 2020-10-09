@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='hanle'>改变</button>
+        {{msg}}
+        {{msg.length}}
+    </div>
+    <script>
+        // 动态响应式数据的设置方式
+        // Vue.set(a,b,c)
+        // vm.$set(a,b,c)
+        // 动态响应式数据的设置是为了解决什么问题？
+        // 为了解决 vue 无法监听到两种变化 1是数组长度的变化和2通过索引去修改数组元素的变化 。而且在vue中不是在data中添加的data属性的值是无法触发响应式的
+        // vue 为什么无法监听到变化？
+        // 因为vue在new Vue() 时就通过了Object.defineProperty中的getter和setter这两个方法，完成率对数据的绑定。现在直接去用vm.arr[1]='a',求修改data中的数据，无法
+        // 触发vue中视图的更新，还必须通过object.defineProperty方法去改变，而vue.set() 中就封装了js底层的Object.defineProperty.
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: [12,3,4,6,7,3,24,1]
+            },
+            methods: {
+                hanle: function() {
+                    console.log(1);
+                    // 直接修改无法触发改变
+                    // this.msg[1] = 'aa'
+                    // 动态数组响应式数据
+                    vm.$set(this.msg,1,'aa')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

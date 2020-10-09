@@ -24,6 +24,13 @@
             <label for="ball"></label>
             <input type="checkbox" id="code" value="3" v-model='hobby'>
             <label for="ball"></label>
+            <!-- 下拉框 -->
+            <select name="" id="" v-model='occupation'>
+                <option value="0">请选择职业...</option>
+                <option value="1">教师</option>
+                <option value="2">法师</option>
+                <option value="3">律师</option>
+            </select>
         </form>
     </div>
     <script src="./js/vue.js"></script>
@@ -31,7 +38,9 @@
         new Vue({
             el: '#app',
             data: {
-                gender: 2
+                gender: 2,
+                hobby: [2, 1],
+                occupation: 2
             }
         })
     </script>

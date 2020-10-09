@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='handle'>改变数组</button>
+        {{arr}}
+        {{obj.name}}
+        {{obj.ert}}
+
+    </div>
+    <script>
+        // 变异方法与替换数组的差别
+        // 变异方法会改变原数组，对其功能进行扩展  push后加 pop后减 unshift前加 shift前减 splice删除加替换 sort排序 reverse翻转  
+        // 替换数组不会改变原数组，会返回新数组  filter过滤  concat拼接  slice数组切割
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                arr: [1,6,8,2,3,4],
+                obj: {
+                    name:'zs'
+                }
+            },
+            methods: {
+                handle: function() {
+                    // filter 过滤
+                    // var arr1 = this.arr.filter(item => item > 3)
+
+                    // concat 拼接
+                    // var arr1 = this.arr.concat([5,6,7,8])
+
+                    // slice 数组截取
+                    // var arr1 = this.arr.slice(0,2)  //  1,2
+                    // 三种替换方法都不会改变原数组，而是返回的新数组
+
+                    // push 后加  返回值书新数组的长度
+                    // var arr1 = this.arr.push(6)  
+
+                    // pop 后减  返回值是删除的元素
+                    // var arr1 = this.arr.pop()
+
+                    // unshift()  前加  返回值是新数组的长度
+                    // var arr1 = this.arr.unshift(2)
+
+                    // shift()  前减 返回值是删除的元素
+                    // var arr1 = this.arr.shift()
+
+                    // splice()  有三个属性 1是有删除元素的下标 2是要删除的长度 3是要替换的数据  返回值是删除的元素，一数组形式表示
+                    // var arr1 = this.arr.splice(1,1,77) // 1,77,4   
+
+                    // sort()  排序  返回值是排序后的新数组  a- b是从小到大 b-a 是从大到小
+                    // var arr1 = this.arr.sort((a,b) => b-a)
+
+                    // reverse()  翻转数组  返回值是翻转后的数组
+                    var arr1 = this.arr.reverse()
+                    console.log(arr1);
+                    // this.obj.ert = 123
+                    Vue.set(vm.obj,'ert',123)
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

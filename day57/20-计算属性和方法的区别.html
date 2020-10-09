@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{reversalString()}}</div>
+        <div>{{numAdd}}</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                num: 100,
+                msg: 'nihao'
+            },
+            methods: {
+                reversalString() {
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+            computed: {
+                numAdd() {
+                    var total = 0
+                    for(var i = 0 ;i <= this.num;i++) {
+                        total += i
+                    }
+                    return total
+                }
+            }
+        })
+        // console.log(vm); 计算属性的基于他的依赖(data中的数据进行缓存的)进行缓存的
+        // 计算属性是来进行逻辑计算的，侦听器是用来监听数据的变化的
+    </script>
+</body>
+
+</html>

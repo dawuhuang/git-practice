@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='msg'>
+        <div>{{msg | upper}}</div>
+        <div>{{msg | upper | lower}}</div>
+        <input type="text" v-model.number="num">
+        <div>{{num | filterA(1,2)}}</div>
+    </div>
+    <script>
+        // 过滤器不改变真正的data，而只是改变渲染的结果，并返回过滤后的版本
+        Vue.filter("upper", function (val) {
+            return val.charAt(0).toUpperCase() + val.slice(1)
+        })
+        // 带参数的过滤器，第一个形参对应的是管道符前面的值。
+        Vue.filter('filterA', function (n, a, b) {
+            if (n < 10) {
+                return n + a
+            } else {
+                return n + b
+            }
+
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+                num: 1
+            },
+            filters: {
+                lower: function (val) {
+                    return val.charAt(0).toLowerCase() + val.slice(1)
+                }
+            }
+        })
+        // 生命周期 常用的有8个 分布在挂载，更新，销毁阶段。
+        // 初始化 分为两个钩子 实例初始化之后和实例创建完成后
+        // 挂载 在挂载开始之前和挂载完成之后
+        // 更新 分为两个钩子， 分为更新时和 更新完成后
+        // 销毁 分为两个钩子 分为销毁之前 和销毁之后
+        // 初始化 
+        // beforeCreate 实例初始化之后，数据观测和时间配置之前，此时data和methods已经页面的dom结构都还没初始化出来，什么都干不了。
+        // created 实例创建完成之后，立即调用该钩子。
+        // 挂载
+        // beforeMount 在挂载开始之前被调用，此时页面上还看不到真实的数据，只是一个模板页面
+        // mounted el被新创建的vm.$el所替代，并挂载到实例上去之后调用该钩子，数据以及真实渲染到页面上
+        // 更新
+        // beforeUpdate 数据更新时调用，发生在虚拟dom打补丁之前，此时页面的数据还是旧的
+        // updated 由于数据更改导致虚拟dom重新渲染和打补丁，在这之后会立即调用该钩子，此时页面上的数据是新的
+        // 销毁 
+        // befoerDestroy 在实例销毁之前调用
+        // destroyed 在实例销毁之后调用
+    </script>
+</body>
+
+</html>
