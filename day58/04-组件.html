@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <my-div></my-div>
+    </div>
+    <script>
+        // 组件的作用的扩展html元素，封装可以重用的代码。
+        // 组件注册component，自定义指令directive，过滤器filter。
+        // 组件中data的值必须是函数，切函数的返回值必须是对象。
+        // template1中标签必须被包含在单个根元素中，可以用模板字符串。
+        // 全局注册的组件在在所以的vue实例中都可以使用
+        Vue.component('my-component', {
+            data: function() {
+                return {
+                    msg: '123'
+                }
+            },
+            template: `<div>我是全局注册组件{{msg}}</div>`
+        })
+        var divbox = {
+            template: `<div>我是局部组件</div>`
+        }
+        new Vue({
+            el:'#app',
+            data:{
+
+            },
+            // 局部注册组件，只能用在当前的vue实例中
+            components: {
+                'my-div': divbox
+            }
+        })
+    </script>
+</body>
+
+</html>

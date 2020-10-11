@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <menu-item  @enlarge-text='handle($event)'></menu-item>
+        <div :style='{fontSize: fontSize + "px"}'>父组件中的内容</div>
+    </div>
+    <script>
+        Vue.component('menu-item',{
+            template: `<div>
+                <button @click='$emit("enlarge-text",5)'>扩大字体</button>
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                fontSize: 5
+            },
+            methods: {
+                // handle: function(val) {
+                //     console.log(val);
+                //     this.fontSize += val
+                // }
+                handle(val) {
+                    this.fontSize +=val
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

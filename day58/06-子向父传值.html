@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <menu-item @enlarge-text='handle($event)'></menu-item>
+        <div :style='{fontSize: fontSize + "px"}'>{{pmsg}}</div>
+    </div>
+    <script>
+        // 子向父传值 ，子组件用$emit()触发时间 第一个参数是自定义的时间名称，第二个参数为传递的值
+        Vue.component('menu-item', {
+            template: `<div>
+                <button @click='$emit("enlarge-text",5)'>扩大父组件中的内容</button>
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件中的内容',
+                fontSize: 10
+            },
+            methods: {
+                handle: function(val) {
+                    this.fontSize += val
+                }
+            }
+        })
+        // 父向子传值，子组件通过props接收
+        // 子向父传值，子组件通过$emit 传递自定义的事件名称和要传递的参数，父组件通过v-on来绑定传递过来的自定义事件，通过$event接收传递过来的值
+    </script>
+</body>
+
+</html>

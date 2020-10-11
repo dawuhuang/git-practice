@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <item-meui></item-meui>
+        <item-meui>有一个错误</item-meui>
+        <item-meui>有一个bug</item-meui>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 组件的作用就是提高HTML元素，封装可以重用的代码。而插槽的作用就是大大的提高组件的可复用能力
+        // 插槽分为三种：匿名插槽 具名插槽 作用域插槽
+
+        // 匿名插槽
+        Vue.component('item-meui', {
+            template: `<div>
+                <strong>ERROR:</strong>
+                <slot>默认内容<slot>
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <base-layout>
+            <p slot="header">标题消息</p>
+            <p>主要内容</p>
+            <p slot="footer">底部消息</p>
+        </base-layout>
+    </div>
+    <script>
+        // 具名插槽是有name的插槽
+        // 使用<slot>中的name绑定元素
+        Vue.component('base-layout', {
+            template: `<div>
+                <header>header
+                    <slot name='header'></slot>
+                    </header>
+                <main>main
+                    <slot></slot>
+                    </main>
+                <footer>footer
+                    <slot name='footer'></slot>    
+                </footer>
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

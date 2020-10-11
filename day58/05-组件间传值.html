@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 给子组件传递静态的值 -->
+        <my-component title="来自父组件的值"></my-component>
+        <!-- 给子组件传递动态的值，需要用到属性搬到的方式，值是data中的值 -->
+        <my-component :title="ptitle" content='hello'></my-component>
+
+    </div>
+    <script>
+        // 组件的作用的扩展HTML元素和封装可以重用的代码
+        // 组件分为全局组件和局部组件
+        // 组件间传值 父组件 vue实例 向 子组件 全局组件 传值。子组件用props介绍父组件传递过来的值
+        Vue.component('my-component', {
+            props: ['title','content'],
+            data:function() {
+                return {
+                    msg: '子组件本身的数据'
+                }
+            },
+            template: `<div>{{msg + '---'+ title+'------'+content}}</div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件中的内容',
+                ptitle: '动态绑定属性'
+            }
+        })
+    </script>
+</body>
+
+</html>
