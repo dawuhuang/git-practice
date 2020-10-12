@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router_3.0.2.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link :to="{name:'user',params:{id:332}}">User</router-link>
+        <router-link to="/login">Login</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var User = {
+            template: `<div>This is User{{$route.params.id}}</div>`
+        }
+        var Login = {
+            template: `<div>This is Login</div>`
+        }
+        const router = new VueRouter({
+            routes: [
+                {path:'/user/:id',component:User,name:'user'},
+                {path: '/login',component:Login}
+            ]
+        })
+        new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+</html>

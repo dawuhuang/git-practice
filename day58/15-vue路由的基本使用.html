@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router_3.0.2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <router-link to="/user/444">User</router-link> -->
+        <router-link :to="{ name: 'user', params: {id: 3} }">User3</router-link>
+        <router-link to="login">Login</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var User = {
+            // props:['username','age','id'],
+            template: `<div>This is User{{$route.params.id}}</div>`
+            // template: `<div>This is User{{id}}</div>`
+            // template: `<div>{{username+'--------'+age}}</div>`
+            // template: `<div>{{username+'--------'+age+'-----' +id}}</div>`
+        }
+        var Login = {
+            template: `<div>This is Login <br />
+                <router-link to="/login/account">账号密码登录</router-link>
+                <router-link to="/login/phone">扫码登录</router-link>
+                <router-view></router-view>
+                </div>`
+        }
+        var Accounts = {
+            template: `<div>账号：<input><br>密码：<input></div>`
+        }
+        var phone = {
+            template: `<h1>扫我二维码</h1>`
+        }
+        const router = new VueRouter({
+            routes: [
+                // { path: '/', redirect: '/user' },
+                // { path: '/user/:id', component: User,props:(route) => {
+                //     return {username:'jack',age:213,id:route.params.id}
+                // } },
+                { path: "/user/:id", component: User, name:"user"},
+                { path: '/login', component: Login,children:[
+                    // {path:'/login',redirect: '/login/account'},
+                    {path: '/login/account',component:Accounts},
+                    {path: '/login/phone', component:phone}
+                ] }
+            ]
+        })
+        new Vue({
+            el: '#app',
+            data: {
+
+            },
+            router
+        })
+    </script>
+</body>
+
+</html>

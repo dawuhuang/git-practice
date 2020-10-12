@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router_3.0.2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/user/1">User1</router-link>
+        <router-link :to="{name:'user', params: {id:123}}">User</router-link>
+        <router-link to="/login">Login</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var User = {
+            props: ['id'],
+            template: `<div>This is User{{id}}</div>`
+        }
+        var Login = {
+            template: `<div>This is Login</div>`
+        }
+        const router = new VueRouter({
+            routes: [
+                {
+                    // 命名路由
+                    name: 'user',
+                    path: '/user/:id',
+                    component: User,
+                    props: route => ({ uname: 'zs', age: 20, id: route.params.id })
+                },
+                { path: '/login', component: Login }
+            ]
+        })
+        new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+
+</html>

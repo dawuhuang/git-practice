@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+        .curry {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <fruit-list :list='list'>
+            <template v-slot='slotProps'>
+                <!-- <strong v-if='slotProps.info.id == 3' class="curry">
+                    {{slotProps.info.name}}
+                </strong>
+                <span v-else> {{slotProps.info.name}}</span> -->
+                {{slotProps}}
+            </template>
+        </fruit-list>
+    </div>
+    <!-- 作用域插槽 -->
+    <script>
+        // 父组件对子组件加工处理，既可以复用子组件的slot，又可以试slot组件中的内容不一样
+
+        // 在子组件中，有一个类似props传递数据给组件的写法 :info='item'
+        Vue.component('fruit-list', {
+            props: ['list'],
+            template: `<div>
+                <li v-for='item in list' :key='item.id'>
+                <slot :info='item'>{{item.name}}</slot>    
+                </li>
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    id: 1,
+                    name: 'apple'
+                }, {
+                    id: 2,
+                    name: 'orange'
+                }, {
+                    id: 3,
+                    name: 'banana'
+                }]
+            }
+        })
+    </script>
+</body>
+
+</html>

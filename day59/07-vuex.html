@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // vuex 状态管理
+        // vuex 是实现组件全局状态（数据管理的一种机制） 可以方便的实现组件之间的数据共享
+        // 数据可以通过store集中来进行全局共享，不使用vuex进行数据共享时，数据会在子组件之间多层的传递
+
+        // 使用vuex同意管理状态的好处
+        // 1 能够在vuex中集中管理共享的数据，易于开发和后期的维护
+        // 2 能够高效的实现组件之间的数据共享，提供开发效率
+        // 3 存储在vuex中的数据都是响应式的，能够实时保存数据和页面的同步
+        // 一般来说，只有组件之间共享的数据，才有必要存储在vuex中。对于组件中的私有数据，存储在组件自身的data中即可，但是想全局存储也可以
+
+        // vuex 的基本使用
+        // 1 安装vuex依赖包
+        //  npm install vuex --save
+        // 2. 导入vuex 包
+        // import Vuex from 'vuex'
+        // Vue.use(Vuex)
+        // 3 创建store对象
+        // const store = new Vuex.Store({
+        // state 中存放的就是全局共享的数据
+        // state: {count: 0}
+        // })
+        // 4 讲store对象挂载到vue实例中(main.js 文件)
+        new Vue({
+            store,
+            render: h => h(app)
+        }).$mount('#app')
+        // vue 项目中，一般是在store.js文件中导入，并创建对象，在vue.cli脚手架中搭建项目是，选择Vuex,会在生产的模板文件中生产storew文件夹，里面有index.js ，已经导入好包,创建好
+        // 对象和挂载到实例，讲创建的共享数据对象，挂载到vue实例中，所以的组件，就可以直接从store中获取全局的数据了
+        import Vue from 'vue'
+        import Vuex from 'vuex'
+        Vue.use(Vuex)
+        export default new Vuex.Store({
+            state: {},
+            mutations: {},
+            actions: {},
+            modules: {}
+        })
+
+        // Vuex 的核心概念
+        // Vuex 中的主要核心概念是 State, Mutation, Action, Getter
+        // State
+        // 提供唯一的公共数据源 所有的数据都与统一放大Store的State中进行存储
+        // 创建store 数据源，提供唯一公共数据
+        const store = new Vuex.Store({
+            state: {count: 0},
+        })
+        // 组件想访问到State中的数据，如想访问到count 第一种方式
+        this.$store.state.全局数据名称
+        // 第二种方式，通过导入mapState函数，讲当前组件需要的全局数据，映射为当前组件的computed计算属性，就可以了
+        // 从Vuex中按需导入mapState函数，在当前页面的 export default 前面导入 
+        // import { mapState} from 'vuex'
+        // 讲全局数据，映射为当前组件的计算属性
+        // computed: {
+        //     ...mapState({'count'})
+        // }
+
+        // Mutation  
+        // Mutation 用于变更Store 中的数据，只有mutation 才能修改数据
+        // 1 Mutation 用于变更Store 中的数据，不可以直接操作Store 中的数据，（意思是不要在其他为位置对Store的数据进行修改）
+        // 2 通过这种方式虽然操作起来稍微繁琐一下，但是可以集中监控所以数据的变化
+        const store = new Vuex.Sotre({
+            state: {
+                count: 0
+            },
+            mutation: {
+                add(state) {
+                    state.count++
+                }
+            }
+        })
+        // 如果是在组件中修改store中data的数据，还是要触发mutation 
+        methods: {
+            handle() {
+                this.$store.commit('add')
+            }
+        }
+        // 如果触发是携带参数
+        addN(state, step ) {
+            state.count += step
+        }
+        methods: {
+            handle() {
+                this.$sotre.commit('addN',3)
+            }
+        }
+        // 如果从Vuex中按需导入的mapMutations 函数
+        import {mapMutations} from 'vuex'
+        // 讲指定的mutations 函数 映射为当前组件的methods方法，下面就能通过this使用
+        // methods: {
+        //     ...mapMutations({'add','addN'})
+        //     btn2() {
+        //         this.sub()
+        //     },
+        //     btn3() {
+        //         this.subN(3)
+        //     }
+        // }
+
+        //state和mutation的差别
+        // state 导入的是mapState函数，映射为当前组件的comouted计算属性，state 是用来保存数据的
+        // mutation 导入的是mapMutation 函数，映射为当前组件的methods 方法,mutation 用来修改数据
+
+        // actions 用来处理异步任务（在action中，不能直接修改state 中的数据，必须通过context.commit()触发某个mutation才行）
+        // 如果通过异步操作（比如延时操作）变更数据，必须通过Action ,而不能使用Mutation ,但是Action 中还是要通过触发Mutationd1方法
+        // 简介变更数据
+        const store = new Vuex.Sotre({
+            state: {
+                count: 0
+            },
+            mutation: {
+                add(state) {
+                    state.count++
+                }
+            },
+            actions: {
+                addAsync(context) {
+                    // 延时1 秒再进行操作
+                    setTimeout(() => {
+                        context.commit('add')
+                    }, 1000);
+                }
+            }
+        })
+
+        // 在组件的中的使用方式，通过dispatch触发
+        // methods: {
+        //     handle() {
+        //         this.$store.dispatch('addAsycn')
+        //     }
+        // }
+
+        // 携带参数触发action的和mutation同
+
+
+        // 触发actions的第二种方式，通过导入，mapActions函数，将需要的actions函数，映射为当前组件的methods方法
+
+        // Getter 用来对于store中的数据进行加工处理形成新的数据，不会影响原来的数据
+        // 1 Getter 可以对Store中已有的数据进行加工处理形成新的数据，类型Vued的计算属性
+        // 2 State 中的数据发生，Getter 的数据也会跟着发生变化
+        const sotre = new Vuex.Sotre({
+            state: {
+                count: 0
+            },
+            getters: {
+                showNum: state => {
+                    return '当前最新的数量是【'+ state.count +'】'
+                }
+            }
+        })
+
+        // 使用getters 的第一种方式
+        this.$sotre.getters.方法名称
+        // 第二种方式是通过 mapGetters 函数，将需要的getters 函数，映射为当前组件的methods方法
+     </script>
+</body>
+
+</html>

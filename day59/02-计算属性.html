@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <div>{{msg}}</div>
+        <div>{{myMsg}}</div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+            computed: {
+                myMsg: function () {
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
