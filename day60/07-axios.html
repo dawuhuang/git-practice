@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        axios.get('http://192.169.69.40:3000/axios').then((res)=> {
+            console.log('请求成功'+res.data);
+        },(err) => {
+            console.log('请求失败',err);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        axios.post('http://192.168.69.40:3000/axios',{
+            uname:'喷子',
+            pwd: 123456,
+        }).then(a,b)
+        setTimeout(() => {
+            console.log(5);
+        }, 0);
+        function a(data) {
+            console.log(3,data.data);
+        }
+        function b(data) {
+            console.log(4,data.data);
+        }
+    </script>
+</body>
+</html>

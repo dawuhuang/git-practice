@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function sendName() {
+            console.log('1');
+            const res = await axios.get('http://192.168.69.49:3000/a3')
+            console.log(3);
+            console.log(res.data);
+        }
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    msg: '默认值'
+                }
+            },
+            methods: {
+                
+            },
+        })
+    </script>
+</body>
+</html>
