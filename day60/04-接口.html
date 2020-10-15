@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+</head>
+
+<body>
+    <script>
+        /*
+        javascript 的执行环境是单线程的
+        所谓单线程，是☞js引擎中负责解释和执行Javascript代码的线程只有一个，也就是一次只能完成一项任务，这个任务执行完成后
+        才能执行下一个，它会阻塞其他任务这个任务可以称为主线程
+        异步模式可以一起执行多个任务
+        js中常见的异步调用
+        定时任务、Ajax、事件函数
+        promise 主要解决了异步深层嵌套 的问题promise提供了简洁的api使得异步操作更加容易
+        promise 的基本使用
+        我们使用new 操作符 来构建一个promise，promise的构造函数接收一个参数，是函数，并且传入两个参数resolve，reject
+        分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回对函数
+        */
+    //    var p = new Promise(function(resolve,reject) {
+    //        // 这里用于实现异步任务settimeout
+    //        setTimeout(() => {
+    //            var flag = false
+    //            if (flag) {
+    //                // 正常情况
+    //                resolve('hello')
+    //            }else {
+    //                // 异常情况
+    //                reject("出错了")
+    //            }
+    //        }, 100);
+    //    })
+    //    // 5 promise实例生成以后，可以用then方法指定resolve状态和reject状态的回对函数
+
+    //    p.then(function(data) {
+    //        console.log(data);
+    //    },function(info) {
+    //        console.log(info);
+    //    })
+        function queryData(url) {
+            // 1.1 创建一个promise实例
+            var p = new Promise(function(resolve,reject) {
+                var xhr = new XMLHttpRequest()
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4) return;
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // 处理正常情况
+                        resolve(xhr.responseText)
+                    }else {
+                        // 处理异常情况
+                        reject('服务器错误')
+                    }
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>

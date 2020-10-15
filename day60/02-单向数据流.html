@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <hello-world :count='count'></hello-world>
+    </div>
+    <script>
+        Vue.component('hello-world', {
+            props: ['count'],
+            data() {
+                return {
+                    mycount: this.count
+                }
+            },
+            // 传递进来的数据，不能修改，如果要改，那么就在data上面定义一个数据，使用props值
+            // 作为初始值，再去改
+            template: `<div>
+                <h3>这个数据是父组件传递过来的，不能改{{count}}</h3>
+                <h3>父向子传的数据{{mycount}}</h3>
+                <button @click='mycount++'>我是子组件的方法,修改props值</button>
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                count: 3
+            }
+        })
+    </script>
+</body>
+
+</html>

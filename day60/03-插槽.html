@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <hello-world>
+            333
+        </hello-world>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 插槽可以让我们对组件做些定制化操作
+        Vue.component('hello-world',{
+            template: `<div>
+                <slot></slot>
+                <h3>插槽演示</h3>
+                </div>`
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>

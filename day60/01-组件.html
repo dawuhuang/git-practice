@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script>
+        // 组件间传值 分为父传子，子传父，兄弟间传值。
+        // 并不是每个人都适合编程
+        Vue.component('my-component', {
+            data: function () {
+                return {
+                    msg: '123'
+                }
+            },
+            template: `<div>组件化开发{{msg}}
+                <button @click='handle'>修改</button>
+                <div>`,
+            methods: {
+                handle() {
+                    // 修改data中的数据
+                    this.msg++
+                }
+            },
+        })
+        new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>
