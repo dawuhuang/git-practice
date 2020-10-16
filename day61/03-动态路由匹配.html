@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue_2.5.22.js"></script>
+    <script src="./lib/vue-router_3.0.2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/user">User</router-link>
+        <router-link to="/user/1">User1</router-link>
+        <router-link to="/user/2">USer2</router-link>
+        <router-link to="/user/3">USer3</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template: `<div>
+                User 页面
+                </div>`
+        }
+        const Register = {
+            template: `
+            <div>
+                User 组件 -- 用户id为: {{$route.params.id}}
+            </div>
+            `
+        }
+        const router = new VueRouter({
+            routes: [
+                { path: '/user', component: User },
+                { path: '/user/:id', component: Register }
+            ]
+        })
+        new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+
+</html>
