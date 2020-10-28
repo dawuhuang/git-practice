@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+</head>
+<style>
+    /* 
+    在默认请求下是，不换行的，项目都排在一条线上，flex-wrap属性定义，flex布局默认是不换行的
+    */
+    div {
+        display: flex;
+        width: 600px;
+        height: 400px;
+        background-color: pink;
+        flex-wrap: nowrap;
+    }
+    span {
+        width: 150px;
+        height: 100px;
+        background-color: blue;
+        color: #fff;
+        margin: 10px;
+    }
+</style>
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+</body>
+
+</html>

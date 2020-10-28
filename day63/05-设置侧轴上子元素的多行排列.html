@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+    <style>
+        /* 
+        控制子项在侧轴的排列方式
+        flex-start 默认在侧轴的头部开始排列
+        flex-end 从侧轴的尾部开始排列
+        center 在侧轴的中间显示
+        streter 设置子元素高度平分父元素高度
+        space-around 子项在侧轴平分剩余空间
+        space-between 子项在侧轴先分布在两天，在平分剩余空间
+        */
+        div {
+            display: flex;
+            width: 800px;
+            height: 400px;
+            background-color: pink;
+            flex-direction: row;
+            justify-content: center;
+            /* align-items: flex-start; */
+            align-content:  stretch;
+            flex-wrap: wrap;
+            /* -webkit-align-items: stretch; */
+        }
+        span {
+            /* display: block; */
+            width: 150px;
+            /* height: 100px; */
+            background-color: rgb(174, 174, 187);
+            color: #FFF;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+    </div>
+</body>
+
+</html>

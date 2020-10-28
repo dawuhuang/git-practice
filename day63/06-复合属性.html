@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+</head>
+<style>
+    section {
+        display: flex;
+        width: 60%;
+        height: 400px;
+        background-color: pink;
+        margin: 0 auto;
+    }
+    section div:nth-child(1) {
+        width: 100px;
+        flex: 1;
+        height: 150px;
+        background-color: red;
+    }
+    section div:nth-child(2) {
+        flex: 1;
+        background-color: green;
+    } 
+    section div:nth-child(3) {
+        width: 100px;
+        height: 150px;
+        background-color: blue;
+        align-self: flex-end;
+        order: -1;
+    }
+</style>
+<body>
+    <section>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+</body>
+
+</html>

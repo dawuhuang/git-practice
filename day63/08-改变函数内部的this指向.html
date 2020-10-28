@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+</head>
+
+<body>
+    <!-- call -->
+    <script>
+        // var o = {
+        //     name: 'zs'
+        // }
+        // function fn(a,b) {
+        //     console.log(this);
+        //     console.log(a+b);
+        // }
+        // fn(1,2) // this 指向window 运行结果为3
+        // fn.call(o,1,2) // this 指向对象o 运行结果为3
+
+        // apply
+        // var o = {
+        //     name: 'zs'
+        // }
+        // function fn(a,b) {
+        //     console.log(this);
+        //     console.log(a+b);
+        // }
+        // var f = fn.bind(o,1,2) // 此处f是bind 返回的新函数
+        // f()// 调用先函数 this 指向的是o,参数用逗号隔开
+        // 递归求阶乘
+        // function fn(n) {
+        //     if (n === 1) {
+        //         return 1
+        //     }
+        //     return n * fn(n - 1)
+        // }
+        // console.log(fn(3));
+// 递归求斐波那契数列
+// function fn(n) {
+//     if (n === 1 || n === 2) {
+//         return 1
+//     }
+//     return fn(n - 1) + fn(n - 2)
+// }
+// console.log(fn(7));
+// function fn()
+// 函数声明式 函数表达式 new function 
+// 普通函数的调用，在对象中调用，构造函数 绑定事件的函数 定时器函数 立即指向函数
+// this 是js 的一个关键字，他是函数运行时，在函数体内部自动生成的一个对象，只能在函数体内部使用
+// 函数使用的不同场合，this用不同的值，总的来说 this 就是函数运行时所在的环境对象
+// 普通函数，定时器函数 立即指向函数 的this 指向window
+// 事件绑定方法 指向绑定事件对象
+// 对象方法调用，指向改方法所属对象
+// 构造函数调用 指向实例对象
+// this 什么？ 是js 的一个关键字 是函数运行是，在函数体内部自动生成的一个对象，只能在函数内部使用。函数使用的不同场合，this有不同的值，this 就函数运行时所在的环境对象
+// this 的指向 普通函数，定时器函数，立即指向函数中this指向window，构造函数中this指向实例对象，对象方法的调用，this指向改方法说是对象，事件绑定方法，指向事件绑定对象。
+var o = {
+    name: 'zs',
+    say: function () {
+        console.log(this);
+    }
+}
+o.say()
+// this 是什么？this 是js 中的一个关键字，是函数运行时，在函数体内部自动生成的一个对象，只能在函数体内部使用。总的来说this就是函数运行时所在的环境对象。
+// this 是js的关键字， 他是函数运行时，在函数体内部自动生成的一个对象。this 是函数运行时所在的环境对象。
+    </script>
+</body>
+
+</html>
